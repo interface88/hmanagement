@@ -1,0 +1,25 @@
+
+
+  #lightBoxDiv {
+        -moz-border-radius: 6px;
+        background: #eef2f7;
+        -webkit-border-radius: 6px;
+        border: 1px solid #536376;
+        -webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+        -moz-box-shadow:  rgba(0,0,0,.6) 0px 2px 12px;;
+        padding: 14px 22px;
+        width: 400px;
+        position: relative;
+        display: none;
+    }
+
+
+    
+    #close_x { 
+        width: 24px; height: 23px;
+        overflow: hidden; line-height: 1000px;
+        display: block;
+        position: absolute; top: 5px; right: 5px;
+        background-position: -387px -102px;
+    }
+  
