@@ -115,22 +115,22 @@ public class dbconnection {
 
 	public boolean isUserExists(String userId)
 	{		
-		boolean isExists=false;
-		try
-		{
-			String qry="select * from staff where user_id='"+userId+"'";
-			stmt=conn.createStatement();
-			ResultSet rs= stmt.executeQuery(qry);
-			if(rs.next())
-				isExists= true;
-			else
-				isExists= false;
-			rs.close();
-			stmt.close();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		boolean isExists=true;
+//		try
+//		{
+//			String qry="select * from staff where user_id='"+userId+"'";
+//			stmt=conn.createStatement();
+//			ResultSet rs= stmt.executeQuery(qry);
+//			if(rs.next())
+//				isExists= true;
+//			else
+//				isExists= false;
+//			rs.close();
+//			stmt.close();
+//		}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		return isExists;
 	}
 

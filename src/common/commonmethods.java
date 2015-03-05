@@ -17,22 +17,23 @@ public class commonmethods {
 	// Checking session attributes
 	public static boolean checkSession(HttpSession session)
 	{
-		if(session.getAttribute("userId")!=null)
-		{
-			String userId=(String)session.getAttribute("userId");
-			String password=(String)session.getAttribute("password");
-		//	String role=(String)session.getAttribute("role");
-
-			if(userId==null || password==null) 
-			{ 	
-				session.setAttribute("ErrorMsg","Please login."); 
-				return false;
-			}else
-				return true;
-		}else{
-			session.setAttribute("ErrorMsg","Please login."); 
-			return false;
-		}
+//		if(session.getAttribute("userId")!=null)
+//		{
+//			String userId=(String)session.getAttribute("userId");
+//			String password=(String)session.getAttribute("password");
+//		//	String role=(String)session.getAttribute("role");
+//
+//			if(userId==null || password==null) 
+//			{ 	
+//				session.setAttribute("ErrorMsg","Please login."); 
+//				return false;
+//			}else
+//				return true;
+//		}else{
+//			session.setAttribute("ErrorMsg","Please login."); 
+//			return false;
+		return true;
+//		}
 	}
 
 	//=============================
