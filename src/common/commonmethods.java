@@ -29,7 +29,7 @@ public class commonmethods {
 				return false;
 			}else
 				return true;
-		}else{
+		} else {
 			session.setAttribute("ErrorMsg","Please login."); 
 			return false;
 		}
