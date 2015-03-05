@@ -1,7 +1,7 @@
 
 <%@page import="common.commonmethods"%>
 <%@page import="common.constants"%>
-<link rel="stylesheet" href="menu_files/mbcsmbmcp.css" type="text/css" />
+<link rel="stylesheet" href="theme/menu_files/mbcsmbmcp.css" type="text/css" />
 <%
 
 if(!commonmethods.checkSession(session))
@@ -15,7 +15,7 @@ if(!commonmethods.checkSession(session))
 
 
 
-<ul id="mbmcpebul_table" class="mbmcpebul_menulist css_menu" style="width: 100%;background-image:url('menu_files/menuback.png'); height: 40px;">
+<ul id="mbmcpebul_table" class="mbmcpebul_menulist css_menu" style="width: 100%;background-image:url('../parts/menu_files/menuback.png'); height: 40px;">
   <li class="topitem spaced_li first_button"><div class="buttonbg gradient_button gradient40" style="width: 67px;"><a href="Home.jsp" >Home</a></div></li>
   <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><div class="arrow"><a class="button_2">Master</a></div></div>
   <ul>

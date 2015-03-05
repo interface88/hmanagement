@@ -17,9 +17,9 @@
 <meta name="keywords" content="" />
 <meta name="author" content="Codrops" />
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css" href="css/demo.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="theme/css/demo.css" />
+<link rel="stylesheet" type="text/css" href="theme/css/style.css" />
+<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
 
 </head>
 <body>
@@ -27,11 +27,11 @@
 	<div  >
 		<table class="maintble">
 			<tr>
-				<td align="center"><jsp:include page="common/Header.jsp" /></td>
+				<td align="center"><jsp:include page="theme/parts/Header.jsp" /></td>
 			</tr>
 			<tr style="height: 530px">
 				<td
-					style="background-image: url('images/bg.jpg'); background-repeat: repeat;  ">
+					style="background-image: url('theme/images/bg.jpg'); background-repeat: repeat;  ">
 
 					<div id="wrapper">
 						<div id="login">
@@ -43,6 +43,7 @@
 										required="required" type="text" placeholder="username" />
 								</p>
 								<p style="text-align: left;">
+						
 									<label for="password" class="youpasswd" data-icon="p">
 										Your password </label> <input id="password" name="password"
 										required="required" type="password" placeholder="password" />
@@ -79,7 +80,7 @@
 			</tr>
 			<tr>
 				<td	><jsp:include
-						page="common/Footer.jsp" /></td>
+						page="theme/parts/Footer.jsp" /></td>
 			</tr>
 
 		</table>

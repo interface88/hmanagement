@@ -7,28 +7,28 @@
 <head>
 <title>HMS-Admission Type Master</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
 </head>
 
 <body>
 
 	<div >
 		<table class="maintble">
-			<!-- Header Part -->
+		<!-- Header Part -->
 			<tr>
-				<td align="center"><jsp:include page="common/Header.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/Footer.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="common/MenuHeader.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/Footer.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
 				<td
-					style="background-image: url('images/bg.jpg'); background-repeat: repeat;">
-					<table class="intble ">
+					style="background-image: url('../theme/images/bg.jpg'); background-repeat: repeat;">
+					<table class="intble borderzero">
 						<tr>
-							<td valign="top" class="leftPanel"><jsp:include
-									page="leftpanel/homeleft.jsp" /></td>
+							<td valign="top" class="leftPanel">
+							<jsp:include page="../../theme/parts/Footer.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle" >
@@ -77,7 +77,7 @@
 			<!-- Footer Part -->
 			<tr>
 				<td	><jsp:include
-						page="common/Footer.jsp" /></td>
+						page="../../theme/parts/Footer.jsp" /></td>
 			</tr>
 		</table>
 	</div>
