@@ -19,7 +19,7 @@ if(!commonmethods.checkSession(session))
   <li class="topitem spaced_li first_button"><div class="buttonbg gradient_button gradient40" style="width: 67px;"><a href="Home.jsp" >Home</a></div></li>
   <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><div class="arrow"><a class="button_2">Master</a></div></div>
   <ul>
-  <li><a href="department_master" title="">Department</a></li>
+  <li><a href="department" title="">Department</a></li>
   <li><a href="doctor_master" title="">Doctor</a></li>
   <li><a href="staffmaster.jsp" title="">Staff</a></li>
   <li><a href="wardmaster.jsp" title="">Ward</a></li>

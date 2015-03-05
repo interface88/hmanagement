@@ -16,10 +16,10 @@
 		<table class="maintble">
 		<!-- Header Part -->
 			<tr>
-				<td align="center"><jsp:include page="../../theme/parts/Footer.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/footer.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="../../theme/parts/Footer.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/footer.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
@@ -28,7 +28,7 @@
 					<table class="intble borderzero">
 						<tr>
 							<td valign="top" class="leftPanel">
-							<jsp:include page="../../theme/parts/Footer.jsp" /></td>
+							<jsp:include page="../../theme/parts/footer.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle" >
@@ -77,7 +77,7 @@
 			<!-- Footer Part -->
 			<tr>
 				<td	><jsp:include
-						page="../../theme/parts/Footer.jsp" /></td>
+						page="../../theme/parts/footer.jsp" /></td>
 			</tr>
 		</table>
 	</div>
