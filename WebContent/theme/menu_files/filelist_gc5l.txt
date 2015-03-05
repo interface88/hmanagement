@@ -1,0 +1,9 @@
+D:\menuhms html\menu_files\button_bg.png
+D:\menuhms html\menu_files\buttonhot_bg.png
+D:\menuhms html\menu_files\ebab_mbmcp.png
+D:\menuhms html\menu_files\ebab_mbmcp_d.png
+D:\menuhms html\menu_files\ebab_mbmcp_c.png
+D:\menuhms html\menu_files\mbjsmbmcp.js
+D:\menuhms html\menu_files\mbcsmbmcp.css
+D:\menuhms html\menu.html
+D:\menuhms html\menu_files\filelist_gc5l.txt
