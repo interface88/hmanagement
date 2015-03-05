@@ -23,10 +23,10 @@
 		<table class="maintble">
 			<!-- Header Part -->
 			<tr>
-				<td align="center"><jsp:include page="theme/parts/Header.jsp" /></td>
+				<td align="center"><jsp:include page="theme/parts/header.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="theme/parts/MenuHeader.jsp" /></td>
+				<td align="center"><jsp:include page="theme/parts/menu.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
@@ -35,7 +35,7 @@
 					<table class="intble borderzero">
 						<tr>
 							<td valign="top" class="leftPanel">
-							<jsp:include page="theme/parts/homeleft.jsp" /></td>
+							<jsp:include page="theme/parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle">
@@ -99,7 +99,7 @@
 			</tr>
 			<!-- Footer Part -->
 			<tr>
-				<td><jsp:include page="theme/parts/Footer.jsp" /></td>
+				<td><jsp:include page="theme/parts/footer.jsp" /></td>
 			</tr>
 		</table>
 	</div>

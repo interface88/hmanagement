@@ -27,7 +27,7 @@
 	<div  >
 		<table class="maintble">
 			<tr>
-				<td align="center"><jsp:include page="theme/parts/Header.jsp" /></td>
+				<td align="center"><jsp:include page="theme/parts/header.jsp" /></td>
 			</tr>
 			<tr style="height: 530px">
 				<td
@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<td	><jsp:include
-						page="theme/parts/Footer.jsp" /></td>
+						page="theme/parts/footer.jsp" /></td>
 			</tr>
 
 		</table>

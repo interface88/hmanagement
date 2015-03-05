@@ -48,7 +48,7 @@ public class DepartmentServlet extends HttpServlet {
 		departmentlist = departmentDAO.getList();
 		
 		request.setAttribute("departmentlist", departmentlist);
-		request.getRequestDispatcher("departmenttest.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/master/department.jsp").forward(request, response);
 		
 	}
 
@@ -91,7 +91,7 @@ public class DepartmentServlet extends HttpServlet {
 					}
 				}
 				request.setAttribute("msg",msg);
-				request.getRequestDispatcher("departmentmaster.jsp").forward(request, response);
+				request.getRequestDispatcher("department.jsp").forward(request, response);
 			}catch(Exception e)
 			{
 				e.printStackTrace();

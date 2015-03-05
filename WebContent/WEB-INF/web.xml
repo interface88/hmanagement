@@ -31,13 +31,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>department_master</display-name>
-    <servlet-name>department_master</servlet-name>
-    <servlet-class>myservlet.department_master</servlet-class>
+    <display-name>department</display-name>
+    <servlet-name>department</servlet-name>
+    <servlet-class>com.servlet.business.DepartmentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>department_master</servlet-name>
-    <url-pattern>/department_master</url-pattern>
+    <servlet-name>department</servlet-name>
+    <url-pattern>/department</url-pattern>
   </servlet-mapping>
     <servlet>
     <description></description>
