@@ -28,7 +28,7 @@
 					<table class="intble borderzero">
 						<tr>
 							<td valign="top" class="leftPanel">
-							<jsp:include page="../../theme/parts/leftpanel.jsp" /></td>
+							<jsp:include page="../../theme/parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle" >

@@ -1,4 +1,4 @@
-
+"WebContent/Home.jsp"
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@page import="common.commonmethods"%>
 <%@page import="common.constants"%>
@@ -35,7 +35,7 @@
 					<table class="intble borderzero">
 						<tr>
 							<td valign="top" class="leftPanel">
-							<jsp:include page="theme/parts/leftPanel.jsp" /></td>
+							<jsp:include page="../theme/parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle">

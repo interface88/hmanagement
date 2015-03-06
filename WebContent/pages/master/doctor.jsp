@@ -20,7 +20,7 @@
 				<td align="center"><jsp:include page="../../theme/parts/header.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="../../theme/parts/mneu.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/menu.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
@@ -29,7 +29,7 @@
 					<table class="intble ">
 						<tr>
 							<td valign="top" class="leftPanel"><jsp:include
-									page="../../theme/parts/leftpanel.jsp" /></td>
+									page="../../theme/parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle">

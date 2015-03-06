@@ -39,6 +39,17 @@
     <servlet-name>department</servlet-name>
     <url-pattern>/department</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>admissiontype</display-name>
+    <servlet-name>admissiontype</servlet-name>
+    <servlet-class>com.servlet.business.AdmissionType</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>admissiontype</servlet-name>
+    <url-pattern>/admissiontype</url-pattern>
+  </servlet-mapping>
+  
     <servlet>
     <description></description>
     <display-name>doctor_master</display-name>
