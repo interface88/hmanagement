@@ -7,7 +7,7 @@
 <head>
 <title>HMS-Module Master</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 
 <body>
@@ -16,10 +16,10 @@
 		<table class="maintble">
 			<!-- Header Part -->
 			<tr>
-				<td align="center"><jsp:include page="../../../theme/parts/footer.jsp" /></td>
+				<td align="center"><jsp:include page="../../..//parts/header.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="../../../theme/parts/footer.jsp" /></td>
+				<td align="center"><jsp:include page="../../..//parts/menu.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
@@ -28,7 +28,7 @@
 					<table class="intble ">
 						<tr>
 							<td valign="top" class="leftPanel"><jsp:include
-									page="../../../theme/parts/footer.jsp" /></td>
+									page="../../..//parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle" >
@@ -77,7 +77,7 @@
 			<!-- Footer Part -->
 			<tr>
 				<td	><jsp:include
-						page="../../../theme/parts/footer.jsp" /></td>
+						page="../../..//parts/footer.jsp" /></td>
 			</tr>
 		</table>
 	</div>
