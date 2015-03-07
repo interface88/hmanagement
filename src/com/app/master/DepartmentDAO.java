@@ -26,12 +26,10 @@ public class DepartmentDAO{
 
 	
 	public void delete(Department department){
-		Transaction transaction = session.beginTransaction();
 		session.delete(department);
-		transaction.commit();
 	}
 	
-	public Department findById(Integer code) {
+	public Department findByCode(Integer code) {
 		Department department = (Department) session.get(Department.class, code);
 		return department;
 }

@@ -24,10 +24,25 @@
 </head>
 <body>
 
-	<div  >
+	<div>
 		<table class="maintble">
 			<tr>
-				<td align="center"><jsp:include page="theme/parts/header.jsp" /></td>
+				<td align="center">
+				
+									<table class="curveshape"  style="height: 135px; border:0px; width:100%; background-color: #ffffff">
+						<tr>
+							<td  style="vertical-align: top;" >
+								<table style="width: 100%">
+									<tr>
+										<td align="left" width="20%"  ><img src="/images/logo1.jpg" height="130px" /></td>
+										<td width="*"><img src="/images/Banner.png" /></td>
+										<td align="right" width="20%"><img src="/images/logo2.png" height="130px"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 			<tr style="height: 530px">
 				<td
