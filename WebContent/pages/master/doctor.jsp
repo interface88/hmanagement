@@ -7,7 +7,7 @@
 <head>
 <title>HMS-Doc Master</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
 
 </head>
 
@@ -17,19 +17,19 @@
 		<table class="maintble">
 			<!-- Header Part -->
 			<tr>
-				<td align="center"><jsp:include page="../..//parts/header.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/header.jsp" /></td>
 			</tr>
 			<tr>
-				<td align="center"><jsp:include page="../..//parts/menu.jsp" /></td>
+				<td align="center"><jsp:include page="../../theme/parts/menu.jsp" /></td>
 			</tr>
 			<!-- Middle Part -->
 			<tr>
 				<td
-					style="background-image: url('..//images/bg.jpg'); background-repeat: repeat;">
+					style="background-image: url('../theme/images/bg.jpg'); background-repeat: repeat;">
 					<table class="intble ">
 						<tr>
 							<td valign="top" class="leftPanel"><jsp:include
-									page="../..//parts/leftPanel.jsp" /></td>
+									page="../../theme/parts/leftPanel.jsp" /></td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle">
@@ -148,7 +148,7 @@
 			</tr>
 			<!-- Footer Part -->
 			<tr>
-				<td><jsp:include page="../..//parts/footer.jsp" /></td>
+				<td><jsp:include page="../../theme/parts/footer.jsp" /></td>
 			</tr>
 		</table>
 	</div>

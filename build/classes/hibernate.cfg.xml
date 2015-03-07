@@ -13,5 +13,6 @@
 		
 		
 		<mapping resource="com/app/master/Department.hbm.xml" />
+		<mapping resource="com/app/master/AdmissionType.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

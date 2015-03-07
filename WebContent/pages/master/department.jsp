@@ -7,7 +7,7 @@
 	<head>
 		<title>HMS-Dep Master</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
 	</head>
 
 	<body>
@@ -15,23 +15,23 @@
 			<table class="maintble">
 				<!-- Header Part -->
 				<tr>
-					<td align="center"><jsp:include page="../..//parts/header.jsp" /></td>
+					<td align="center"><jsp:include page="../../theme/parts/header.jsp" /></td>
 				</tr>
 				<tr>
-					<td align="center"><jsp:include page="../..//parts/menu.jsp" /></td>
+					<td align="center"><jsp:include page="../../theme/parts/menu.jsp" /></td>
 				</tr>
 				<!-- Middle Part -->
 				<tr>
 					<td
-						style="background-image: url('..//images/bg.jpg'); background-repeat: repeat;">
+						style="background-image: url('../theme/images/bg.jpg'); background-repeat: repeat;">
 						<table class="intble ">
 							<tr>
-								<td valign="top" class="leftPanel"><jsp:include page="../..//parts/leftPanel.jsp" /></td>
+								<td valign="top" class="leftPanel"><jsp:include page="../../theme/parts/leftPanel.jsp" /></td>
 								<!-- Middle Left Pard -->
 	
 								<td align="center" class="boxMiddle" >
 								
-										<form name="department" method="post" action="department">
+										<form name="department_master" method="post" action="department_master">
 										<table align="center" style="width:55%;  padding:3%;" class="simplebox">
 											<tr>
 												<td align="center" colspan="100%" ><strong>Department Master</strong></td>
@@ -47,16 +47,18 @@
 													<select style="width:150px;" id="ddldepartment" name="ddldepartment">
 														<option	value="-1">-Select-</option>
 														<c:forEach items="${departmentlist}" var="dep">
-															<option value="${dep.code}">${dep.name}</option>
+															<option value="${dep.id}">${dep.name}</option>
 														</c:forEach>
 													</select>
 												</td>
 												<td><input name="action" type="submit" value="Delete" />	</td>											
 											</tr>
 											<tr>
+												
 												<td style="" align="left">New Department</td>
 												<td style=""><input name="txtdepname" id="txtdepname" required="required"  type="text" /></td>
-												<td><input name="action" type="submit" value="add" /></td>
+												<td><input name="action" type="submit" value="Save" /></td>
+													
 											</tr>
 										</table>
 									</form>
@@ -68,7 +70,7 @@
 				</tr>
 				<!-- Footer Part -->
 				<tr>
-					<td	><jsp:include page="../..//parts/footer.jsp" /></td>
+					<td	><jsp:include page="../../theme/parts/footer.jsp" /></td>
 				</tr>
 			</table>
 		</div>
