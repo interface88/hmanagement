@@ -31,7 +31,7 @@
 	
 								<td align="center" class="boxMiddle" >
 								
-										<form name="department_master" method="post" action="department_master">
+										<form name="department" method="post" action="department">
 										<table align="center" style="width:55%;  padding:3%;" class="simplebox">
 											<tr>
 												<td align="center" colspan="100%" ><strong>Department Master</strong></td>
@@ -47,18 +47,16 @@
 													<select style="width:150px;" id="ddldepartment" name="ddldepartment">
 														<option	value="-1">-Select-</option>
 														<c:forEach items="${departmentlist}" var="dep">
-															<option value="${dep.id}">${dep.name}</option>
+															<option value="${dep.code}">${dep.name}</option>
 														</c:forEach>
 													</select>
 												</td>
 												<td><input name="action" type="submit" value="Delete" />	</td>											
 											</tr>
 											<tr>
-												
 												<td style="" align="left">New Department</td>
 												<td style=""><input name="txtdepname" id="txtdepname" required="required"  type="text" /></td>
-												<td><input name="action" type="submit" value="Save" /></td>
-													
+												<td><input name="action" type="submit" value="add" /></td>
 											</tr>
 										</table>
 									</form>

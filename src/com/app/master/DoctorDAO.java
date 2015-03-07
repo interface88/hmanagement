@@ -9,37 +9,35 @@ import org.hibernate.Transaction;
 
 import common.HibernateUtil;
 
-public class DepartmentDAO{
+public class DoctorDAO{
 	
 	Session session;
-	public DepartmentDAO() {
+	public DoctorDAO() {
 		session = HibernateUtil.getSession();
 	}
 	
-	public void add(Department department){
+	public void add(Doctor doctor){
 		
 		Transaction transaction = session.beginTransaction();
-		session.save(department);
+		session.save(doctor);
 		transaction.commit();
 	}
 	
-
-	
-	public void delete(Department department){
+	public void delete(Doctor doctor){
 		Transaction transaction = session.beginTransaction();
-		session.delete(department);
+		session.delete(doctor);
 		transaction.commit();
 	}
 	
-	public Department findById(Integer code) {
-		Department department = (Department) session.get(Department.class, code);
-		return department;
+	public Doctor findById(String id) {
+		Doctor book = (Doctor) session.get(Doctor.class, id);
+		return book;
 }
 	
 	@SuppressWarnings("unchecked")
-	public List<Department> getList(){
-		List<Department> list = new ArrayList<Department>();
-		Query query  = session.createQuery("from Department");
+	public List<Doctor> getList(){
+		List<Doctor> list = new ArrayList<Doctor>();
+		Query query  = session.createQuery("from Doctor");
 		list = query.list();
 		return list;
 	}

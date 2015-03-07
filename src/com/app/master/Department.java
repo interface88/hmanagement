@@ -2,19 +2,20 @@ package com.app.master;
 
 public class Department{
 	
-	private Integer id;
+	private Integer code;
 	private String name;
 	
 	// --------- GETTER AND SETTER -----------
+
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
+	}
+	public Integer getCode() {
+		return code;
+	}
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 	public void setName(String name) {
 		this.name = name;

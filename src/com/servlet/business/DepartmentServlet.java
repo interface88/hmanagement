@@ -56,47 +56,37 @@ public class DepartmentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();	
-		String msg="";
-		if(!commonmethods.checkSession(session))
-		{
-			response.sendRedirect("index.jsp");
-		}else
-		{
-			try
-			{
-				String btnclick = request.getParameter("action");
-				if(btnclick.equalsIgnoreCase("delete"))
-				{
-					// delete a department
-					String department = request.getParameter("ddldepartment").trim();
-					if(!department.equals("-1"))
-					{
-					}
-				}else
-				{
-					if(btnclick.equalsIgnoreCase("save"))
-					{
-						Session s = HibernateUtil.getSession();
-						Department department = new Department();
-						String newdepartment = request.getParameter("txtdepname").trim();
-						department.setName(newdepartment);
-						
-						final Transaction transaction = s.beginTransaction();
-						s.save(department);
-						transaction.commit();
-
-							msg="Department Added Successfully";
-					}
-				}
-				request.setAttribute("msg",msg);
-				request.getRequestDispatcher("department.jsp").forward(request, response);
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-			}
+		
+		String msg= "";
+		DepartmentDAO departmentDAO = new DepartmentDAO();
+		
+		String btnclick = request.getParameter("action");
+		
+		// ----------checking action to perform --------------
+		if("add".equalsIgnoreCase(btnclick)){
+			
+			Department department = new Department();
+			String newdepartment = request.getParameter("txtdepname").trim();
+			department.setName(newdepartment);
+			departmentDAO.add(department);
+			
+			
+		}else if("delete".equalsIgnoreCase(btnclick)){
+			
+			String code = request.getParameter("txtdepname").trim();
+			Department department = departmentDAO.findById(Integer.parseInt(code));
+			departmentDAO.delete(department);
 		}
+		
+		// ------ getting department list ---------------
+		
+		List<Department> departmentlist= new ArrayList<Department>();
+		departmentlist = departmentDAO.getList();
+		
+		request.setAttribute("msg",msg);
+		request.setAttribute("department", departmentlist);
+		request.getRequestDispatcher("/pages/master/department.jsp").forward(request, response);
+		
 	}
 
 }

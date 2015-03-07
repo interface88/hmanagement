@@ -41,13 +41,13 @@
   </servlet-mapping>
     <servlet>
     <description></description>
-    <display-name>doctor_master</display-name>
-    <servlet-name>doctor_master</servlet-name>
-    <servlet-class>myservlet.doctor_master</servlet-class>
+    <display-name>doctor</display-name>
+    <servlet-name>doctor</servlet-name>
+    <servlet-class>com.servlet.business.DoctorServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>doctor_master</servlet-name>
-    <url-pattern>/doctor_master</url-pattern>
+    <servlet-name>doctor</servlet-name>
+    <url-pattern>/doctor</url-pattern>
   </servlet-mapping>
 	  <filter>
 	  	<filter-name>authenticationFilter</filter-name>
