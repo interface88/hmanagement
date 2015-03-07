@@ -1,7 +1,7 @@
 
 <%@page import="common.commonmethods"%>
 <%@page import="common.constants"%>
-<link rel="stylesheet" href="theme/menu_files/mbcsmbmcp.css" type="text/css" />
+<link rel="stylesheet" href="/menu_files/mbcsmbmcp.css" type="text/css" />
 <%
 
 if(!commonmethods.checkSession(session))
