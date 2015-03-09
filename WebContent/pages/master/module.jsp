@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>HMS-Module Master</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
+	<title>HMS-Module Master</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
 </head>
 
 <body>
 
-	<div >
+	<div>
 		<table class="maintble">
 			<!-- Header Part -->
 			<tr>
@@ -27,13 +27,13 @@
 					style="background-image: url('images/bg.jpg'); background-repeat: repeat;">
 					<table class="intble ">
 						<tr>
-							<td valign="top" class="leftPanel"><jsp:include
-									page="../../../theme/parts/leftPanel.jsp" /></td>
+							<td valign="top" class="leftPanel">
+								<jsp:include page="../../../theme/parts/leftPanel.jsp" />
+							</td>
 							<!-- Middle Left Pard -->
 
 							<td align="center" class="boxMiddle" >
-							
-									<form name="department_master" method="post" action="department_master">
+								<form name="department_master" method="post" action="department_master">
 									<table align="center" style="width:55%;  padding:3%;" class="simplebox">
 										<tr>
 											<td align="center" colspan="100%" ><strong>Module Master</strong></td>
@@ -43,7 +43,6 @@
 											
 										</tr>
 										<tr>
-												
 											<td style="" align="left">Modules</td>
 											<td style="">
 												<select style="width:150px;" id="ddlmodule" name="ddlmodule">
@@ -55,20 +54,15 @@
 											</td>
 											<td><input name="action" type="submit" value="Delete" />	</td>											
 										</tr>
-										
-									
 										<tr>
 											
 											<td style="" align="left">New Module</td>
 											<td style=""><input name="txtmodule" id="txtmodule" required="required"  type="text" /></td>
 											<td><input name="action" type="submit" value="Save" /></td>
-												
 										</tr>
-										
 									</table>
 								</form>
 							</td>
-
 						</tr>
 					</table>
 
