@@ -14,6 +14,8 @@ import com.app.master.Department;
 import com.app.master.DepartmentDAO;
 import com.app.master.Service;
 import com.app.master.ServiceDAO;
+import com.app.master.Service;
+import com.app.master.ServiceDAO;
 
 import myclasses.doctor;
 
@@ -61,6 +63,41 @@ public class ServiceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String msg= "";
+		ServiceDAO wardDAO = new ServiceDAO();
+		
+		String btnclick = request.getParameter("action");
+		
+		// ----------checking action to perform --------------
+		if("add".equalsIgnoreCase(btnclick)){
+			
+			Service service = new Service();
+			
+			String code = request.getParameter("code").trim();
+			String name = request.getParameter("name").trim();
+			
+			service.setCode(code);
+			service.setName(name);
+			
+			wardDAO.add(ward);
+			
+		}else if("delete".equalsIgnoreCase(btnclick)){
+			
+			Integer id = Integer.parseInt(request.getParameter("ddlward").trim());
+			Service ward = wardDAO.findById(id);
+			if(ward != null){
+				wardDAO.delete(ward);
+			}
+		}
+		
+		// ------ getting ward list ---------------
+		List<Service> wardlist= new ArrayList<Service>();
+		wardlist = wardDAO.getList();
+		
+		request.setAttribute("msg",msg);
+		request.setAttribute("wardlist", wardlist);
+		request.getRequestDispatcher("/pages/master/ward.jsp").forward(request, response);
 	}
 
 }

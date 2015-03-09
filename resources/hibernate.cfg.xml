@@ -16,5 +16,6 @@
 		<mapping resource="com/app/master/Service.hbm.xml" />
 		<mapping resource="com/app/master/Test.hbm.xml" />
 		<mapping resource="com/app/master/Medicine.hbm.xml" />
+		<mapping resource="com/app/master/AdmissionType.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
