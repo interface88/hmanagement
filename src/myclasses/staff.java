@@ -2,7 +2,8 @@ package myclasses;
 
 public class staff {
 	
-	private int code;
+	private int id;
+	private String code;
 	private String username;
 	private String address;
 	private String departmentCode;
@@ -10,11 +11,18 @@ public class staff {
 	private String qualification;
 	private String loginType;
 	private String userId;
+
 	
-	public int getCode() {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public String getUsername() {

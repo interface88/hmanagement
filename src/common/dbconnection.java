@@ -80,13 +80,14 @@ public class dbconnection {
 			int login_type=0;
 			if(rs.next())
 			{
-				stf.setCode(Integer.parseInt(rs.getString("code")));
+				stf.setId(rs.getInt("id"));
+				stf.setCode(rs.getString("code"));
 				stf.setUsername(rs.getString("name"));
 				stf.setAddress(rs.getString("address"));
-				dep_code=Integer.parseInt(rs.getString("department_code"));				
+				dep_code=(rs.getInt("department_id"));				
 				stf.setDutyHours(rs.getString("duty_hrs"));
 				stf.setQualification(rs.getString("qualification"));
-				login_type=Integer.parseInt(rs.getString("login_type_code"));				
+				login_type=rs.getInt("login_type_code");				
 				stf.setUserId(rs.getString("user_id"));			
 
 				rs.close();
