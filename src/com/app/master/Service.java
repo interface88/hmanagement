@@ -2,9 +2,10 @@ package com.app.master;
 
 public class Service {
 
-	private Integer code;
+	private Integer id;
 	private String name;
-	private Department department = new Department();
+	private String code;
+	private Department department;
 	private String charges;
 
 	// --------- GETTER AND SETTER -----------
@@ -13,13 +14,26 @@ public class Service {
 		return name;
 	}
 
-	public Integer getCode() {
+
+	public Integer getId() {
+		return id;
+	}
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+	public String getCode() {
 		return code;
 	}
 
-	public void setCode(Integer code) {
+
+	public void setCode(String code) {
 		this.code = code;
 	}
+
 
 	public void setName(String name) {
 		this.name = name;

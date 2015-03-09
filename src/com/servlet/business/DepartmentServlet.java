@@ -29,7 +29,6 @@ public class DepartmentServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Department> departmentlist= new ArrayList<Department>();
@@ -57,14 +56,19 @@ public class DepartmentServlet extends HttpServlet {
 		if("add".equalsIgnoreCase(btnclick)){
 			
 			Department department = new Department();
-			String newdepartment = request.getParameter("txtdepname").trim();
-			department.setName(newdepartment);
+			
+			String code = request.getParameter("code").trim();
+			String name = request.getParameter("name").trim();
+			
+			department.setCode(code);
+			department.setName(name);
+			
 			departmentDAO.add(department);
 			
 		}else if("delete".equalsIgnoreCase(btnclick)){
 			
-			String code = request.getParameter("txtdepname").trim();
-			Department department = departmentDAO.findByCode(Integer.parseInt(code));
+			Integer id = Integer.parseInt(request.getParameter("ddldepartment").trim());
+			Department department = departmentDAO.findById(id);
 			if(department != null){
 				departmentDAO.delete(department);
 			}
@@ -75,7 +79,7 @@ public class DepartmentServlet extends HttpServlet {
 		departmentlist = departmentDAO.getList();
 		
 		request.setAttribute("msg",msg);
-		request.setAttribute("department", departmentlist);
+		request.setAttribute("departmentlist", departmentlist);
 		request.getRequestDispatcher("/pages/master/department.jsp").forward(request, response);
 		
 	}

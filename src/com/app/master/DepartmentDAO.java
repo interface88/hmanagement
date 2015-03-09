@@ -23,14 +23,14 @@ public class DepartmentDAO{
 		transaction.commit();
 	}
 	
-
-	
 	public void delete(Department department){
+		Transaction transaction = session.beginTransaction();
 		session.delete(department);
+		transaction.commit();
 	}
 	
-	public Department findByCode(Integer code) {
-		Department department = (Department) session.get(Department.class, code);
+	public Department findById(Integer id) {
+		Department department = (Department) session.get(Department.class, id);
 		return department;
 }
 	

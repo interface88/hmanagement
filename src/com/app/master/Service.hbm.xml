@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.app.master">
-	<class name="com.app.master.Department" table="department" lazy="true">
+	<class name="com.app.master.Service" table="services" lazy="true">
 
 		<id name="code" type="java.lang.Integer">
 			<column name="CODE" />
@@ -12,11 +12,11 @@
 		<property name="name" type="java.lang.String">
 			<column name="NAME" not-null="true" />
 		</property>
-		<property name="department" type="java.lang.String">
-			<column name="DEPARTMENT" not-null="true" />
-		</property>
 		<property name="charges" type="java.lang.String">
-			<column name="CHARGES" not-null="true" />
+			<column name="SERVICES_CHARGES" not-null="true" />
 		</property>
+        <many-to-one name="department" class="com.app.master.Department" fetch="select">
+            <column name="DEPARTMENT_ID" not-null="true" />
+        </many-to-one>
 	</class>
 </hibernate-mapping>
