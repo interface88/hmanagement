@@ -8,19 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.app.master.Department;
 import com.app.master.DepartmentDAO;
 import com.app.master.Service;
 import com.app.master.ServiceDAO;
-import com.app.master.Service;
-import com.app.master.ServiceDAO;
-
-import myclasses.doctor;
-
-import common.commonmethods;
-import common.dbconnection;
 
 /**
  * Servlet implementation class doctor_master
@@ -55,7 +46,7 @@ public class ServiceServlet extends HttpServlet {
 		
 		request.setAttribute("serviceList", serviceList);
 		request.setAttribute("departmentList", departmentList);
-		request.getRequestDispatcher("/pages/master/services.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/master/service.jsp").forward(request, response);
 		
 	}
 
@@ -64,8 +55,10 @@ public class ServiceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Boolean editMode = false;
 		String msg= "";
-		ServiceDAO wardDAO = new ServiceDAO();
+		ServiceDAO serviceDAO = new ServiceDAO();
+		DepartmentDAO departmentDAO = new DepartmentDAO();
 		
 		String btnclick = request.getParameter("action");
 		
@@ -74,30 +67,70 @@ public class ServiceServlet extends HttpServlet {
 			
 			Service service = new Service();
 			
-			String code = request.getParameter("code").trim();
 			String name = request.getParameter("name").trim();
+			String code = request.getParameter("code").trim();
+			Integer departmentId = Integer.parseInt(request.getParameter("department").trim());
+			String fee = request.getParameter("fee").trim();
 			
-			service.setCode(code);
 			service.setName(name);
+			service.setCode(code);
+			service.setDepartment(departmentDAO.findById(departmentId));
+			service.setCharges(fee);
 			
-			wardDAO.add(ward);
+			
+			serviceDAO.add(service);
+			editMode = false;
+			
+		}else if("show".equalsIgnoreCase(btnclick)){
+			
+			Service service = serviceDAO.findById(Integer.parseInt(request.getParameter("serviceId")));
+			
+			List<Department> departmentList= new ArrayList<Department>();
+			departmentList = departmentDAO.getList();
+			
+			request.setAttribute("service", service);
+			request.setAttribute("departmentList", departmentList);
+			
+			editMode = true;
+			
+		}else if("update".equalsIgnoreCase(btnclick)){
+			
+			Service service = serviceDAO.findById(Integer.parseInt(request.getParameter("id")));
+			Integer departmentId = Integer.parseInt(request.getParameter("department").trim());
+			
+			service.setCharges(request.getParameter("fee").trim());
+			service.setCode(request.getParameter("code").trim());
+			service.setName(request.getParameter("name").trim());
+			service.setDepartment(departmentDAO.findById(departmentId));
+			
+			serviceDAO.update(service);
+			
+			List<Department> departmentList= new ArrayList<Department>();
+			departmentList = departmentDAO.getList();
+			request.setAttribute("service", new Service());
+			request.setAttribute("departmentList", departmentList);
+			
+			editMode = false;
 			
 		}else if("delete".equalsIgnoreCase(btnclick)){
 			
-			Integer id = Integer.parseInt(request.getParameter("ddlward").trim());
-			Service ward = wardDAO.findById(id);
-			if(ward != null){
-				wardDAO.delete(ward);
+			Integer id = Integer.parseInt(request.getParameter("serviceId").trim());
+			Service deleteService = serviceDAO.findById(id);
+			if(deleteService != null){
+				serviceDAO.delete(deleteService);
 			}
+			editMode = false;
 		}
 		
+		
 		// ------ getting ward list ---------------
-		List<Service> wardlist= new ArrayList<Service>();
-		wardlist = wardDAO.getList();
+		List<Service> servicelist= new ArrayList<Service>();
+		servicelist = serviceDAO.getList();
 		
 		request.setAttribute("msg",msg);
-		request.setAttribute("wardlist", wardlist);
-		request.getRequestDispatcher("/pages/master/ward.jsp").forward(request, response);
+		request.setAttribute("editMode", editMode);
+		request.setAttribute("serviceList", servicelist);
+		request.getRequestDispatcher("/pages/master/service.jsp").forward(request, response);
 	}
 
 }

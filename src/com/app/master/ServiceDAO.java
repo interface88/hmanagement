@@ -22,17 +22,28 @@ public class ServiceDAO{
 		session.save(service);
 		transaction.commit();
 	}
-	
 
+	public void update(Service service){
+		
+		Transaction transaction = session.beginTransaction();
+		session.merge(service);
+		transaction.commit();
+	}
+	
 	
 	public void delete(Service service){
 		session.delete(service);
 	}
 	
-	public Service findByCode(Integer code) {
+	public Service findByCode(String code) {
 		Service service = (Service) session.get(Service.class, code);
 		return service;
-}
+	}
+
+	public Service findById(Integer id) {
+		Service service = (Service) session.get(Service.class, id);
+		return service;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Service> getList(){

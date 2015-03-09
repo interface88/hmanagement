@@ -5,12 +5,15 @@
 <hibernate-mapping package="com.app.master">
 	<class name="com.app.master.Service" table="services" lazy="true">
 
-		<id name="code" type="java.lang.Integer">
-			<column name="CODE" />
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
 			<generator class="increment" />
 		</id>
 		<property name="name" type="java.lang.String">
 			<column name="NAME" not-null="true" />
+		</property>
+		<property name="code" type="java.lang.String">
+			<column name="CODE" not-null="true" />
 		</property>
 		<property name="charges" type="java.lang.String">
 			<column name="SERVICES_CHARGES" not-null="true" />
