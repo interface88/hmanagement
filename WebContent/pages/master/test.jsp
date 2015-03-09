@@ -1,22 +1,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../../theme/parts/header.jsp" />
-	<form name="medicine" method="post" action="medicine">
+	<form name="test" method="post" action="test">
 		<table align="center" style="width:55%;  padding:3%;" class="simplebox">
 			<tr>
 				<td colspan="100%" align="center"><font color="#00aa00"><c:out value="${msg}"/></font></td>
 				
 			</tr>
 			<tr>
-				<td align="center" colspan="100%" ><strong>Existing Medicines</strong></td>
+				<td align="center" colspan="100%" ><strong>Existing Tests</strong></td>
 			</tr>
 			<tr>
 					
-				<td style="" align="left">Medicines</td>
+				<td style="" align="left">Tests</td>
 				<td style="">
-					<select style="width:150px;" id="ddlmedicine" name="ddlmedicine">
+					<select style="width:150px;" id="ddltest" name="ddltest">
 						<option	value="-1">-Select-</option>
-						<c:forEach items="${medicinelist}" var="medicine">
-							<option value="${medicine.id}">${medicine.name}</option>
+						<c:forEach items="${testlist}" var="test">
+							<option value="${test.id}">${test.name}</option>
 						</c:forEach>
 					</select>
 				</td>
@@ -26,10 +26,10 @@
 			</table>
 	</form>
 	<br/>
-	<form name="medicine" method="post" action="medicine">
+	<form name="test" method="post" action="test">
 		<table align="center" style="width:55%;  padding:3%;" class="simplebox">
 			<tr>
-				<td align="center" colspan="100%" ><strong>Add new Medicine</strong></td>
+				<td align="center" colspan="100%" ><strong>Add new Test</strong></td>
 			</tr>
 		
 			<tr>

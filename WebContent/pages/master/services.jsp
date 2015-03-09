@@ -49,8 +49,8 @@
 								<td align="left">Department</td>
 								<td><select id="ddldepartment" name="ddldepartment">
 
-										<c:forEach items="${department}" var="dep">
-											<option value="${dep}">${dep}</option>
+										<c:forEach items="${departmentList}" var="department">
+											<option value="${department.id}">${department.name}</option>
 										</c:forEach>
 								</select></td>
 							</tr>

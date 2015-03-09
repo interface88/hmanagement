@@ -1,33 +1,44 @@
 package com.app.master;
 
-public class Medicine{
-	
-	private Integer code;
+public class Medicine {
+
+	private Integer id;
+	private String code;
 	private String name;
-	private Double rate;
-	
+	private String rate;
+
 	// --------- GETTER AND SETTER -----------
 
-	
 	public String getName() {
 		return name;
 	}
-	public Integer getCode() {
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getCode() {
 		return code;
 	}
-	public void setCode(Integer code) {
+
+	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getRate() {
+
+	public String getRate() {
 		return rate;
 	}
-	public void setRate(Double rate) {
+
+	public void setRate(String rate) {
 		this.rate = rate;
 	}
-	
-	
 
 }
