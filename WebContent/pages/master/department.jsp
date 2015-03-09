@@ -6,7 +6,6 @@
 			</tr>
 			<tr>
 				<td colspan="100%" align="center"><font color="#00aa00"> <c:out value="${msg}"/></font></td>
-				
 			</tr>
 			<tr>
 					

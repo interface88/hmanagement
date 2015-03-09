@@ -1,40 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@page import="common.constants"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-<title>HMS-Services Master</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="theme/css/main.css" />
-
-</head>
-
-<body>
-
-	<div>
-		<table class="maintble">
-			<!-- Header Part -->
-			<tr>
-				<td align="center"><jsp:include page="../../theme/parts/header.jsp" /></td>
-			</tr>
-			<tr>
-				<td align="center"><jsp:include page="../../theme/parts/menu.jsp" /></td>
-			</tr>
-			<!-- Middle Part -->
-			<tr>
-				<td
-					style="background-image: url('../theme/images/bg.jpg'); background-repeat: repeat;">
-					<table class="intble ">
-						<tr>
-							<td valign="top" class="leftPanel"><jsp:include
-									page="../../theme/parts/leftPanel.jsp" /></td>
-							<!-- Middle Left Pard -->
-
-							<td align="center" class="boxMiddle">
-
-
+<jsp:include page="../../theme/parts/header.jsp" />
 								<table align="center" style="width: 70%; padding: 0;"
 									class="simplebox">
 									<tr>
@@ -109,19 +73,5 @@
 										</td>
 									</tr>
 								</table>
-
-							</td>
-
-						</tr>
-					</table>
-
-				</td>
-			</tr>
-			<!-- Footer Part -->
-			<tr>
-				<td><jsp:include page="../../theme/parts/footer.jsp" /></td>
-			</tr>
-		</table>
-	</div>
-</body>
-</html>
+<jsp:include page="../../theme/parts/footer.jsp" />
+							

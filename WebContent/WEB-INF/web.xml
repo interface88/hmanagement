@@ -26,6 +26,8 @@
 		<servlet-name>logout</servlet-name>
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** department ****************** -->
 	<servlet>
 		<description></description>
 		<display-name>department</display-name>
@@ -36,17 +38,32 @@
 		<servlet-name>department</servlet-name>
 		<url-pattern>/department</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** service ****************** -->
 	<servlet>
 		<description></description>
-		<display-name>admissiontype</display-name>
-		<servlet-name>admissiontype</servlet-name>
-		<servlet-class>com.servlet.business.AdmissionType</servlet-class>
+		<display-name>service</display-name>
+		<servlet-name>service</servlet-name>
+		<servlet-class>com.servlet.business.ServiceServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>admissiontype</servlet-name>
-		<url-pattern>/admissiontype</url-pattern>
+		<servlet-name>service</servlet-name>
+		<url-pattern>/service</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** ward ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>ward</display-name>
+		<servlet-name>ward</servlet-name>
+		<servlet-class>com.servlet.business.WardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ward</servlet-name>
+		<url-pattern>/ward</url-pattern>
 	</servlet-mapping>
 
+	<!-- 	**************** doctor ****************** -->
 	<servlet>
 		<description></description>
 		<display-name>doctor</display-name>
@@ -57,6 +74,105 @@
 		<servlet-name>doctor</servlet-name>
 		<url-pattern>/doctor</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-- 	**************** staff ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>staff</display-name>
+		<servlet-name>staff</servlet-name>
+		<servlet-class>com.servlet.business.StaffServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>staff</servlet-name>
+		<url-pattern>/staff</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** test ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>test</display-name>
+		<servlet-name>test</servlet-name>
+		<servlet-class>com.servlet.business.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>test</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** medicine ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>medicine</display-name>
+		<servlet-name>medicine</servlet-name>
+		<servlet-class>com.servlet.business.MedicineServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>medicine</servlet-name>
+		<url-pattern>/medicine</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** module ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>module</display-name>
+		<servlet-name>module</servlet-name>
+		<servlet-class>com.servlet.business.ModuleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>module</servlet-name>
+		<url-pattern>/module</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** loginType ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>logintype</display-name>
+		<servlet-name>logintype</servlet-name>
+		<servlet-class>com.servlet.business.LoginTypeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>logintype</servlet-name>
+		<url-pattern>/logintype</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- 	**************** admissiontype ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>admissiontype</display-name>
+		<servlet-name>admissiontype</servlet-name>
+		<servlet-class>com.servlet.business.AdmissionTypeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>admissiontype</servlet-name>
+		<url-pattern>/admissiontype</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** ipd ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>ipd</display-name>
+		<servlet-name>ipd</servlet-name>
+		<servlet-class>com.servlet.business.IpdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ipd</servlet-name>
+		<url-pattern>/ipd</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 	**************** opd ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>opd</display-name>
+		<servlet-name>opd</servlet-name>
+		<servlet-class>com.servlet.business.OpdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>opd</servlet-name>
+		<url-pattern>/opd</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>authenticationFilter</filter-name>
 		<filter-class>com.app.framework.AuthenticationFilter</filter-class>
