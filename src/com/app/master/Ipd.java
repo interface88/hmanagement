@@ -1,80 +1,134 @@
 package com.app.master;
 
+import java.sql.Date;
+import java.sql.Time;
+
 public class Ipd{
 	
+	private Integer id;
 	private Patient patient = new Patient();
-	private Integer code;
-	private String name;
-	private String address1;
-	private String address2;
-	private String department;
-	private String dutyHours;
-	private String qualification;
-	private String consultationfee;
-	private String weeklyoff;
+	private Doctor doctor = new Doctor();
+	private String staffName;
+	
+	private String admissionId;
+	private Date admissionDate;
+	private Time admissionTime;
+	private String admissionType;
+	private String ward;
+	private Integer bedNo;
+	private String admissionDiagnosis;
+	private String admissionDetail;
+	private String admissionTreatment;
+	private String allergyDetail;
+	private String specialNote;
+	private Double advancePayment;
+	private String remark;
 	
 	// -------------- Getter and Setter----------------
 	
-	public Integer getCode() {
-		return code;
-	}
+	
+	
 	public Patient getPatient() {
 		return patient;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
+	public Doctor getDoctor() {
+		return doctor;
 	}
-	public String getName() {
-		return name;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public String getStaffName() {
+		return staffName;
 	}
-	public String getAddress1() {
-		return address1;
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
 	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
+	public String getAdmissionId() {
+		return admissionId;
 	}
-	public String getAddress2() {
-		return address2;
+	public void setAdmissionId(String admissionId) {
+		this.admissionId = admissionId;
 	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
+	public Date getAdmissionDate() {
+		return admissionDate;
 	}
-	public String getDepartment() {
-		return department;
+	public void setAdmissionDate(Date admissionDate) {
+		this.admissionDate = admissionDate;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+	public Time getAdmissionTime() {
+		return admissionTime;
 	}
-	public String getDutyHours() {
-		return dutyHours;
+	public void setAdmissionTime(Time admissionTime) {
+		this.admissionTime = admissionTime;
 	}
-	public void setDutyHours(String dutyHours) {
-		this.dutyHours = dutyHours;
+	public String getAdmissionType() {
+		return admissionType;
 	}
-	public String getQualification() {
-		return qualification;
+	public void setAdmissionType(String admissionType) {
+		this.admissionType = admissionType;
 	}
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
+	public String getWard() {
+		return ward;
 	}
-	public String getConsultationfee() {
-		return consultationfee;
+	public void setWard(String ward) {
+		this.ward = ward;
 	}
-	public void setConsultationfee(String consultationfee) {
-		this.consultationfee = consultationfee;
+	public Integer getBedNo() {
+		return bedNo;
 	}
-	public String getWeeklyoff() {
-		return weeklyoff;
+	public void setBedNo(Integer bedNo) {
+		this.bedNo = bedNo;
 	}
-	public void setWeeklyoff(String weeklyoff) {
-		this.weeklyoff = weeklyoff;
+	public String getAdmissionDiagnosis() {
+		return admissionDiagnosis;
 	}
-
+	public void setAdmissionDiagnosis(String admissionDiagnosis) {
+		this.admissionDiagnosis = admissionDiagnosis;
+	}
+	public String getAdmissionDetail() {
+		return admissionDetail;
+	}
+	public void setAdmissionDetail(String admissionDetail) {
+		this.admissionDetail = admissionDetail;
+	}
+	public String getAdmissionTreatment() {
+		return admissionTreatment;
+	}
+	public void setAdmissionTreatment(String admissionTreatment) {
+		this.admissionTreatment = admissionTreatment;
+	}
+	public String getAllergyDetail() {
+		return allergyDetail;
+	}
+	public void setAllergyDetail(String allergyDetail) {
+		this.allergyDetail = allergyDetail;
+	}
+	public String getSpecialNote() {
+		return specialNote;
+	}
+	public void setSpecialNote(String specialNote) {
+		this.specialNote = specialNote;
+	}
+	public Double getAdvancePayment() {
+		return advancePayment;
+	}
+	public void setAdvancePayment(Double advancePayment) {
+		this.advancePayment = advancePayment;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
 }

@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.app.master.Ward;
 import com.app.master.WardDAO;
 
-import myclasses.doctor;
-
 import common.commonmethods;
 import common.dbconnection;
 
