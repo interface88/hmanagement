@@ -114,7 +114,7 @@ public class ServiceServlet extends HttpServlet {
 			
 		}else if("delete".equalsIgnoreCase(btnclick)){
 			
-			Integer id = Integer.parseInt(request.getParameter("serviceId").trim());
+			Integer id = Integer.parseInt(request.getParameter("id").trim());
 			Service deleteService = serviceDAO.findById(id);
 			if(deleteService != null){
 				serviceDAO.delete(deleteService);

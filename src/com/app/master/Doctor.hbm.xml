@@ -3,14 +3,50 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.app.master">
-	<class name="com.app.master.Department" table="department" lazy="true">
+	<class name="com.app.master.Doctor" table="doctor" lazy="true">
 
 		<id name="id" type="java.lang.Integer">
-			<column name="id" />
+			<column name="ID" />
 			<generator class="increment" />
 		</id>
 		<property name="name" type="java.lang.String">
-			<column name="name" not-null="true" />
+			<column name="NAME" not-null="true" />
 		</property>
+		<property name="code" type="java.lang.String">
+			<column name="CODE" not-null="true" />
+		</property>
+		<property name="address1" type="java.lang.String">
+			<column name="ADDRESS1" not-null="false" />
+		</property>
+		<property name="address2" type="java.lang.String">
+			<column name="ADDRESS2" not-null="false" />
+		</property>
+		 <many-to-one name="department" class="com.app.master.Department" fetch="select">
+            <column name="DEPARTMENT_ID" not-null="true" />
+        </many-to-one>
+		<property name="dutyHours" type="java.lang.String">
+			<column name="DUTY_HRS" not-null="false" />
+		</property>
+		<property name="qualification" type="java.lang.String">
+			<column name="QUALIFICATION" not-null="false" />
+		</property>
+		<property name="consultationfee" type="java.lang.String">
+			<column name="CONSULTATION_FEE" not-null="false" />
+		</property>
+		<property name="weeklyoff" type="java.lang.String">
+			<column name="WEEKLY_OFF_DAY" not-null="false" />
+		</property>
+		<set name="ipds" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Ipd" />
+		</set>
+		<set name="opds" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Opd" />
+		</set>
 	</class>
 </hibernate-mapping>

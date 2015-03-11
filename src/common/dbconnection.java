@@ -12,8 +12,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import myclasses.doctor;
-import myclasses.staff;
+import com.app.master.Doctor;
+import com.app.master.Staff;
 
 
 public class dbconnection {
@@ -66,10 +66,10 @@ public class dbconnection {
 
 	//================ User login=========================================================================
 
-	public staff login(String userId, String password) 
+	public Staff login(String userId, String password) 
 	{
 
-		staff stf=new staff();
+		Staff stf=new Staff();
 		try
 		{
 			// Getting staff information from staff table.
@@ -82,12 +82,12 @@ public class dbconnection {
 			{
 				stf.setId(rs.getInt("id"));
 				stf.setCode(rs.getString("code"));
-				stf.setUsername(rs.getString("name"));
-				stf.setAddress(rs.getString("address"));
+				stf.setName(rs.getString("name"));
+				stf.setAddress1(rs.getString("address1"));
 				dep_code=(rs.getInt("department_id"));				
 				stf.setDutyHours(rs.getString("duty_hrs"));
 				stf.setQualification(rs.getString("qualification"));
-				login_type=rs.getInt("login_type_code");				
+				login_type=rs.getInt("login_type_id");				
 				stf.setUserId(rs.getString("user_id"));			
 
 				rs.close();
@@ -98,7 +98,7 @@ public class dbconnection {
 				rs= stmt.executeQuery(qry);
 				if(rs.next())
 				{
-					stf.setDepartmentCode(rs.getString("name"));
+					//stf.setDepartmentCode(rs.getString("name"));
 				}
 				rs.close();
 			}	
@@ -254,9 +254,9 @@ public class dbconnection {
 	
 	//=============================== 
 	// This function return Object of doctor with a doctor details.
-	public ArrayList<doctor> getDoctorDetails(String qry)
+	public ArrayList<Doctor> getDoctorDetails(String qry)
 	{
-		ArrayList<doctor> doctors=new ArrayList<doctor>();
+		ArrayList<Doctor> doctors=new ArrayList<Doctor>();
 		try
 		{
 			// Getting staff information from doctor table.
@@ -268,8 +268,8 @@ public class dbconnection {
 			
 			while(rs.next())
 			{
-				doctor doc=new doctor();
-				doc.setCode(Integer.parseInt(rs.getString("code")));
+				Doctor doc=new Doctor();
+				//doc.setCode(Integer.parseInt(rs.getString("code")));
 				doc.setName(rs.getString("name"));
 				String add=rs.getString("address");
 				String address1="";
@@ -300,7 +300,7 @@ public class dbconnection {
 				ResultSet rs1= stmt1.executeQuery(qry);
 				if(rs1.next())
 				{
-					doc.setDepartment(rs1.getString("name"));
+					//doc.setDepartment(rs1.getString("name"));
 				}
 				stmt1.close();
 				doctors.add(doc);

@@ -30,7 +30,7 @@ public class OpdDAO{
 		Opd opd = (Opd) session.get(Opd.class, code);
 		return opd;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Opd> getList(){
 		List<Opd> list = new ArrayList<Opd>();

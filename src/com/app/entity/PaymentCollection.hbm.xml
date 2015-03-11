@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.app.master">
+	<class name="com.app.master.PaymentCollection" table="payment_collection" lazy="true">
+
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+        <many-to-one name="staff" class="com.app.master.Staff" fetch="select">
+            <column name="STAFF_ID" not-null="true" />
+        </many-to-one>
+		<property name="entryDate" type="java.sql.Timestamp">
+			<column name="ENTRY_DATE" not-null="true" />
+		</property>
+		<property name="registrationNumber" type="java.lang.String">
+			<column name="REGISTRATION_NUMBER" not-null="true" />
+		</property>
+        <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
+            <column name="PATIENT_ID" not-null="true" />
+        </many-to-one>
+		<property name="paymentDate" type="java.sql.Timestamp">
+			<column name="PAYMENT_DATE" not-null="true" />
+		</property>
+		<property name="receiveAmount" type="java.lang.Double">
+			<column name="RECEIVE_AMOUNT" not-null="true" />
+		</property>
+		<property name="paymentMode" type="java.lang.String">
+			<column name="PAYMENT_MODE" not-null="true" />
+		</property>
+		<property name="chequeNumber" type="java.lang.String">
+			<column name="CHEQUE_NUMBER" not-null="false" />
+		</property>
+		<property name="chequeDate" type="java.sql.Timestamp">
+			<column name="CHEQUE_DATE" not-null="false" />
+		</property>
+		<property name="bank" type="java.lang.String">
+			<column name="BANK" not-null="false" />
+		</property>
+		<property name="otherDetails" type="java.lang.String">
+			<column name="OTHER_DETAILS" not-null="false" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import myclasses.staff;
+import com.app.master.Staff;
 
 import common.dbconnection;
 
@@ -49,13 +49,13 @@ public class login extends HttpServlet {
 			String errorMsg="";	
 			if(db.isUserExists(userId))
 			{	
-				staff stf=db.login(userId, password);
-				if(stf.getUsername()!=null)
+				Staff stf=db.login(userId, password);
+				if(stf.getUserId()!=null)
 				{
 					session.setAttribute("staff",stf);
 					session.setAttribute("userId",userId);
 					session.setAttribute("password",password);
-					session.setAttribute("name",stf.getUsername());
+					session.setAttribute("name",stf.getName());
 
 					request.getRequestDispatcher("Home.jsp").forward(request, response);
 					//response.sendRedirect("Home.jsp");

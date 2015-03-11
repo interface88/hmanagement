@@ -1,79 +1,72 @@
 package com.app.master;
 
+import java.sql.Date;
+
 public class Opd{
 	
 	private Patient patient = new Patient();
-	private Integer code;
-	private String name;
-	private String address1;
-	private String address2;
-	private String department;
-	private String dutyHours;
-	private String qualification;
-	private String consultationfee;
-	private String weeklyoff;
-	
+	private Doctor doctor = new Doctor();
+	private String staffName;
+	private Date entryDate;
+	private String caseType;
+	private String admissionId;
+	private Double consulationFee;
+
 	// -------------- Getter and Setter----------------
-	public Integer getCode() {
-		return code;
-	}
+
 	public Patient getPatient() {
 		return patient;
 	}
+
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddress1() {
-		return address1;
-	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-	public String getDutyHours() {
-		return dutyHours;
-	}
-	public void setDutyHours(String dutyHours) {
-		this.dutyHours = dutyHours;
-	}
-	public String getQualification() {
-		return qualification;
-	}
-	public void setQualification(String qualification) {
-		this.qualification = qualification;
-	}
-	public String getConsultationfee() {
-		return consultationfee;
-	}
-	public void setConsultationfee(String consultationfee) {
-		this.consultationfee = consultationfee;
-	}
-	public String getWeeklyoff() {
-		return weeklyoff;
-	}
-	public void setWeeklyoff(String weeklyoff) {
-		this.weeklyoff = weeklyoff;
+
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
+	public String getStaffName() {
+		return staffName;
+	}
+
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
+	}
+
+	public Date getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
+	}
+
+	public String getCaseType() {
+		return caseType;
+	}
+
+	public void setCaseType(String caseType) {
+		this.caseType = caseType;
+	}
+
+	public String getAdmissionId() {
+		return admissionId;
+	}
+
+	public void setAdmissionId(String admissionId) {
+		this.admissionId = admissionId;
+	}
+
+	public Double getConsulationFee() {
+		return consulationFee;
+	}
+
+	public void setConsulationFee(Double consulationFee) {
+		this.consulationFee = consulationFee;
+	}
 }

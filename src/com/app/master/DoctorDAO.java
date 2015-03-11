@@ -23,13 +23,20 @@ public class DoctorDAO{
 		transaction.commit();
 	}
 	
+	public void update(Doctor doctor){
+		
+		Transaction transaction = session.beginTransaction();
+		session.merge(doctor);
+		transaction.commit();
+	}
+	
 	public void delete(Doctor doctor){
 		Transaction transaction = session.beginTransaction();
 		session.delete(doctor);
 		transaction.commit();
 	}
 	
-	public Doctor findById(String id) {
+	public Doctor findById(Integer id) {
 		Doctor book = (Doctor) session.get(Doctor.class, id);
 		return book;
 }

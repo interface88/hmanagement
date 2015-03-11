@@ -27,10 +27,21 @@ public class IpdDAO{
 		session.delete(ipd);
 	}
 	
-	public Ipd findByCode(Integer code) {
+	public Ipd findById(Integer code) {
 		Ipd ipd = (Ipd) session.get(Ipd.class, code);
 		return ipd;
-}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Ipd findByAdmissionId(String admissionId)
+	{
+		String hql = "from ipd as model where model. = ?";
+		Query query = session.createQuery(hql);
+		List<Ipd> results = query.list();
+		query.setParameter(0, admissionId);
+		return results.get(0);
+	}
+
 	
 	@SuppressWarnings("unchecked")
 	public List<Ipd> getList(){

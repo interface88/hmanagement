@@ -2,71 +2,51 @@ package com.servlet.business;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import myclasses.doctor;
-
-import common.commonmethods;
-import common.dbconnection;
+import com.app.master.Department;
+import com.app.master.DepartmentDAO;
+import com.app.master.Doctor;
+import com.app.master.DoctorDAO;
 
 /**
  * Servlet implementation class doctor_master
  */
 public class DoctorServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-	dbconnection db=null;
-	ArrayList<String> doctornames=null;
-	ArrayList<String> departmentlist=null;
-	doctor doctordetails=null;
-	String isedit="no";
-	String selecteddoctor=""; // doctor select for edit.
-	
-	
 	 /**
      * @see HttpServlet#HttpServlet()
      */
     public DoctorServlet() {
         super();
-        db=new dbconnection();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();		
-		if(!commonmethods.checkSession(session))
-		{
-			response.sendRedirect("index.jsp");
-			
-		}else
-		{
-			db.open();
-			doctornames= db.executeGetQuery("select name from doctor");		//getting all doctors name for dropdown	
-			db.close();
-			request.setAttribute("doctornames", doctornames);
-			
-			db.open();
-			departmentlist= db.executeGetQuery("select name from department");  // getting all departments name for dropdown
-			db.close();
-			request.setAttribute("department", departmentlist);
-			
-			//setting blank doctor object for first time blank fields.
-			doctordetails=new doctor();
-			request.setAttribute("doctordetails", doctordetails);
-			
-			
-			
-			request.setAttribute("edit", isedit);
-			request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
-		}
+		
+
+		
+		// ---------- doctor list -----------
+		List<Doctor> doctorList= new ArrayList<Doctor>();
+		DoctorDAO doctorDAO = new DoctorDAO();
+		doctorList = doctorDAO.getList();
+		
+		
+		// ---------- database fetch -----------
+		List<Department> departmentList= new ArrayList<Department>();
+		DepartmentDAO departmentDAO = new DepartmentDAO();
+		departmentList = departmentDAO.getList();
+		
+		request.setAttribute("doctorList", doctorList);
+		request.setAttribute("departmentList", departmentList);
+		request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
 		
 	}
 
@@ -74,138 +54,98 @@ public class DoctorServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();	
-		String msg="";
-		if(!commonmethods.checkSession(session))
-		{
-			response.sendRedirect("index.jsp");
-		}else
-		{
-			try
-			{
-						
-				String btnclick = request.getParameter("action");  // checking which button clicked save, delete, edit or show
-				
-				if(btnclick.equalsIgnoreCase("delete")) // delete a doctor
-				{
-					
-					String doctorname = request.getParameter("ddldoctor").trim();
-					if(!doctorname.equals("-1"))
-					{
-						db.open();
-						boolean b= db.executeUpdateQuery("delete from doctor where name='"+doctorname+"'");
-						db.close();
-					
-						if(!b)
-						{
-							msg="Doctor deleted Successfully.";
-							db.open();
-							ArrayList<doctor> Alldoctordetails= db.getDoctorDetails("Select * from doctor where name='"+doctorname+"'");								
-							doctordetails=Alldoctordetails.get(0);
-							db.close();
-						}
-						else
-						{
-							msg="Unable to delete Doctor.";
-						}
-						isedit="false";
-					}
-				}else
-				{
-					if(btnclick.equalsIgnoreCase("save"))  // add new doctor
-					{
-						
-						String name="";
-						String address = request.getParameter("txtaddress1").trim()+"__"+request.getParameter("txtaddress2").trim();
-						String department = request.getParameter("ddldepartment").trim();
-						String qualification = request.getParameter("txtqualification").trim();
-						String consultation_fee = request.getParameter("txtfee").trim();
-						String weekly_off_day = request.getParameter("txtweekoff").trim();
-						String duty_hrs = request.getParameter("txtdutyhours").trim();
-						db.open();
-						int code=db.getCode("department", "name", department);
-						String iseditrocord=request.getParameter("txtedit").trim();
-						boolean b=true;
-						String task="";
-						if(iseditrocord.equalsIgnoreCase("no"))
-						{
-							name = request.getParameter("txtname").trim();
-							b= db.executeUpdateQuery("insert into doctor values(null,'"+name+"','"+address+"',"+code+",'"+duty_hrs+"','"+qualification+"','"+consultation_fee+"','"+weekly_off_day+"')");
-							task="Added";
-							 isedit="yes";
-						}
-						else
-						{
-							String q="update doctor  set address='"+address+"',department_code="+code+",duty_hrs='"+duty_hrs+"',qualification='"+qualification+"',consultation_fee='"+consultation_fee+"',weekly_off_day='"+weekly_off_day+ "' where name='"+selecteddoctor+"'";
-							 b= db.executeUpdateQuery(q);
-							 task="Updated";
-							 name=selecteddoctor;
-							 isedit="yes";
-						}
-						db.close();
-						if(!b)
-						{
-							msg="Doctor Information "+task+" Successfully.";
-
-							
-						}
-						else
-						{
-							msg="Unable to "+task+" Doctor Information.";
-						}
-						db.open();
-						ArrayList<doctor> Alldoctordetails= db.getDoctorDetails("Select * from doctor where name='"+name+"'");								
-						doctordetails=Alldoctordetails.get(0);
-
-						
-						isedit="false";
-					}
-					else
-					{
-						if(btnclick.equalsIgnoreCase("show"))
-						{
-							String doctorname = request.getParameter("ddldoctor").trim();
-							selecteddoctor=doctorname;
-							request.setAttribute("selecteddoctor", selecteddoctor);
-							if(!doctorname.equals("-1"))
-							{
-								db.open();
-								ArrayList<doctor> Alldoctordetails= db.getDoctorDetails("Select * from doctor where name='"+doctorname+"'");								
-								doctordetails=Alldoctordetails.get(0);
-								db.close();
-								isedit="yes";  //flag for edit, after show user can edit that doctor details.
-								
-							}
-						}else
-						{
-							if(btnclick.equalsIgnoreCase("add"))
-							{
-									doctordetails=new doctor();
-								
-									isedit="no";  //flag for edit, after show user can edit that doctor details.
-									
-								
-							}
-						}
-						
-					}
-				}
-				db.close();
-				db.open();
-				doctornames= db.executeGetQuery("select name from doctor");		//getting all doctors name for dropdown	
-				db.close();
-				request.setAttribute("msg",msg);
-				request.setAttribute("doctordetails", doctordetails);
-				request.setAttribute("doctornames", doctornames);
-				request.setAttribute("department", departmentlist);
-				request.setAttribute("edit", isedit);
-				request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
-			}catch(Exception e)
-			{
-				e.printStackTrace();
+		
+		Boolean editMode = false;
+		String msg= "";
+		DoctorDAO doctorDAO = new DoctorDAO();
+		DepartmentDAO departmentDAO = new DepartmentDAO();
+		
+		String btnclick = request.getParameter("action");
+		
+		// ----------checking action to perform --------------
+		if("add".equalsIgnoreCase(btnclick)){
+			
+			Doctor doctor = new Doctor();
+			
+			String name = request.getParameter("name").trim();
+			String code = request.getParameter("code").trim();
+			Integer departmentId = Integer.parseInt(request.getParameter("department").trim());
+			String address1 = request.getParameter("address1").trim();
+			String address2 = request.getParameter("address2").trim();
+			String dutyHours = request.getParameter("dutyHours").trim();
+			String qualification = request.getParameter("qualification").trim();
+			String consultationfee = request.getParameter("consultationfee").trim();
+			String weeklyoff = request.getParameter("weeklyoff").trim();
+			
+			doctor.setName(name);
+			doctor.setCode(code);
+			doctor.setDepartment(departmentDAO.findById(departmentId));
+			doctor.setAddress1(address1);
+			doctor.setAddress2(address2);
+			doctor.setConsultationfee(consultationfee);
+			doctor.setDutyHours(dutyHours);
+			doctor.setQualification(qualification);
+			doctor.setWeeklyoff(weeklyoff);
+			
+			
+			doctorDAO.add(doctor);
+			editMode = false;
+			
+		}else if("show".equalsIgnoreCase(btnclick)){
+			
+			Doctor doctor = doctorDAO.findById(Integer.parseInt(request.getParameter("doctorId")));
+			
+			List<Department> departmentList= new ArrayList<Department>();
+			departmentList = departmentDAO.getList();
+			
+			request.setAttribute("doctor", doctor);
+			request.setAttribute("departmentList", departmentList);
+			
+			editMode = true;
+			
+		}else if("update".equalsIgnoreCase(btnclick)){
+			
+			Doctor doctor = doctorDAO.findById(Integer.parseInt(request.getParameter("id")));
+			Integer departmentId = Integer.parseInt(request.getParameter("department").trim());
+			
+			doctor.setName(request.getParameter("name").trim());
+			doctor.setCode(request.getParameter("code").trim());
+			doctor.setDepartment(departmentDAO.findById(departmentId));
+			doctor.setAddress1(request.getParameter("address1").trim());
+			doctor.setAddress2(request.getParameter("address2").trim());
+			doctor.setConsultationfee(request.getParameter("consultationfee").trim());
+			doctor.setDutyHours(request.getParameter("dutyHours").trim());
+			doctor.setQualification(request.getParameter("qualification").trim());
+			doctor.setWeeklyoff(request.getParameter("weeklyoff").trim());
+			
+			doctorDAO.update(doctor);
+			
+			List<Department> departmentList= new ArrayList<Department>();
+			departmentList = departmentDAO.getList();
+			request.setAttribute("doctor", new Doctor());
+			request.setAttribute("departmentList", departmentList);
+			
+			editMode = false;
+			
+		}else if("delete".equalsIgnoreCase(btnclick)){
+			
+			Integer id = Integer.parseInt(request.getParameter("id").trim());
+			Doctor deleteDoctor = doctorDAO.findById(id);
+			if(deleteDoctor != null){
+				doctorDAO.delete(deleteDoctor);
 			}
+			editMode = false;
 		}
+		
+		
+		// ------ getting doctor list ---------------
+		List<Doctor> doctorlist= new ArrayList<Doctor>();
+		doctorlist = doctorDAO.getList();
+		
+		request.setAttribute("msg",msg);
+		request.setAttribute("editMode", editMode);
+		request.setAttribute("doctorList", doctorlist);
+		request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
 	}
 
 }

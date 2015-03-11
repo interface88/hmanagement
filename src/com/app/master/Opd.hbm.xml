@@ -4,13 +4,27 @@
 
 <hibernate-mapping package="com.app.master">
 	<class name="com.app.master.Opd" table="opd" lazy="true">
-
-		<id name="code" type="java.lang.Integer">
-			<column name="CODE" />
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="name" type="java.lang.String">
-			<column name="NAME" not-null="true" />
+		<property name="staffName" type="java.lang.String">
+			<column name="STAFF_NAME" not-null="true" />
 		</property>
+		<property name="entryDate" type="java.sql.Date">
+			<column name="ENTRY_DATE" not-null="true" />
+		</property>
+		<property name="caseType" type="java.lang.String">
+			<column name="CASE_TYPE" not-null="true" />
+		</property>
+		<property name="admissionId" type="java.lang.String">
+			<column name="ADMISSION_ID" not-null="true" />
+		</property>
+        <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
+            <column name="PATIENT_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="doctor" class="com.app.master.Doctor" fetch="select">
+            <column name="DOCTOR_ID" not-null="true" />
+        </many-to-one>
 	</class>
 </hibernate-mapping>

@@ -4,13 +4,102 @@
 
 <hibernate-mapping package="com.app.master">
 	<class name="com.app.master.Patient" table="patient" lazy="true">
-
-		<id name="code" type="java.lang.Integer">
-			<column name="CODE" />
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="name" type="java.lang.String">
-			<column name="NAME" not-null="true" />
+		<property name="code" type="java.lang.String">
+			<column name="CODE" not-null="true" />
 		</property>
+		<property name="registrationDate" type="java.lang.Date">
+			<column name="REGISTRATION_DATE" not-null="true" />
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" not-null="true" />
+		</property>
+		<property name="firstName" type="java.lang.String">
+			<column name="FIRST_NAME" not-null="true" />
+		</property>
+		<property name="middleName" type="java.lang.String">
+			<column name="MIDDLE_NAME" />
+		</property>
+		<property name="lastName" type="java.lang.String">
+			<column name="LAST_NAME" not-null="true" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="GENDER" not-null="true" />
+		</property>
+		<property name="day" type="java.lang.String">
+			<column name="DAY" not-null="true" />
+		</property>
+		<property name="month" type="java.lang.String">
+			<column name="MONTH" not-null="true" />
+		</property>
+		<property name="year" type="java.lang.String">
+			<column name="YEAR" not-null="true" />
+		</property>
+		<property name="contactInfo" type="java.lang.String">
+			<column name="CONTACT_INFO" not-null="true" />
+		</property>
+		<property name="referredBy" type="java.lang.String">
+			<column name="REFERRED_BY" not-null="true" />
+		</property>
+		<property name="bloodGroup" type="java.lang.String">
+			<column name="BLOOD_GROUP" not-null="true" />
+		</property>
+		<property name="weight" type="java.lang.String">
+			<column name="WEIGHT" not-null="true" />
+		</property>
+		<property name="telephone" type="java.lang.String">
+			<column name="TELEPHONE" not-null="true" />
+		</property>
+		<property name="mobile" type="java.lang.String">
+			<column name="MOBILE" not-null="true" />
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="EMAIL" not-null="true" />
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="ADDRESS" not-null="true" />
+		</property>
+		<property name="address1" type="java.lang.String">
+			<column name="ADDRESS_1" />
+		</property>
+		<property name="address2" type="java.lang.String">
+			<column name="ADDRESS_2" />
+		</property>
+		<property name="address3" type="java.lang.String">
+			<column name="ADDRESS_3" />
+		</property>
+		<property name="area" type="java.lang.String">
+			<column name="AREA" not-null="true" />
+		</property>
+		<property name="district" type="java.lang.String">
+			<column name="district" not-null="true" />
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="CITY" not-null="true" />
+		</property>
+		<property name="state" type="java.lang.String">
+			<column name="STATE" not-null="true" />
+		</property>
+		<property name="zip" type="java.lang.String">
+			<column name="ZIP" not-null="true" />
+		</property>
+		<property name="country" type="java.lang.String">
+			<column name="COUNTRY" not-null="true" />
+		</property>
+		<set name="ipds" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Ipd" />
+		</set>
+		<set name="opds" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Opd" />
+		</set>
 	</class>
 </hibernate-mapping>

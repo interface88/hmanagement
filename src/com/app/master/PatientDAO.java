@@ -26,8 +26,8 @@ public class PatientDAO{
 		session.delete(patient);
 	}
 	
-	public Patient findByCode(Integer code) {
-		Patient patient = (Patient) session.get(Patient.class, code);
+	public Patient findById(Integer id) {
+		Patient patient = (Patient) session.get(Patient.class, id);
 		return patient;
 	}
 	

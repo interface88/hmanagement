@@ -11,6 +11,7 @@ public class Department {
 	private String code;
 
 	private Set<Service> services = new HashSet<Service>();
+	private Set<Doctor> doctor = new HashSet<Doctor>();
 
 	// --------- GETTER AND SETTER -----------
 
@@ -46,4 +47,11 @@ public class Department {
 		this.services = services;
 	}
 
+	public Set<Doctor> getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Set<Doctor> doctor) {
+		this.doctor = doctor;
+	}
 }

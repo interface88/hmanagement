@@ -1,27 +1,41 @@
 package com.app.master;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Doctor{
 	
-	private Integer code;
+	private Integer id;
 	private String name;
+	private String code;
 	private String address1;
 	private String address2;
-	private String department;
+	private Department department = new Department();
 	private String dutyHours;
 	private String qualification;
 	private String consultationfee;
 	private String weeklyoff;
 	
-	// -------------- Getter and Setter----------------
+	private Set<Ipd> ipds = new HashSet<Ipd>();
+	private Set<Opd> opds = new HashSet<Opd>();
 	
-	public Integer getCode() {
-		return code;
-	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
+	// -------------- Getter and Setter----------------
+
+	
 	public String getName() {
 		return name;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -38,10 +52,10 @@ public class Doctor{
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 	public String getDutyHours() {
@@ -68,6 +82,16 @@ public class Doctor{
 	public void setWeeklyoff(String weeklyoff) {
 		this.weeklyoff = weeklyoff;
 	}
-
-
+	public Set<Ipd> getIpds() {
+		return ipds;
+	}
+	public void setIpds(Set<Ipd> ipds) {
+		this.ipds = ipds;
+	}
+	public Set<Opd> getOpds() {
+		return opds;
+	}
+	public void setOpds(Set<Opd> opds) {
+		this.opds = opds;
+	}
 }
