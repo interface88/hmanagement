@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="../../theme/parts/header.jsp">
+<jsp:include page="../theme/parts/header.jsp" />
 		
-		<form name="ipd" method="post" action="">
+		<form name="opd" method="post" action="opd">
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
 					<td align="center" colspan="6"><strong>OPD
@@ -194,4 +194,4 @@
 				</tr>
 			</table>
 		</form>
-<jsp:include page="../../theme/parts/footer.jsp" />
+<jsp:include page="../theme/parts/footer.jsp" />

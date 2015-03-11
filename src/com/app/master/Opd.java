@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Opd{
 	
+	private Integer id;
 	private Patient patient = new Patient();
 	private Doctor doctor = new Doctor();
 	private String staffName;
@@ -14,8 +15,18 @@ public class Opd{
 
 	// -------------- Getter and Setter----------------
 
+	
+	
 	public Patient getPatient() {
 		return patient;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setPatient(Patient patient) {

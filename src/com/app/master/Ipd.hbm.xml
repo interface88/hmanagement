@@ -45,7 +45,7 @@
 		<property name="specialNote" type="java.lang.String">
 			<column name="SPECIAL_NOTE" not-null="true" />
 		</property>
-		<property name="advancePayment" type="java.lang.DOUBLE">
+		<property name="advancePayment" type="java.lang.Double">
 			<column name="ADVANCE_PAYMENT" not-null="true" />
 		</property>
 		<property name="remark" type="java.lang.String">
