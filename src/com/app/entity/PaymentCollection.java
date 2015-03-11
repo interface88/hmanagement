@@ -2,14 +2,13 @@ package com.app.entity;
 
 import java.sql.Date;
 import com.app.master.Patient;
-import com.app.master.Staff;
 
 public class PaymentCollection {
 
 	private Integer id;
-	private Staff staff = new Staff();
+	private String staff;
 	private Date entryDate;
-	private Integer registrationNumber;
+	private String admissionId;
 	private Patient patient = new Patient();
 	private Date paymentDate;
 	private Double receiveAmount;
@@ -29,18 +28,6 @@ public class PaymentCollection {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public Staff getStaff() {
-		return staff;
-	}
-	public void setStaff(Staff staff) {
-		this.staff = staff;
-	}
-	public Integer getRegistrationNumber() {
-		return registrationNumber;
-	}
-	public void setRegistrationNumber(Integer registrationNumber) {
-		this.registrationNumber = registrationNumber;
 	}
 	public Patient getPatient() {
 		return patient;
@@ -101,5 +88,17 @@ public class PaymentCollection {
 	}
 	public void setChequeDate(Date chequeDate) {
 		this.chequeDate = chequeDate;
+	}
+	public String getStaff() {
+		return staff;
+	}
+	public void setStaff(String staff) {
+		this.staff = staff;
+	}
+	public String getAdmissionId() {
+		return admissionId;
+	}
+	public void setAdmissionId(String admissionId) {
+		this.admissionId = admissionId;
 	}
 }

@@ -21,5 +21,8 @@
 		<mapping resource="com/app/master/LoginType.hbm.xml" />
 		<mapping resource="com/app/master/Staff.hbm.xml" />
 		<mapping resource="com/app/master/Module.hbm.xml" />
+		
+		
+		<mapping resource="com/app/entity/PaymentCollection.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

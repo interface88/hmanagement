@@ -9,14 +9,14 @@
 			<column name="ID" />
 			<generator class="increment" />
 		</id>
-        <many-to-one name="staff" class="com.app.master.Staff" fetch="select">
-            <column name="STAFF_ID" not-null="true" />
-        </many-to-one>
+		<property name="staff" type="java.lang.String">
+			<column name="STAFF" not-null="true" />
+		</property>
 		<property name="entryDate" type="java.sql.Timestamp">
 			<column name="ENTRY_DATE" not-null="true" />
 		</property>
-		<property name="registrationNumber" type="java.lang.String">
-			<column name="REGISTRATION_NUMBER" not-null="true" />
+		<property name="admissionId" type="java.lang.String">
+			<column name="ADMISSION_ID" not-null="true" />
 		</property>
         <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
             <column name="PATIENT_ID" not-null="true" />

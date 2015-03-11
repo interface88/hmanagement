@@ -173,6 +173,18 @@
 		<url-pattern>/opd</url-pattern>
 	</servlet-mapping>
 
+	<!-- 	**************** paymentCollection ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>paymentCollection</display-name>
+		<servlet-name>paymentCollection</servlet-name>
+		<servlet-class>com.app.entity.servlet.PaymentCollectionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>paymentCollection</servlet-name>
+		<url-pattern>/paymentCollection</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>authenticationFilter</filter-name>
 		<filter-class>com.app.framework.AuthenticationFilter</filter-class>

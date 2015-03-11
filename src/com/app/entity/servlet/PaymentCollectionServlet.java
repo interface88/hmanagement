@@ -1,21 +1,13 @@
 package com.app.entity.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.app.master.Department;
-import com.app.master.DepartmentDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
-import com.app.master.OpdDAO;
-import com.app.master.Patient;
 import com.app.master.PatientDAO;
-import com.app.master.StaffDAO;
 import com.app.entity.PaymentCollection;
 import com.app.entity.PaymentCollectionDAO;
 import com.app.framework.DateTimeUtil;
@@ -38,7 +30,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/pages/master/paymentCollectionList.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
 	}
 
 	/**
@@ -49,20 +41,19 @@ public class PaymentCollectionServlet extends HttpServlet {
 		String msg= "";
 		
 		PaymentCollectionDAO paymentCollectionDAO = new PaymentCollectionDAO();
-		StaffDAO staffDAO = new StaffDAO();
 		PatientDAO patientDAO = new PatientDAO();
 		IpdDAO ipdDAO = new IpdDAO();
 		
 		String btnclick = request.getParameter("action");
 		
 		// ----------checking action to perform --------------
-		if("add".equalsIgnoreCase(btnclick)){
+		if("submit".equalsIgnoreCase(btnclick)){
 			
 			PaymentCollection paymentCollection = new PaymentCollection();
 			
-			Integer staffId = Integer.parseInt(request.getParameter("staff").trim());
+			String staff = request.getParameter("staff").trim();
 			String entryDate = request.getParameter("entryDate").trim();
-			Integer registrationNumber = Integer.parseInt(request.getParameter("registrationNumber").trim());
+			String admissionId = request.getParameter("admissionId").trim();
 			Integer patientId = Integer.parseInt(request.getParameter("patient").trim());
 			String paymentDate =  request.getParameter("paymentDate").trim();
 			Double receiveAmount = Double.parseDouble(request.getParameter("receiveAmount").trim());
@@ -82,9 +73,9 @@ public class PaymentCollectionServlet extends HttpServlet {
 			paymentCollection.setPaymentDate(DateTimeUtil.ParseString(paymentDate));
 			paymentCollection.setPaymentMode(paymentMode);
 			paymentCollection.setReceiveAmount(receiveAmount);
-			paymentCollection.setRegistrationNumber(registrationNumber);
+			paymentCollection.setAdmissionId(admissionId);
 			paymentCollection.setRemark(remark);
-			paymentCollection.setStaff(staffDAO.findById(staffId));
+			paymentCollection.setStaff(staff);
 			
 			paymentCollectionDAO.add(paymentCollection);
 			
@@ -95,7 +86,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("msg",msg);
-		request.getRequestDispatcher("/pages/master/paymentCollection.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
 	}
 
 }
