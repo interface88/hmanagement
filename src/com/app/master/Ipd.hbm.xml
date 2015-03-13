@@ -18,11 +18,8 @@
 		<property name="admissionDate" type="java.sql.Date">
 			<column name="ADMISSION_DATE" not-null="true" />
 		</property>
-		<property name="admissionTime" type="java.sql.Time">
-			<column name="ADMISSION_TIME" not-null="true" />
-		</property>
-		<property name="admissionType" type="java.lang.String">
-			<column name="ADMISSION_TYPE" not-null="true" />
+		<property name="admissionTime" type="java.lang.String">
+			<column name="ADMISSION_TIME" />
 		</property>
 		<property name="ward" type="java.lang.String">
 			<column name="WARD" not-null="true" />
@@ -31,31 +28,34 @@
 			<column name="BED_NO" not-null="true" />
 		</property>
 		<property name="admissionDiagnosis" type="java.lang.String">
-			<column name="ADMISSION_DIAGNOSIS" not-null="true" />
+			<column name="ADMISSION_DIAGNOSIS" />
 		</property>
 		<property name="admissionDetail" type="java.lang.String">
-			<column name="ADMISSION_DETAIL" not-null="true" />
+			<column name="ADMISSION_DETAIL" />
 		</property>
 		<property name="admissionTreatment" type="java.lang.String">
-			<column name="ADMISSION_TREATMENT" not-null="true" />
+			<column name="ADMISSION_TREATMENT" />
 		</property>
 		<property name="allergyDetail" type="java.lang.String">
-			<column name="ALLERGY_DETAIL" not-null="true" />
+			<column name="ALLERGY_DETAIL"/>
 		</property>
 		<property name="specialNote" type="java.lang.String">
-			<column name="SPECIAL_NOTE" not-null="true" />
+			<column name="SPECIAL_NOTE" />
 		</property>
 		<property name="advancePayment" type="java.lang.Double">
-			<column name="ADVANCE_PAYMENT" not-null="true" />
+			<column name="ADVANCE_PAYMENT" />
 		</property>
 		<property name="remark" type="java.lang.String">
-			<column name="REMARK" not-null="true" />
+			<column name="REMARK" />
 		</property>
         <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
             <column name="PATIENT_ID" not-null="true" />
         </many-to-one>
         <many-to-one name="doctor" class="com.app.master.Doctor" fetch="select">
             <column name="DOCTOR_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="admissionType" class="com.app.master.AdmissionType" fetch="select">
+            <column name="ADMISSION_TYPE_ID" not-null="true" />
         </many-to-one>
 	</class>
 </hibernate-mapping>

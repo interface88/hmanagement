@@ -1,19 +1,18 @@
 package com.app.master;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class Ipd{
 	
 	private Integer id;
 	private Patient patient = new Patient();
 	private Doctor doctor = new Doctor();
+	private AdmissionType admissionType = new AdmissionType();
 	private String staffName;
 	
 	private String admissionId;
 	private Date admissionDate;
-	private Time admissionTime;
-	private String admissionType;
+	private String admissionTime;
 	private String ward;
 	private Integer bedNo;
 	private String admissionDiagnosis;
@@ -64,16 +63,17 @@ public class Ipd{
 	public void setAdmissionDate(Date admissionDate) {
 		this.admissionDate = admissionDate;
 	}
-	public Time getAdmissionTime() {
+	public String getAdmissionTime() {
 		return admissionTime;
 	}
-	public void setAdmissionTime(Time admissionTime) {
+	public void setAdmissionTime(String admissionTime) {
 		this.admissionTime = admissionTime;
 	}
-	public String getAdmissionType() {
+	
+	public AdmissionType getAdmissionType() {
 		return admissionType;
 	}
-	public void setAdmissionType(String admissionType) {
+	public void setAdmissionType(AdmissionType admissionType) {
 		this.admissionType = admissionType;
 	}
 	public String getWard() {

@@ -59,7 +59,7 @@ public class MedicineServlet extends HttpServlet {
 			
 			String code = request.getParameter("code").trim();
 			String name = request.getParameter("name").trim();
-			String rate = request.getParameter("rate").trim();
+			Double rate = Double.parseDouble(request.getParameter("rate").trim());
 			
 			medicine.setCode(code);
 			medicine.setName(name);

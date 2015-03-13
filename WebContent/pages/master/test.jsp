@@ -31,9 +31,7 @@
 			<tr>
 				<td align="center" colspan="100%" ><strong>Add new Test</strong></td>
 			</tr>
-		
 			<tr>
-				
 				<td style=";" align="left">Code</td>
 				<td style=""><input name="code" id="code" required="required"  type="text" /></td>
 				<td>&nbsp;</td>
@@ -49,7 +47,7 @@
 			<tr>
 				
 				<td style=";" align="left">Rate</td>
-				<td style=""><input name="rate" id="rate" required="required"  type="text" /></td>
+				<td style=""><input name="rate" id="rate" required="required"  type="number" step="any" /></td>
 				<td><input name="action" type="submit" value="Add" /></td>
 					
 			</tr>

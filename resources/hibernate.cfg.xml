@@ -22,7 +22,10 @@
 		<mapping resource="com/app/master/Staff.hbm.xml" />
 		<mapping resource="com/app/master/Module.hbm.xml" />
 		<mapping resource="com/app/master/Patient.hbm.xml" />
+		<mapping resource="com/app/master/Ward.hbm.xml" />
 		<mapping resource="com/app/master/Opd.hbm.xml" />
 		<mapping resource="com/app/master/Ipd.hbm.xml" />
+		<mapping resource="com/app/master/Nursing.hbm.xml" />
+		<mapping resource="com/app/master/NursingTransaction.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

@@ -1,11 +1,16 @@
 package com.app.master;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class AdmissionType{
 	
 	private Integer id;
 	private String code;
 	private String name;
 
+	
+	private Set<Ipd> ipds = new HashSet<Ipd>();
 	// --------- GETTER AND SETTER -----------
 	
 	public Integer getId() {
@@ -28,4 +33,12 @@ public class AdmissionType{
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Set<Ipd> getIpds() {
+		return ipds;
+	}
+	public void setIpds(Set<Ipd> ipds) {
+		this.ipds = ipds;
+	}
+	
+	
 }

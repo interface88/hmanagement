@@ -5,7 +5,7 @@ public class Medicine {
 	private Integer id;
 	private String code;
 	private String name;
-	private String rate;
+	private Double rate;
 
 	// --------- GETTER AND SETTER -----------
 
@@ -33,11 +33,11 @@ public class Medicine {
 		this.name = name;
 	}
 
-	public String getRate() {
+	public Double getRate() {
 		return rate;
 	}
 
-	public void setRate(String rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 

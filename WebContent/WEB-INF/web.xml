@@ -172,6 +172,18 @@
 		<servlet-name>opd</servlet-name>
 		<url-pattern>/opd</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** nursing ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>nursing</display-name>
+		<servlet-name>nursing</servlet-name>
+		<servlet-class>com.servlet.business.NursingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>nursing</servlet-name>
+		<url-pattern>/nursing</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>authenticationFilter</filter-name>

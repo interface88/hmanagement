@@ -58,14 +58,14 @@
 					  </ul></li>
 					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 121px;"><div class="arrow"><a class="button_3">Registration</a></div></div>
 					  <ul>
-					  <li><a href="#" title="">OPD Registration</a></li>
-					  <li><a href="#" title="">IPD Registration</a></li>
+					  <li><a href="opd" title="">OPD Registration</a></li>
+					  <li><a href="ipd" title="">IPD Registration</a></li>
 					  </ul></li>
 					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 101px;"><div class="arrow"><a class="button_4">Payment</a></div></div>
 					  <ul>
 					  <li><a href="#" title="">Payment Collection</a></li>
 					  </ul></li>
-					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="#" >Nursing</a></div></li>
+					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
 					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a>Final Bill</a></div></li>
 					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="#" >Discharge Ticket</a></div></li>
 					  <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="#" >Logout</a></div></li>

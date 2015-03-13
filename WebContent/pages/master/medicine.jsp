@@ -49,7 +49,7 @@
 			<tr>
 				
 				<td style=";" align="left">Rate</td>
-				<td style=""><input name="rate" id="rate" required="required"  type="text" /></td>
+				<td style=""><input name="rate" id="rate" required="required"  type="text"  step="any"/></td>
 				<td><input name="action" type="submit" value="Add" /></td>
 					
 			</tr>

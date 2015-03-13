@@ -29,13 +29,13 @@
 		<property name="gender" type="java.lang.String">
 			<column name="GENDER" not-null="true" />
 		</property>
-		<property name="day" type="java.lang.String">
+		<property name="day" type="java.lang.Integer">
 			<column name="DAY" not-null="true" />
 		</property>
-		<property name="month" type="java.lang.String">
+		<property name="month" type="java.lang.Integer">
 			<column name="MONTH" not-null="true" />
 		</property>
-		<property name="year" type="java.lang.String">
+		<property name="year" type="java.lang.Integer">
 			<column name="YEAR" not-null="true" />
 		</property>
 		<property name="contactInfo" type="java.lang.String">
@@ -47,20 +47,20 @@
 		<property name="bloodGroup" type="java.lang.String">
 			<column name="BLOOD_GROUP" not-null="true" />
 		</property>
-		<property name="weight" type="java.lang.String">
+		<property name="weight" type="java.lang.Integer">
 			<column name="WEIGHT" not-null="true" />
 		</property>
 		<property name="telephone" type="java.lang.String">
-			<column name="TELEPHONE" not-null="true" />
+			<column name="TELEPHONE" />
 		</property>
 		<property name="mobile" type="java.lang.String">
-			<column name="MOBILE" not-null="true" />
+			<column name="MOBILE" />
 		</property>
 		<property name="email" type="java.lang.String">
-			<column name="EMAIL" not-null="true" />
+			<column name="EMAIL"  />
 		</property>
 		<property name="address" type="java.lang.String">
-			<column name="ADDRESS" not-null="true" />
+			<column name="ADDRESS" />
 		</property>
 		<property name="address1" type="java.lang.String">
 			<column name="ADDRESS_1" />
@@ -75,19 +75,19 @@
 			<column name="AREA" not-null="true" />
 		</property>
 		<property name="district" type="java.lang.String">
-			<column name="district" not-null="true" />
+			<column name="DISTRICT" />
 		</property>
 		<property name="city" type="java.lang.String">
-			<column name="CITY" not-null="true" />
+			<column name="CITY"  />
 		</property>
 		<property name="state" type="java.lang.String">
-			<column name="STATE" not-null="true" />
+			<column name="STATE"/>
 		</property>
 		<property name="zip" type="java.lang.String">
-			<column name="ZIP" not-null="true" />
+			<column name="ZIP" />
 		</property>
 		<property name="country" type="java.lang.String">
-			<column name="COUNTRY" not-null="true" />
+			<column name="COUNTRY" />
 		</property>
 		<set name="ipds" inverse="true" sort="unsorted">
 			<key>
@@ -101,5 +101,11 @@
 			</key>
 			<one-to-many class="com.app.master.Opd" />
 		</set>
+		<set name="nursings" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Nursing" />
+		</set>			
 	</class>
 </hibernate-mapping>

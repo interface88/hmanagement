@@ -19,6 +19,8 @@ import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
+import com.app.master.Nursing;
+import com.app.master.NursingDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
@@ -32,7 +34,7 @@ import common.dbconnection;
 /**
  * Servlet implementation class doctor_master
  */
-public class IpdServlet extends HttpServlet {
+public class NursingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	PatientDAO patientDAO = new PatientDAO();
@@ -43,7 +45,7 @@ public class IpdServlet extends HttpServlet {
 	 /**
     * @see HttpServlet#HttpServlet()
     */
-   public IpdServlet() {
+   public NursingServlet() {
        super();
    }
 
@@ -52,7 +54,7 @@ public class IpdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		loadData(request);
-		request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/nursing.jsp").forward(request, response);
 		
 	}
 
@@ -67,20 +69,30 @@ public class IpdServlet extends HttpServlet {
 		String btnclick = request.getParameter("action");
 		
 		// ----------checking action to perform --------------
-		if("add".equalsIgnoreCase(btnclick)){
+		if("save".equalsIgnoreCase(btnclick)){
 			
-			int patientId = Integer.parseInt(request.getParameter("patientId").trim());
-			Patient patient = patientDAO.findById(patientId);
+			// check if entry for same date present
 			
-			int doctorId = Integer.parseInt(request.getParameter("doctorId").trim());
-			Doctor doctor = doctorDAO.findById(doctorId);
-			
-			int admissionTypeId = Integer.parseInt(request.getParameter("admissionTypeId").trim());
-			AdmissionType admissionType = admissionTypeDAO.findById(admissionTypeId);
-			
-			
-			String staffName = request.getParameter("staffName").trim();
+			NursingDAO nursingDAO = new NursingDAO();
 			String admissionId = request.getParameter("admissionId").trim();
+			Nursing nursing = nursingDAO.findByAdmissionIdAndCurrentDate(admissionId);
+			if(nursing == null){
+				// add new nursing
+				int patientId = Integer.parseInt(request.getParameter("patientId").trim());
+				Patient patient = patientDAO.findById(patientId);
+				
+				int doctorId = Integer.parseInt(request.getParameter("doctorId").trim());
+				Doctor doctor = doctorDAO.findById(doctorId);
+				String staffName = request.getParameter("staffName").trim();
+			}
+			
+			// add nursing transaction for that nursing
+			
+			// if present than add transaction for add
+			
+			// ------------ OLD CODE ----------------------
+			
+			
 			Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate").trim());
 			String admissionTime = request.getParameter("admissionTime").trim();
 			String ward = request.getParameter("ward").trim();
@@ -95,27 +107,6 @@ public class IpdServlet extends HttpServlet {
 			
 			
 			// setting all the value
-			Ipd ipd = new Ipd();
-			ipd.setPatient(patient);
-			ipd.setDoctor(doctor);
-			ipd.setAdmissionType(admissionType);
-			ipd.setStaffName(staffName);
-			ipd.setAdmissionId(admissionId);
-			ipd.setAdmissionDate(admissionDate);
-			ipd.setAdmissionTime(admissionTime);
-			ipd.setWard(ward);
-			ipd.setBedNo(bedNo);
-			ipd.setAdmissionDiagnosis(admissionDiagnosis);
-			ipd.setAdmissionDetail(admissionDetail);
-			ipd.setAdmissionTreatment(admissionTreatment);
-			ipd.setAllergyDetail(allergyDetail);
-			ipd.setSpecialNote(specialNote);
-			ipd.setAdvancePayment(advancePayment);
-			ipd.setRemark(remark);
-			
-			IpdDAO ipdDAO = new IpdDAO();
-			ipdDAO.add(ipd);
-			
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			

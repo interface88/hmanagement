@@ -1,6 +1,7 @@
 package com.servlet.business;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.app.framework.DateTimeUtil;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Opd;
@@ -44,7 +47,7 @@ public class OpdServlet extends HttpServlet {
 		DoctorDAO doctorDAO = new DoctorDAO();
 		doctorlist = doctorDAO.getList();
 		
-		request.setAttribute("doctorist", doctorlist);
+		request.setAttribute("doctorlist", doctorlist);
 		request.setAttribute("patientlist", patientlist);
 		request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
 		
@@ -70,15 +73,15 @@ public class OpdServlet extends HttpServlet {
 		String btnclick = request.getParameter("action");
 		
 		// ----------checking action to perform --------------
-		if("add".equalsIgnoreCase(btnclick)){
+		if("save".equalsIgnoreCase(btnclick)){
 			
 			//- ---------- patient object -----------------------
-			String patient_id = request.getParameter("patient_id").trim();
+			String patient_id = request.getParameter("patientId").trim();
 			
 			Patient patient = new Patient();
 			if("".equalsIgnoreCase(patient_id)){
-				String code =  request.getParameter("code").trim();
-				//Date registrationDate =  Date.parse(request.getParameter("registrationDate").trim());
+				String code =  "PATIENT";
+				Date registrationDate = DateTimeUtil.ParseString(request.getParameter("registrationDate").trim());
 				String title =  request.getParameter("title").trim();
 				String firstName =  request.getParameter("firstName").trim();
 				String middleName =  request.getParameter("middleName").trim();
@@ -106,7 +109,7 @@ public class OpdServlet extends HttpServlet {
 				String country =  request.getParameter("country").trim();
 				
 				patient.setCode(code);
-				//patient.setRegistrationDate(registrationDate);
+				patient.setRegistrationDate(registrationDate);
 				patient.setTitle(title);
 				patient.setFirstName(firstName);
 				patient.setMiddleName(middleName);
@@ -132,22 +135,23 @@ public class OpdServlet extends HttpServlet {
 				patient.setState(state);
 				patient.setZip(zip);
 				patient.setCountry(country);
+				
+				patientDAO.add(patient);
 			}else{
 				// got id  so load from database.
 				patientDAO.findById(Integer.parseInt(patient_id));
-				
 			}
 			
 			
 			//---------- doctor object -----------------------
 			Doctor doctor = new Doctor();
-			int doctor_id = Integer.parseInt(request.getParameter("doctor_id").trim()); 
+			int doctor_id = Integer.parseInt(request.getParameter("doctorId").trim()); 
 			doctor = doctorDAO.findById(doctor_id);
 			
 			String staffName = request.getParameter("staffName");
-			//Date entryDate = request.getParameter("entryDate");
+			Date entryDate = DateTimeUtil.ParseString(request.getParameter("entryDate"));
 			String caseType = request.getParameter("caseType");
-			String admissionNo = request.getParameter("admissionNo");
+			String admissionNo = "ADDD1";
 			Double consulationFee = Double.parseDouble(request.getParameter("consulationFee"));
 			
 			
@@ -157,7 +161,7 @@ public class OpdServlet extends HttpServlet {
 			opd.setPatient(patient);
 			opd.setDoctor(doctor);
 			opd.setStaffName(staffName);
-			//opd.setEntryDate(entryDate);
+			opd.setEntryDate(entryDate);
 			opd.setCaseType(caseType);
 			opd.setAdmissionId(admissionNo);
 			opd.setConsulationFee(consulationFee);

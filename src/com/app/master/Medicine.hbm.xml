@@ -15,7 +15,7 @@
 		<property name="code" type="java.lang.String">
 			<column name="CODE" not-null="true" />
 		</property>
-		<property name="rate" type="java.lang.String">
+		<property name="rate" type="java.lang.Double">
 			<column name="RATE" not-null="true" />
 		</property>
 	</class>

@@ -8,15 +8,20 @@ public class DateTimeUtil
 {
 	public static Date ParseString(String StringDate)
 	{
-		SimpleDateFormat DateF = new SimpleDateFormat("dd-MMMM-yyyy");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
 		try
 		{
-			return (Date) DateF.parse(StringDate);
+			return new Date(simpleDateFormat.parse(StringDate).getTime());
 		}
 		catch (ParseException e)
 		{
 			return null;
 		}
+	}
+	
+	public Date getCurrentDate(){
+		java.util.Date date = new java.util.Date();
+		return new Date(date.getTime());
 	}
 }

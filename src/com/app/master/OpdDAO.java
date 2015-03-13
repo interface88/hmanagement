@@ -30,6 +30,18 @@ public class OpdDAO{
 		Opd opd = (Opd) session.get(Opd.class, code);
 		return opd;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Opd findByAdmissionId(String admissionNo) {
+		
+		Query query  = session.createQuery("from Opd as model where model.admissionId = ?");
+		query.setParameter(0, admissionNo);
+		List<Opd> list = query.list();
+		if(!list.isEmpty()){
+			return list.get(0);
+		}
+		return null;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Opd> getList(){

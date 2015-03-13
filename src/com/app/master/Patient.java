@@ -34,11 +34,11 @@ public class Patient {
 	private String state;
 	private String zip;
 	private String country;
-	
+
 	private Set<Ipd> ipds = new HashSet<Ipd>();
 	private Set<Opd> opds = new HashSet<Opd>();
+	private Set<Nursing> nursings = new HashSet<Nursing>();
 
-	
 	// -------------- Getter and Setter----------------
 
 	public Integer getId() {
@@ -48,8 +48,6 @@ public class Patient {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
 
 	public String getCode() {
 		return code;
@@ -281,6 +279,14 @@ public class Patient {
 
 	public void setOpds(Set<Opd> opds) {
 		this.opds = opds;
+	}
+
+	public Set<Nursing> getNursings() {
+		return nursings;
+	}
+
+	public void setNursings(Set<Nursing> nursings) {
+		this.nursings = nursings;
 	}
 
 }
