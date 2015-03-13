@@ -77,7 +77,7 @@
 				<td><input name="pressure" type="text" style="width: 110px" /></td>
 				<td style="width: 130px"><input name="pulse" type="text" /></td>
 				<td><input name="temperature" type="text" /></td>
-				<td><input name="suagar" type="text" /></td>
+				<td><input name="sugar" type="text" /></td>
 				<td><input name="examingTime" type="text" /></td>
 				<td>
 					<textarea name="remark" style="width: 95%; height: 35px" cols="20" rows="1"></textarea>
@@ -241,8 +241,8 @@
 			</tr>
 	
 			<tr>
-				<td colspan="6" align="right"><input name="Submit1"
-					type="submit" value="submit" />&nbsp;&nbsp;&nbsp; <input
+				<td colspan="6" align="right"><input name="action"
+					type="submit" value="save" />&nbsp;&nbsp;&nbsp; <input
 					name="Reset1" type="reset" value="reset" /></td>
 			</tr>
 			<tr>

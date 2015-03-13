@@ -78,6 +78,9 @@ public class NursingServlet extends HttpServlet {
 			// check if entry for same date present
 			
 			NursingDAO nursingDAO = new NursingDAO();
+			Nursing nursing = new Nursing();
+			
+			/*
 			String admissionId = request.getParameter("admissionId").trim();
 			Nursing nursing = nursingDAO.findByAdmissionIdAndCurrentDate(admissionId);
 			if(nursing == null){
@@ -89,27 +92,47 @@ public class NursingServlet extends HttpServlet {
 				Doctor doctor = doctorDAO.findById(doctorId);
 				String staffName = request.getParameter("staffName").trim();
 			}
-			
+			*/
 			// add nursing transaction for that nursing
+			
 			
 			// if present than add transaction for add
 			
 			// ------------ OLD CODE ----------------------
 			
+			int patientId = Integer.parseInt(request.getParameter("patientId").trim());
+			Patient patient = patientDAO.findById(patientId);
 			
-			Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate").trim());
-			String admissionTime = request.getParameter("admissionTime").trim();
-			String ward = request.getParameter("ward").trim();
-			Integer bedNo = Integer.parseInt(request.getParameter("bedNo").trim());
-			String admissionDiagnosis = request.getParameter("admissionDiagnosis").trim();
-			String admissionDetail = request.getParameter("admissionDetail").trim();
-			String admissionTreatment = request.getParameter("admissionTreatment").trim();
-			String allergyDetail = request.getParameter("allergyDetail").trim();
-			String specialNote = request.getParameter("specialNote").trim();
-			Double advancePayment = Double.parseDouble(request.getParameter("advancePayment").trim());
+			int doctorId = Integer.parseInt(request.getParameter("doctorId").trim());
+			Doctor doctor = doctorDAO.findById(doctorId);
+
+			String admissionId = request.getParameter("admissionId").trim();
+			String staffName = request.getParameter("staffName").trim();
+			Integer noOfVisit = Integer.parseInt(request.getParameter("noOfVisit").trim());
+			Date nursingDate = DateTimeUtil.ParseString(request.getParameter("nursingDate").trim());
+			String pressure = request.getParameter("pressure").trim();
+			String pulse = request.getParameter("pulse").trim();
+			String temperature = request.getParameter("temperature").trim();
+			String sugar = request.getParameter("sugar").trim();
+			String examingTime = request.getParameter("examingTime").trim();
 			String remark = request.getParameter("remark").trim();
 			
 			
+			nursing.setAdmissionId(admissionId);
+			nursing.setPatient(patient);
+			nursing.setDoctor(doctor);
+			nursing.setStaffName(staffName);
+			nursing.setNoOfVisit(noOfVisit);
+			nursing.setNursingDate(nursingDate);
+			nursing.setPressure(pressure);
+			nursing.setPulse(pulse);
+			nursing.setTemperature(temperature);
+			nursing.setSugar(sugar);
+			nursing.setExamingTime(examingTime);
+			nursing.setRemark(remark);
+			
+			
+			nursingDAO.add(nursing);
 			// setting all the value
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
