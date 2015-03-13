@@ -29,6 +29,9 @@ public class PaymentCollectionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PaymentCollection paymentCollection = new PaymentCollection();
+		paymentCollection.setStaff("Default Staff name");
+		request.setAttribute("paymentCollection", paymentCollection);
 		
 		request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
 	}
@@ -54,7 +57,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 			String staff = request.getParameter("staff").trim();
 			String entryDate = request.getParameter("entryDate").trim();
 			String admissionId = request.getParameter("admissionId").trim();
-			Integer patientId = Integer.parseInt(request.getParameter("patient").trim());
+			Integer patientId = Integer.parseInt(request.getParameter("patientId").trim());
 			String paymentDate =  request.getParameter("paymentDate").trim();
 			Double receiveAmount = Double.parseDouble(request.getParameter("receiveAmount").trim());
 			String paymentMode = request.getParameter("paymentMode").trim();
@@ -82,7 +85,13 @@ public class PaymentCollectionServlet extends HttpServlet {
 		}else if("load".equalsIgnoreCase(btnclick)){
 			
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
-			request.setAttribute("patient", ipd.getPatient());
+			
+			PaymentCollection paymentCollection = new PaymentCollection();
+			paymentCollection.setPatient(ipd.getPatient());
+			paymentCollection.setAdmissionId(ipd.getAdmissionId());
+			paymentCollection.setStaff("Default Staff name");
+			
+			request.setAttribute("paymentCollection", paymentCollection);
 		}
 		
 		request.setAttribute("msg",msg);

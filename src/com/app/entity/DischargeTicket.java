@@ -3,7 +3,7 @@ package com.app.entity;
 import java.util.Date;
 import com.app.master.Patient;
 
-public class PaymentCollection {
+public class DischargeTicket {
 
 	private Integer id;
 	private String staff;
