@@ -57,5 +57,11 @@
         <many-to-one name="admissionType" class="com.app.master.AdmissionType" fetch="select">
             <column name="ADMISSION_TYPE_ID" not-null="true" />
         </many-to-one>
+		<set name="dischargeTickets" inverse="true" sort="unsorted">
+			<key>
+				<column name="IPD_ID"/>
+			</key>
+			<one-to-many class="com.app.entity.DischargeTicket" />
+		</set>	
 	</class>
 </hibernate-mapping>

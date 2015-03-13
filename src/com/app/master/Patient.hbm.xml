@@ -106,6 +106,12 @@
 				<column name="PATIENT_ID"/>
 			</key>
 			<one-to-many class="com.app.master.Nursing" />
+		</set>
+		<set name="dischargeTickets" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.entity.DischargeTicket" />
 		</set>			
 	</class>
 </hibernate-mapping>

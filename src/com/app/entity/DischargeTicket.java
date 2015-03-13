@@ -15,7 +15,7 @@ public class DischargeTicket {
 	private Patient patient = new Patient();
 	private Ipd ipd = new Ipd();
 	private Doctor doctor = new Doctor();
-	private String treatementNote;
+	private String treatmentNote;
 	private String dischargeNote;
 	private String advice;
 	private String conditionOfPatient;
@@ -74,11 +74,13 @@ public class DischargeTicket {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
-	public String getTreatementNote() {
-		return treatementNote;
+	
+	
+	public String getTreatmentNote() {
+		return treatmentNote;
 	}
-	public void setTreatementNote(String treatementNote) {
-		this.treatementNote = treatementNote;
+	public void setTreatmentNote(String treatmentNote) {
+		this.treatmentNote = treatmentNote;
 	}
 	public String getDischargeNote() {
 		return dischargeNote;

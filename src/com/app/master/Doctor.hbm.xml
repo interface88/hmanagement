@@ -48,5 +48,17 @@
 			</key>
 			<one-to-many class="com.app.master.Opd" />
 		</set>
+		<set name="nursings" inverse="true" sort="unsorted">
+			<key>
+				<column name="DOCTOR_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Nursing" />
+		</set>
+		<set name="dischargeTickets" inverse="true" sort="unsorted">
+			<key>
+				<column name="DOCTOR_ID"/>
+			</key>
+			<one-to-many class="com.app.entity.DischargeTicket" />
+		</set>
 	</class>
 </hibernate-mapping>

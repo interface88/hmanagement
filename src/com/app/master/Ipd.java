@@ -1,6 +1,10 @@
 package com.app.master;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.app.entity.DischargeTicket;
 
 public class Ipd{
 	
@@ -22,6 +26,8 @@ public class Ipd{
 	private String specialNote;
 	private Double advancePayment;
 	private String remark;
+	
+	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
 	
 	// -------------- Getter and Setter----------------
 	
@@ -130,5 +136,13 @@ public class Ipd{
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public Set<DischargeTicket> getDischargeTickets() {
+		return dischargeTickets;
+	}
+	public void setDischargeTickets(Set<DischargeTicket> dischargeTickets) {
+		this.dischargeTickets = dischargeTickets;
+	}
+	
+	
 
 }

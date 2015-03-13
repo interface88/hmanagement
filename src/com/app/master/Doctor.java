@@ -3,6 +3,8 @@ package com.app.master;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.app.entity.DischargeTicket;
+
 public class Doctor{
 	
 	private Integer id;
@@ -18,6 +20,8 @@ public class Doctor{
 	
 	private Set<Ipd> ipds = new HashSet<Ipd>();
 	private Set<Opd> opds = new HashSet<Opd>();
+	private Set<Nursing> nursings = new HashSet<Nursing>();
+	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
 	
 	// -------------- Getter and Setter----------------
 
@@ -94,4 +98,17 @@ public class Doctor{
 	public void setOpds(Set<Opd> opds) {
 		this.opds = opds;
 	}
+	public Set<Nursing> getNursings() {
+		return nursings;
+	}
+	public void setNursings(Set<Nursing> nursings) {
+		this.nursings = nursings;
+	}
+	public Set<DischargeTicket> getDischargeTickets() {
+		return dischargeTickets;
+	}
+	public void setDischargeTickets(Set<DischargeTicket> dischargeTickets) {
+		this.dischargeTickets = dischargeTickets;
+	}
+	
 }

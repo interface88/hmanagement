@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.app.entity.DischargeTicket;
+
 public class Patient {
 
 	private Integer id;
@@ -38,6 +40,7 @@ public class Patient {
 	private Set<Ipd> ipds = new HashSet<Ipd>();
 	private Set<Opd> opds = new HashSet<Opd>();
 	private Set<Nursing> nursings = new HashSet<Nursing>();
+	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
 
 	// -------------- Getter and Setter----------------
 
@@ -288,5 +291,15 @@ public class Patient {
 	public void setNursings(Set<Nursing> nursings) {
 		this.nursings = nursings;
 	}
+
+	public Set<DischargeTicket> getDischargeTickets() {
+		return dischargeTickets;
+	}
+
+	public void setDischargeTickets(Set<DischargeTicket> dischargeTickets) {
+		this.dischargeTickets = dischargeTickets;
+	}
+	
+	
 
 }

@@ -9,10 +9,10 @@
 			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="staff" type="java.lang.String">
-			<column name="STAFF" not-null="true" />
+		<property name="staffName" type="java.lang.String">
+			<column name="STAFF_NAME" not-null="true" />
 		</property>
-		<property name="entryDate" type="java.util.Date">
+		<property name="entryDate" type="java.sql.Date">
 			<column name="ENTRY_DATE" not-null="true" />
 		</property>
 		<property name="admissionId" type="java.lang.String">
@@ -21,29 +21,47 @@
         <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
             <column name="PATIENT_ID" not-null="true" />
         </many-to-one>
-		<property name="paymentDate" type="java.util.Date">
-			<column name="PAYMENT_DATE" not-null="true" />
+        <many-to-one name="ipd" class="com.app.master.Ipd" fetch="select">
+            <column name="IPD_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="doctor" class="com.app.master.Doctor" fetch="select">
+            <column name="DOCTOR_ID" not-null="true" />
+		 </many-to-one>
+		<property name="treatmentNote" type="java.lang.String">
+			<column name="TREATMENT_NOTE" not-null="true" />
 		</property>
-		<property name="receiveAmount" type="java.lang.Double">
-			<column name="RECEIVE_AMOUNT" not-null="true" />
+		<property name="dischargeNote" type="java.lang.String">
+			<column name="DISCHARGE_NOTE" not-null="true" />
 		</property>
-		<property name="paymentMode" type="java.lang.String">
-			<column name="PAYMENT_MODE" not-null="true" />
+		<property name="advice" type="java.lang.String">
+			<column name="ADVICE" not-null="true" />
 		</property>
-		<property name="chequeNumber" type="java.lang.String">
-			<column name="CHEQUE_NUMBER" not-null="false" />
+		<property name="conditionOfPatient" type="java.lang.String">
+			<column name="CONDITION_OF_PATIENT" not-null="true" />
 		</property>
-		<property name="chequeDate" type="java.util.Date">
-			<column name="CHEQUE_DATE" not-null="false" />
+		<property name="pressure" type="java.lang.String">
+			<column name="PRESSURE" />
 		</property>
-		<property name="bank" type="java.lang.String">
-			<column name="BANK" not-null="false" />
+		<property name="pulse" type="java.lang.String">
+			<column name="PULSE" />
 		</property>
-		<property name="otherDetails" type="java.lang.String">
-			<column name="OTHER_DETAILS" not-null="false" />
+		<property name="temperature" type="java.lang.String">
+			<column name="TEMPERATURE" />
+		</property>
+		<property name="sugar" type="java.lang.String">
+			<column name="SUGAR" />
+		</property>
+		<property name="examingTime" type="java.lang.String">
+			<column name="EXAMING_TIME" />
 		</property>
 		<property name="remark" type="java.lang.String">
-			<column name="REMARK" not-null="false" />
+			<column name="REMARK" />
+		</property>
+		<property name="prescribedMedicine" type="java.lang.String">
+			<column name="PRESCRIBED_MEDICINE" />
+		</property>
+		<property name="followUpSchedule" type="java.lang.String">
+			<column name="FOLLOW_UP_SCHEDULE" />
 		</property>
 	</class>
 </hibernate-mapping>
