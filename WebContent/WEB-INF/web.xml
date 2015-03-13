@@ -197,6 +197,18 @@
 		<url-pattern>/paymentCollection</url-pattern>
 	</servlet-mapping>
 
+	<!-- 	**************** dischargeTicket ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>dischargeTicket</display-name>
+		<servlet-name>dischargeTicket</servlet-name>
+		<servlet-class>com.app.entity.servlet.DischargeTicketServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dischargeTicket</servlet-name>
+		<url-pattern>/dischargeTicket</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>authenticationFilter</filter-name>
 		<filter-class>com.app.framework.AuthenticationFilter</filter-class>

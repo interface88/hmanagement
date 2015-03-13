@@ -23,6 +23,7 @@ public class DischargeTicket {
 	private String pulse;
 	private String temperature;
 	private String sugar;
+	private String weight;
 	private String examingTime;
 	private String remark;
 	private String prescribedMedicine;
@@ -147,6 +148,12 @@ public class DischargeTicket {
 	}
 	public void setFollowUpSchedule(String followUpSchedule) {
 		this.followUpSchedule = followUpSchedule;
+	}
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
 	}
 
 	

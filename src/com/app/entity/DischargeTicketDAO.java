@@ -16,39 +16,34 @@ public class DischargeTicketDAO{
 		session = HibernateUtil.getSession();
 	}
 	
-	public void add(PaymentCollection paymentCollection){
+	public void add(DischargeTicket dischargeTicket){
 		
 		Transaction transaction = session.beginTransaction();
-		session.save(paymentCollection);
+		session.save(dischargeTicket);
 		transaction.commit();
 	}
 
-	public void update(PaymentCollection paymentCollection){
+	public void update(DischargeTicket dischargeTicket){
 		
 		Transaction transaction = session.beginTransaction();
-		session.merge(paymentCollection);
+		session.merge(dischargeTicket);
 		transaction.commit();
 	}
 	
 	
-	public void delete(PaymentCollection paymentCollection){
-		session.delete(paymentCollection);
+	public void delete(DischargeTicket dischargeTicket){
+		session.delete(dischargeTicket);
 	}
 	
-	public PaymentCollection findByCode(String code) {
-		PaymentCollection paymentCollection = (PaymentCollection) session.get(PaymentCollection.class, code);
-		return paymentCollection;
-	}
-
-	public PaymentCollection findById(Integer id) {
-		PaymentCollection paymentCollection = (PaymentCollection) session.get(PaymentCollection.class, id);
-		return paymentCollection;
+	public DischargeTicket findById(Integer id) {
+		DischargeTicket dischargeTicket = (DischargeTicket) session.get(DischargeTicket.class, id);
+		return dischargeTicket;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<PaymentCollection> getList(){
-		List<PaymentCollection> list = new ArrayList<PaymentCollection>();
-		Query query  = session.createQuery("from PaymentCollection");
+	public List<DischargeTicket> getList(){
+		List<DischargeTicket> list = new ArrayList<DischargeTicket>();
+		Query query  = session.createQuery("from DischargeTicket");
 		list = query.list();
 		return list;
 	}

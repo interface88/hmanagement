@@ -51,6 +51,9 @@
 		<property name="sugar" type="java.lang.String">
 			<column name="SUGAR" />
 		</property>
+		<property name="weight" type="java.lang.String">
+			<column name="WEIGHT" />
+		</property>
 		<property name="examingTime" type="java.lang.String">
 			<column name="EXAMING_TIME" />
 		</property>
