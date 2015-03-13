@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.app.master">
-	<class name="com.app.entity.PaymentCollection" table="payment_collection" lazy="true">
+	<class name="com.app.entity.DischargeTicket" table="payment_collection" lazy="true">
 
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
