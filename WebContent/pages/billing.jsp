@@ -13,8 +13,8 @@
 		</table>
 	</form>
 	<form name="ipd" method="post" action="ipd">
-		<input type="text" name="patientId" value="${opd.patient.id}" />
-		<input type="text" name="admissionId" value="${opd.admissionId}" />
+		<input type="text" name="patientId" value="${ipd.patient.id}" />
+		<input type="text" name="admissionId" value="${ipd.admissionId}" />
 		<table style="width: 82%" cellpadding="3px">
 			<tr>
 				<td  align="center" colspan="4" ><strong>Nursing</strong></td>

@@ -19,12 +19,16 @@ import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
+import com.app.master.Medicine;
+import com.app.master.MedicineDAO;
 import com.app.master.Nursing;
 import com.app.master.NursingDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
 import com.app.master.PatientDAO;
+import com.app.master.Test;
+import com.app.master.TestDAO;
 import com.app.master.Ward;
 import com.app.master.WardDAO;
 
@@ -39,8 +43,8 @@ public class NursingServlet extends HttpServlet {
 
 	PatientDAO patientDAO = new PatientDAO();
 	DoctorDAO doctorDAO = new DoctorDAO();
-	WardDAO wardDAO = new WardDAO();
-	AdmissionTypeDAO admissionTypeDAO = new AdmissionTypeDAO();
+	MedicineDAO medicineDAO = new MedicineDAO();
+	TestDAO testDAO = new TestDAO();
 	
 	 /**
     * @see HttpServlet#HttpServlet()
@@ -110,11 +114,11 @@ public class NursingServlet extends HttpServlet {
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			
-			OpdDAO opdDAO = new OpdDAO();
+			IpdDAO ipdDAO = new IpdDAO();
 			String admissionId =  request.getParameter("admissionId").trim();
-			Opd opd = opdDAO.findByAdmissionId(admissionId);
-			if(opd != null){
-				request.setAttribute("opd", opd);
+			Ipd ipd = ipdDAO.findByAdmissionId(admissionId);
+			if(ipd != null){
+				request.setAttribute("ipd", ipd);
 				
 			}else{
 				msg = "No data to load";
@@ -123,32 +127,27 @@ public class NursingServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("msg",msg);
-		request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/nursing.jsp").forward(request, response);
 		
 	}
 	
 	private void loadData(HttpServletRequest request){
-		// ---------- patient list -----------
-		List<Patient> patientlist= new ArrayList<Patient>();
-		patientlist = patientDAO.getList();
 		
 		// ---------- doctor list -----------
 		List<Doctor> doctorlist= new ArrayList<Doctor>();
 		doctorlist = doctorDAO.getList();
 		
-		// ---------- database fetch -----------
-		List<Ward> wardlist= new ArrayList<Ward>();
-		wardlist = wardDAO.getList();
+		// ---------- medicine list -----------
+		List<Medicine> medicinelist= new ArrayList<Medicine>();
+		medicinelist = medicineDAO.getList();
 		
+		// ---------- medicine list -----------
+		List<Test> testlist= new ArrayList<Test>();
+		testlist = testDAO.getList();
 		
-		// ---------- database fetch -----------
-		List<AdmissionType> admissionTypelist= new ArrayList<AdmissionType>();
-		admissionTypelist = admissionTypeDAO.getList();
-		
-		request.setAttribute("wardlist", wardlist);
-		request.setAttribute("admissionTypelist", admissionTypelist);
+		request.setAttribute("medicinelist", medicinelist);
+		request.setAttribute("testlist", testlist);
 		request.setAttribute("doctorlist", doctorlist);
-		request.setAttribute("patientlist", patientlist);
 		
 	}
 }

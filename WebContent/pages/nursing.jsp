@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/header.jsp" />
-	<form name="ipd" method="post" action="ipd">
+	<form name="nursing" method="post" action="nursing">
 		<table style="width: 82%" cellpadding="3px">
 			<tr>
 				<td align="center"><strong>Admission Id</strong></td>
@@ -11,7 +11,9 @@
 			</tr>
 		</table>
 	</form>
-	<form name="ipd" method="post" action="">
+	<form name="nursing" method="post" action="nursing">
+		<input type="text" name="patientId" value="${ipd.patient.id}" />
+		<input type="text" name="admissionId" value="${ipd.admissionId}" />
 		<table style="width: 93%" cellpadding="3px;">
 			<tr>
 				<td align="center" colspan="6"><strong>Nursing Module</strong></td>

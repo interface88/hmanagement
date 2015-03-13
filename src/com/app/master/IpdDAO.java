@@ -35,10 +35,10 @@ public class IpdDAO{
 	@SuppressWarnings("unchecked")
 	public Ipd findByAdmissionId(String admissionId)
 	{
-		String hql = "from ipd as model where model.admissionId = ?";
+		String hql = "from Ipd as model where model.admissionId = ?";
 		Query query = session.createQuery(hql);
-		List<Ipd> results = query.list();
 		query.setParameter(0, admissionId);
+		List<Ipd> results = query.list();
 		return results.get(0);
 	}
 
