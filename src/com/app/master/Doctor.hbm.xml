@@ -38,13 +38,13 @@
 		</property>
 		<set name="ipds" inverse="true" sort="unsorted">
 			<key>
-				<column name="PATIENT_ID"/>
+				<column name="DOCTOR_ID"/>
 			</key>
 			<one-to-many class="com.app.master.Ipd" />
 		</set>
 		<set name="opds" inverse="true" sort="unsorted">
 			<key>
-				<column name="PATIENT_ID"/>
+				<column name="DOCTOR_ID"/>
 			</key>
 			<one-to-many class="com.app.master.Opd" />
 		</set>

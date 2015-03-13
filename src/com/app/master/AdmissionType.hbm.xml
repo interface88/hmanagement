@@ -15,5 +15,11 @@
 		<property name="name" type="java.lang.String">
 			<column name="NAME" not-null="true" />
 		</property>
+		<set name="ipds" inverse="true" sort="unsorted">
+			<key>
+				<column name="ADMISSION_TYPE_ID"/>
+			</key>
+			<one-to-many class="com.app.master.Ipd" />
+		</set>
 	</class>
 </hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.app.master">
+	<class name="com.app.master.Nursing" table="nursing" lazy="true">
+
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="admissionId" type="java.lang.String">
+			<column name="ADMISSION_ID" not-null="true" />
+		</property>
+		<property name="staffName" type="java.lang.String">
+			<column name="STAFF_NAME" not-null="true" />
+		</property>
+		<property name="noOfVisit" type="java.lang.Integer">
+			<column name="NO_OF_VISIT" not-null="true" />
+		</property>
+		<property name="nursingDate" type="java.sql.Date">
+			<column name="NURSING_DATE" not-null="true" />
+		</property>
+		<property name="pressure" type="java.lang.String">
+			<column name="PRESSURE" />
+		</property>
+		<property name="pulse" type="java.lang.String">
+			<column name="PULSE" />
+		</property>
+		<property name="temperature" type="java.lang.String">
+			<column name="TEMPERATURE" />
+		</property>
+		<property name="sugar" type="java.lang.String">
+			<column name="SUGAR" />
+		</property>
+		<property name="examingTime" type="java.lang.String">
+			<column name="EXAMING_TIME" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" />
+		</property>
+        <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
+            <column name="PATIENT_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="doctor" class="com.app.master.Doctor" fetch="select">
+            <column name="DOCTOR_ID" not-null="true" />
+        </many-to-one>
+		<set name="nursingTransactions" inverse="true" sort="unsorted">
+			<key>
+				<column name="NURSING_ID"/>
+			</key>
+			<one-to-many class="com.app.master.NursingTransaction" />
+		</set>
+	</class>
+</hibernate-mapping>
