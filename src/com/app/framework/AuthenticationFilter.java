@@ -30,28 +30,14 @@ public class AuthenticationFilter implements Filter {
 		
 		 // get the file being requested
         String file = req.getServletPath();
-        System.out.println("------------------------------------");
-        System.out.println(file);
         
         String uri = ((HttpServletRequest)request).getRequestURI();
 
-        System.out.println(uri);
-        System.out.println("------------------------------------");
-        
         //TODO : implement better quality check
-        if ( uri.indexOf("/css") > 0){
+        if ( uri.indexOf("/theme") > 0 || uri.indexOf("/login") > 0){
             chain.doFilter(request, response);
         }
-        else if( uri.indexOf("/images") > 0){
-            chain.doFilter(request, response);
-        }
-        else if( uri.indexOf("/js") > 0){
-            chain.doFilter(request, response);
-        }
-        else if( uri.indexOf("/login") > 0){
-            chain.doFilter(request, response);
-        }
-        else if (session.getAttribute("userId") != null || file.equals("/index.jsp")) {
+        else if (Auth.isUserLogged(req) || file.equals("/index.jsp")) {
 			chain.doFilter(request, response);
 		} else {
 			String loginURL = req.getContextPath() + "/index.jsp";

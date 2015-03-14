@@ -39,7 +39,21 @@ public class StaffDAO{
 	public Staff findById(Integer id) {
 		Staff book = (Staff) session.get(Staff.class, id);
 		return book;
-}
+   }
+	
+	public Staff findByUserIdAndPassword(String userId, String password){
+		String hql = "from "+ Staff.class.getCanonicalName() +" as model where model.userId = ? AND model.password = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, userId);
+		query.setParameter(1, password);
+		List<Staff> results = query.list();
+		
+		if(!results.isEmpty()){
+			return results.get(0);
+		}
+		
+		return null;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Staff> getList(){

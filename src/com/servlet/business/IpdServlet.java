@@ -40,7 +40,7 @@ public class IpdServlet extends HttpServlet {
 	WardDAO wardDAO = new WardDAO();
 	AdmissionTypeDAO admissionTypeDAO = new AdmissionTypeDAO();
 	
-	 /**
+  /**
     * @see HttpServlet#HttpServlet()
     */
    public IpdServlet() {
