@@ -1,11 +1,15 @@
 package com.app.entity.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
@@ -20,6 +24,11 @@ import com.app.framework.DateTimeUtil;
 public class DischargeTicketServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	DischargeTicketDAO dischargeTicketDAO = new DischargeTicketDAO();
+	PatientDAO patientDAO = new PatientDAO();
+	IpdDAO ipdDAO = new IpdDAO();
+	DoctorDAO doctorDAO = new DoctorDAO();
 	 /**
      * @see HttpServlet#HttpServlet()
      */
@@ -45,11 +54,6 @@ public class DischargeTicketServlet extends HttpServlet {
 		
 		String msg= "";
 		
-		DischargeTicketDAO dischargeTicketDAO = new DischargeTicketDAO();
-		PatientDAO patientDAO = new PatientDAO();
-		IpdDAO ipdDAO = new IpdDAO();
-		DoctorDAO doctorDAO = new DoctorDAO();
-		
 		String btnclick = request.getParameter("action");
 		
 		// ----------checking action to perform --------------
@@ -66,7 +70,6 @@ public class DischargeTicketServlet extends HttpServlet {
 			String examingTime = request.getParameter("examingTime").trim();
 			String followUpSchedule = request.getParameter("followUpSchedule").trim();
 			Integer ipdId = Integer.parseInt(request.getParameter("ipdId").trim());
-			String ipd = request.getParameter("chequeDate").trim();
 			String prescribedMedicine = request.getParameter("prescribedMedicine").trim();
 			String pressure = request.getParameter("pressure").trim();
 			String pulse = request.getParameter("pulse").trim();
@@ -75,7 +78,8 @@ public class DischargeTicketServlet extends HttpServlet {
 			String sugar = request.getParameter("sugar").trim();
 			String weight = request.getParameter("weight").trim();
 			String temperature = request.getParameter("temperature").trim();
-			String treatementNote = request.getParameter("treatementNote").trim();
+			String treatementNote = request.getParameter("treatmentNote").trim();
+			String dischargeNote = request.getParameter("dischargeNote").trim();
 
 			dischargeTicket.setAdmissionId(admissionId);
 			dischargeTicket.setAdvice(advice);
@@ -95,6 +99,7 @@ public class DischargeTicketServlet extends HttpServlet {
 			dischargeTicket.setWeight(weight);
 			dischargeTicket.setTemperature(temperature);
 			dischargeTicket.setTreatmentNote(treatementNote);
+			dischargeTicket.setDischargeNote(dischargeNote);
 			
 			dischargeTicketDAO.add(dischargeTicket);
 			
@@ -103,16 +108,32 @@ public class DischargeTicketServlet extends HttpServlet {
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
 			
 			DischargeTicket dischargeTicket = new DischargeTicket();
-			dischargeTicket.setPatient(ipd.getPatient());
-			dischargeTicket.setAdmissionId(ipd.getAdmissionId());
-			dischargeTicket.setPatient(ipd.getPatient());
 			dischargeTicket.setStaffName("Default Staff name");
+			
+			if(ipd != null){
+				request.setAttribute("ipd", ipd);
+				
+			}else{
+				msg = "No data to load";
+			}
+			
+			loadData(request);
 			
 			request.setAttribute("dischargeTicket", dischargeTicket);
 		}
 		
 		request.setAttribute("msg",msg);
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
+	}
+	
+private void loadData(HttpServletRequest request){
+		
+		// ---------- doctor list -----------
+		List<Doctor> doctorlist= new ArrayList<Doctor>();
+		doctorlist = doctorDAO.getList();
+		
+		request.setAttribute("doctorlist", doctorlist);
+		
 	}
 
 }

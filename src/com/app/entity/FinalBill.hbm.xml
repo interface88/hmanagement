@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.app.entity">
+	<class name="com.app.entity.FinalBill" table="final_bill" lazy="true">
+
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="increment" />
+		</id>
+		<property name="staffName" type="java.lang.String">
+			<column name="STAFF_NAME" not-null="true" />
+		</property>
+		<property name="entryDate" type="java.sql.Date">
+			<column name="ENTRY_DATE" not-null="true" />
+		</property>
+		<property name="admissionId" type="java.lang.String">
+			<column name="ADMISSION_ID" not-null="true" />
+		</property>
+        <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
+            <column name="PATIENT_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ipd" class="com.app.master.Ipd" fetch="select">
+            <column name="IPD_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="doctor" class="com.app.master.Doctor" fetch="select">
+            <column name="DOCTOR_ID" not-null="true" />
+		 </many-to-one>
+        <many-to-one name="admissionType" class="com.app.master.AdmissionType" fetch="select">
+            <column name="ADMISSION_TYPE_ID" not-null="true" />
+		 </many-to-one>
+		<property name="billNo" type="java.lang.String">
+			<column name="BILL_NO" not-null="true" />
+		</property>
+		<property name="billDate" type="java.sql.Date">
+			<column name="BILL_DATE" not-null="true" />
+		</property>
+		<property name="grossTotal" type="java.lang.Double">
+			<column name="GROSS_TOTAL" not-null="true" />
+		</property>
+		<property name="discount" type="java.lang.Double">
+			<column name="DISCOUNT" not-null="false" />
+		</property>
+		<property name="tax" type="java.lang.Double">
+			<column name="TAX" not-null="false" />
+		</property>
+		<property name="netAmount" type="java.lang.Double">
+			<column name="NET_AMOUNT" not-null="true" />
+		</property>
+		<property name="balanceReceiveAmount" type="java.lang.Double">
+			<column name="BALANCE_RECEIVE_AMOUNT" not-null="false" />
+		</property>
+		<property name="finalReceiveAmount" type="java.lang.Double">
+			<column name="FINAL_RECEIVE_AMOUNT" not-null="true" />
+		</property>
+		<property name="paymentMode" type="java.lang.String">
+			<column name="PAYMENT_MODE" not-null="true" />
+		</property>
+		<property name="chequeNumber" type="java.lang.String">
+			<column name="CHEQUE_NUMBER" not-null="false" />
+		</property>
+		<property name="chequeDate" type="java.sql.Date">
+			<column name="CHEQUE_DATE" not-null="false" />
+		</property>
+		<property name="dischargeDate" type="java.sql.Date">
+			<column name="DISCHARGE_DATE" not-null="true" />
+		</property>
+		<property name="bank" type="java.lang.String">
+			<column name="BANK" not-null="false" />
+		</property>
+		<property name="otherDetails" type="java.lang.String">
+			<column name="OTHER_DETAILS" not-null="false" />
+		</property>
+		<property name="remark" type="java.lang.String">
+			<column name="REMARK" />
+		</property>
+	</class>
+</hibernate-mapping>

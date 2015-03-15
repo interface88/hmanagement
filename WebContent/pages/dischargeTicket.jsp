@@ -14,6 +14,7 @@
 		<form name="dischargeTicketForm" method="post" action="dischargeTicket">
 			<input type="text" name="patientId" value="${ipd.patient.id}" />
 			<input type="text" name="admissionId" value="${ipd.admissionId}" />
+			<input type="text" name="ipdId" value="${ipd.id}" />
 			<table style="width: 93%" class="tdright">
 				<tr>
 					<td align="center" colspan="6">Patient Discharge</td>
@@ -23,11 +24,11 @@
 				</tr>
 				<tr>
 					<td>Staff Name</td>
-					<td><input name="Text1" type="text" /></td>
+					<td><input name="staffName" type="text" value="${dischargeTicket.staffName}"/></td>
 					<td>&nbsp;</td>
 					<td style="width: 128px">&nbsp;</td>
 					<td>Entry Date</td>
-					<td><input name="Text2" type="text" /></td>
+					<td><input name="entryDate" type="text" /></td>
 				</tr>
 				<tr>
 					<td colspan="6"><hr style="width: 100%" /></td>
@@ -40,7 +41,7 @@
 					<td>Discharge Doctor</td>
 				</tr>
 				<tr>
-					<td><input name="patient" type="text" value="${patient.firstName} ${patient.lastName}"/></td>
+					<td><input disabled="disabled" type="text" value="${ipd.patient.firstName} ${ipd.patient.lastName}"/></td>
 					<td><input disabled="disabled" type="text" value="${ipd.admissionDate}"/></td>
 					<td><input disabled="disabled" type="text" value="${ipd.ward}"/></td>
 					<td><input disabled="disabled" type="text" value="${ipd.bedNo}"/></td>
@@ -230,7 +231,7 @@
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 		
-					<td colspan="2" style="text-align: right;"><input name="Submit1"
+					<td colspan="2" style="text-align: right;"><input name="action"
 						type="submit" value="submit" />&nbsp;&nbsp;&nbsp; <input
 						name="Reset1" type="reset" value="reset" /></td>
 		

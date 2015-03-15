@@ -3,6 +3,8 @@ package com.app.master;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.app.entity.FinalBill;
+
 public class AdmissionType{
 	
 	private Integer id;
@@ -11,6 +13,7 @@ public class AdmissionType{
 
 	
 	private Set<Ipd> ipds = new HashSet<Ipd>();
+	private Set<FinalBill> finalBills = new HashSet<FinalBill>();
 	// --------- GETTER AND SETTER -----------
 	
 	public Integer getId() {
@@ -39,6 +42,10 @@ public class AdmissionType{
 	public void setIpds(Set<Ipd> ipds) {
 		this.ipds = ipds;
 	}
-	
-	
+	public Set<FinalBill> getFinalBills() {
+		return finalBills;
+	}
+	public void setFinalBills(Set<FinalBill> finalBills) {
+		this.finalBills = finalBills;
+	}
 }

@@ -29,6 +29,7 @@
 		<mapping resource="com/app/master/NursingTransaction.hbm.xml" />
 		<mapping resource="com/app/entity/PaymentCollection.hbm.xml" />
 		<mapping resource="com/app/entity/DischargeTicket.hbm.xml" />
+		<mapping resource="com/app/entity/FinalBill.hbm.xml" />
 		
 	</session-factory>
 </hibernate-configuration>
