@@ -12,6 +12,12 @@ public class Auth {
 		return null;
 	}
 	
+	/**
+	 * Function to check if user is logged or not
+	 * 
+	 * @param HttpServletRequest request
+	 * @return Boolean
+	 */
 	public static Boolean isUserLogged(HttpServletRequest request){
 		HttpSession session  = request.getSession();
 		if(session.getAttribute("userId") != null){
@@ -52,6 +58,7 @@ public class Auth {
 	
 	/**
 	 * Function to get logged staff name by HttpServletRequest request.
+	 * 
 	 * @param HttpServletRequest request
 	 * @return String staffName
 	 */

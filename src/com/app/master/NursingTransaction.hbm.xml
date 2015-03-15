@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.app.master">
-	<class name="com.app.master.NursingTransaction" table="nursing" lazy="true">
+	<class name="com.app.master.NursingTransaction" table="nursing_transaction" lazy="true">
 
 		<id name="id" type="java.lang.Integer">
 			<column name="ID" />
@@ -16,7 +16,7 @@
 			<column name="TREATMENT_COST" />
 		</property>
         <many-to-one name="nursing" class="com.app.master.Nursing" fetch="select">
-            <column name="NURSING_DATE" not-null="true" />
+            <column name="NURSING_ID" not-null="true" />
         </many-to-one>
 	</class>
 </hibernate-mapping>

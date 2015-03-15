@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.app.framework.Constants;
 import com.app.framework.DateTimeUtil;
 import com.app.master.AdmissionType;
 import com.app.master.AdmissionTypeDAO;
@@ -23,6 +24,8 @@ import com.app.master.Medicine;
 import com.app.master.MedicineDAO;
 import com.app.master.Nursing;
 import com.app.master.NursingDAO;
+import com.app.master.NursingTransaction;
+import com.app.master.NursingTransactionDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
@@ -80,25 +83,6 @@ public class NursingServlet extends HttpServlet {
 			NursingDAO nursingDAO = new NursingDAO();
 			Nursing nursing = new Nursing();
 			
-			/*
-			String admissionId = request.getParameter("admissionId").trim();
-			Nursing nursing = nursingDAO.findByAdmissionIdAndCurrentDate(admissionId);
-			if(nursing == null){
-				// add new nursing
-				int patientId = Integer.parseInt(request.getParameter("patientId").trim());
-				Patient patient = patientDAO.findById(patientId);
-				
-				int doctorId = Integer.parseInt(request.getParameter("doctorId").trim());
-				Doctor doctor = doctorDAO.findById(doctorId);
-				String staffName = request.getParameter("staffName").trim();
-			}
-			*/
-			// add nursing transaction for that nursing
-			
-			
-			// if present than add transaction for add
-			
-			// ------------ OLD CODE ----------------------
 			
 			int patientId = Integer.parseInt(request.getParameter("patientId").trim());
 			Patient patient = patientDAO.findById(patientId);
@@ -131,9 +115,34 @@ public class NursingServlet extends HttpServlet {
 			nursing.setExamingTime(examingTime);
 			nursing.setRemark(remark);
 			
-			
 			nursingDAO.add(nursing);
-			// setting all the value
+			
+			Double medicineTotalCost = Double.parseDouble(request.getParameter("medicineTotalPrice").trim());
+			Double testTotalCost = Double.parseDouble(request.getParameter("testTotalPrice").trim());
+			
+			if(medicineTotalCost > 0){
+				NursingTransaction nursingMedicineTransaction = new NursingTransaction();
+				nursingMedicineTransaction.setTreatmentCost(medicineTotalCost);
+				nursingMedicineTransaction.setTreatment(Constants.TREATMENT_MEDICINE);
+				nursingMedicineTransaction.setNursing(nursing);
+
+				// ---------- saving medicine information ---------------
+				NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
+				nursingTransactionDAO.add(nursingMedicineTransaction);
+			}
+			
+			
+			if(testTotalCost > 0){
+				NursingTransaction nursingTestTransaction = new NursingTransaction();
+				nursingTestTransaction.setNursing(nursing);;
+				nursingTestTransaction.setTreatment(Constants.TREATMENT_TEST);
+				nursingTestTransaction.setTreatmentCost(testTotalCost);
+				
+				// ---------- saving test information ---------------
+				NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
+				nursingTransactionDAO.add(nursingTestTransaction);
+			}
+			
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			

@@ -11,9 +11,67 @@
 			</tr>
 		</table>
 	</form>
+	<script>
+		// function to add medicine row
+		function addMedicine(){
+			var medicineRow = $('#medicineTable .medicineRow:first').clone();
+
+			// replacing add button with delete button.
+			medicineRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
+			$('#medicineTable').append(medicineRow);
+			
+		}
+		// function to add test row
+		function addTest(){
+			var medicineRow = $('#testTable .testRow:first').clone();
+
+			// replacing add button with delete button.
+			medicineRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
+			$('#testTable').append(medicineRow);
+			
+		}
+		$(function(){
+			// --------- code to delete medicine row----------
+			$('#medicineTable ').on('click','.delete',function(){
+				$(this).parent().parent().remove();
+			});
+
+			// --------- code to delete test row----------
+			$('#testTable ').on('click','.delete',function(){
+				$(this).parent().parent().remove();
+			});
+			
+		});
+
+		function readData(){
+
+			// -------- code to read medicine price ----
+			var medicineRate = 0;
+			$('.medicineRow').each(function(){
+				var rate = $(this).find('.medicinePrice').val();
+				medicineRate = parseFloat(rate) + parseFloat(medicineRate);
+			})
+
+			$('#medicineTotalPrice').val(medicineRate);
+
+
+			// -------- code to read test price ----
+			var testRate = 0;
+			$('.testRow').each(function(){
+				var rate = $(this).find('.testPrice').val();
+				testRate = parseFloat(rate) + parseFloat(testRate);
+			})
+
+			$('#testTotalPrice').val(testRate);
+		}
+		
+	</script>
 	<form name="nursing" method="post" action="nursing">
 		<input type="text" name="patientId" value="${ipd.patient.id}" />
 		<input type="text" name="admissionId" value="${ipd.admissionId}" />
+		<input type="text" id="medicineTotalPrice" name="medicineTotalPrice" value="0" />
+		<input type="text" id="testTotalPrice" name="testTotalPrice" value="0" />
+		
 		<table style="width: 93%" cellpadding="3px;">
 			<tr>
 				<td align="center" colspan="6"><strong>Nursing Module</strong></td>
@@ -112,7 +170,7 @@
 			</tr>
 			<tr>
 				<td colspan="6">
-					<table style="width: 100%" class="tdbackstyle1">
+					<table style="width: 100%" class="tdbackstyle1" id="medicineTable">
 						<tr class="tdbackstyle1">
 							<td style="width: 62px; height: 31px"><strong>S.No</strong></td>
 							<td style="width: 182px; height: 31px"><strong>Name</strong></td>
@@ -121,11 +179,13 @@
 							<td style="height: 31px; width: 300px"><strong>Remarks</strong></td>
 							<td style="height: 31px">&nbsp;</td>
 						</tr>
-						<tr valign="top">
+						<tr valign="top" class="medicineRow">
 							<td style="height: 29px; width: 62px"></td>
 							<td style="height: 29px; width: 182px">
-								<select class="ddlbig" name="Select1">
-									<option></option>
+								<select class="medicinePrice">
+									<c:forEach items="${medicinelist}" var="medicine">
+										<option value="${medicine.rate}">${medicine.name}</option>
+									</c:forEach>
 								</select>
 							</td>
 							<td style="height: 29px; width: 131px">
@@ -137,33 +197,9 @@
 							<td style="height: 29px; width: 300px">
 								<textarea name="TextArea1" style="width: 95%; height: 35px"></textarea>
 							</td>
-							<td style="height: 29px" align="center" valign="middle">
-								<input name="Submit3" type="submit" value="Add" />
+							<td style="height: 29px" align="center" valign="middle" class="btn">
+								<input type="button" value="Add" onclick="addMedicine();" />
 							</td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
 						</tr>
 					</table>
 	
@@ -182,7 +218,7 @@
 			</tr>
 			<tr>
 				<td colspan="6">
-					<table style="width: 100%" class="tdbackstyle1">
+					<table style="width: 100%" class="tdbackstyle1" id="testTable">
 						<tr>
 							<td style="width: 62px; height: 31px"><strong>S.No</strong></td>
 							<td style="width: 182px; height: 31px"><strong>Type</strong></td>
@@ -191,46 +227,27 @@
 							<td style="height: 31px; width: 300px"><strong>Remarks</strong></td>
 							<td style="height: 31px">&nbsp;</td>
 						</tr>
-						<tr valign="top">
+						<tr valign="top" class="testRow">
 							<td style="height: 39px; width: 62px"></td>
 							<td style="height: 39px; width: 182px"><select
 								class="ddlmidium" name="Select5">
 									<option></option>
 							</select></td>
-							<td style="height: 39px; width: 131px"><select class="ddlbig"
-								name="Select6">
-									<option></option>
-							</select></td>
-							<td style="height: 39px; width: 123px"><input name="Text18"
-								type="text" /></td>
-							<td style="height: 39px; width: 266px"><textarea
-									name="TextArea1" style="width: 95%; height: 35px"></textarea></td>
-							<td style="height: 29px" align="center" valign="middle"><input
-								name="Submit2" type="submit" value="Add" /></td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td style="width: 62px">&nbsp;</td>
-							<td style="width: 182px">&nbsp;</td>
-							<td style="width: 131px">&nbsp;</td>
-							<td style="width: 123px">&nbsp;</td>
-							<td style="width: 266px">&nbsp;</td>
-							<td>&nbsp;</td>
+							<td style="height: 39px; width: 131px">
+								<select class="testPrice"  name="Select6">
+									<c:forEach items="${testlist}" var="test">
+										<option value="${test.rate}">${test.name}</option>
+									</c:forEach>
+								</select>
+							</td>
+							<td style="height: 39px; width: 123px">
+								<input name="Text18" type="text" /></td>
+							<td style="height: 39px; width: 266px">
+								<textarea name="TextArea1" style="width: 95%; height: 35px"></textarea>
+							</td>
+							<td style="height: 29px" align="center" valign="middle" class="btn">
+								<input type="button" value="Add" onclick="addTest();" />
+							</td>
 						</tr>
 					</table>
 	
@@ -241,9 +258,10 @@
 			</tr>
 	
 			<tr>
-				<td colspan="6" align="right"><input name="action"
-					type="submit" value="save" />&nbsp;&nbsp;&nbsp; <input
-					name="Reset1" type="reset" value="reset" /></td>
+				<td colspan="6" align="right">
+					<input name="action" type="submit" value="save" />&nbsp;&nbsp;&nbsp;
+					<input type="button" value="TEST" onclick="readData();" />&nbsp;&nbsp;&nbsp;  
+					<input name="Reset1" type="reset" value="reset" /></td>
 			</tr>
 			<tr>
 				<td colspan="6">&nbsp;</td>
