@@ -20,8 +20,15 @@ public class DateTimeUtil
 		}
 	}
 	
-	public Date getCurrentDate(){
+	public static Date getCurrentDateObject(){
 		java.util.Date date = new java.util.Date();
 		return new Date(date.getTime());
+	}
+	
+	public static String getCurrentDate(){
+		SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy");//dd/MM/yyyy
+		java.util.Date now = new java.util.Date();
+	    String strDate = sdfDate.format(now);
+	    return strDate;
 	}
 }

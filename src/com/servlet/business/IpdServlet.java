@@ -81,6 +81,7 @@ public class IpdServlet extends HttpServlet {
 			
 			String staffName = request.getParameter("staffName").trim();
 			String admissionId = request.getParameter("admissionId").trim();
+			Date entryDate = DateTimeUtil.ParseString(request.getParameter("entryDate").trim());
 			Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate").trim());
 			String admissionTime = request.getParameter("admissionTime").trim();
 			String ward = request.getParameter("ward").trim();
@@ -101,6 +102,7 @@ public class IpdServlet extends HttpServlet {
 			ipd.setAdmissionType(admissionType);
 			ipd.setStaffName(staffName);
 			ipd.setAdmissionId(admissionId);
+			ipd.setEntryDate(entryDate);
 			ipd.setAdmissionDate(admissionDate);
 			ipd.setAdmissionTime(admissionTime);
 			ipd.setWard(ward);

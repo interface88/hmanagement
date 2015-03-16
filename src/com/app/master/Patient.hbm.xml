@@ -8,8 +8,8 @@
 			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="code" type="java.lang.String">
-			<column name="CODE" not-null="true" />
+		<property name="registrationNo" type="java.lang.String">
+			<column name="REGISTRATION_NO" not-null="true" />
 		</property>
 		<property name="registrationDate" type="java.sql.Date">
 			<column name="REGISTRATION_DATE" not-null="true" />
@@ -29,14 +29,8 @@
 		<property name="gender" type="java.lang.String">
 			<column name="GENDER" not-null="true" />
 		</property>
-		<property name="day" type="java.lang.Integer">
-			<column name="DAY" not-null="true" />
-		</property>
-		<property name="month" type="java.lang.Integer">
-			<column name="MONTH" not-null="true" />
-		</property>
-		<property name="year" type="java.lang.Integer">
-			<column name="YEAR" not-null="true" />
+		<property name="birthDate" type="java.sql.Date">
+			<column name="BIRTH_DATE" not-null="true" />
 		</property>
 		<property name="contactInfo" type="java.lang.String">
 			<column name="CONTACT_INFO" not-null="true" />

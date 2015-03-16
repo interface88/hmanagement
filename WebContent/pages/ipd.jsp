@@ -1,3 +1,5 @@
+<%@page import="com.app.framework.Auth"%>
+<%@page import="com.app.framework.DateTimeUtil"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/header.jsp" />
 
@@ -23,9 +25,9 @@
 				<td colspan="6"><hr class="auto-style1" style="width: 100%" /></td>
 			</tr>
 			<tr>
-				<td colspan="2">Staff Name&nbsp;&nbsp;&nbsp; <input name="staffName" type="text" /></td>
+				<td colspan="2">Staff Name&nbsp;&nbsp;&nbsp; <input name="staffName" type="text" readonly="readonly" value="<%= Auth.getLoggedStaffName(request) %>"/></td>
 				<td style="width: 180px">&nbsp;</td>
-				<td colspan="3">&nbsp;Date Time&nbsp;&nbsp;&nbsp; <input name="txtdatetime" type="text" /></td>
+				<td colspan="3">&nbsp;Date Time&nbsp;&nbsp;&nbsp; <input readonly="readonly" name="entryDate" type="text" value="<%= DateTimeUtil.getCurrentDate() %>" /></td>
 			</tr>
 			<tr>
 				<td style="width: 69px">&nbsp;</td>
@@ -39,25 +41,25 @@
 					<td colspan="6">
 						<table style="width: 97%;" cellpadding="2px">
 							<tr>
-								<td style="width: 87px">Patient Id</td>
-								<td style="width: 130px">Admission Date</td>
-								<td colspan="2">Emergency Contact No</td>
+								<td style="width: 87px">Patient Reg No</td>
+								<td style="width: 130px">Patient Reg Date</td>
+								<td colspan="2">Contact Info</td>
 								<td rowspan="6">&nbsp;</td>
 							</tr>
 							<tr>
-								<td style="width: 87px"><input name="txtpid" disabled type="text" value="${opd.patient.id}"/></td>
-								<td style="width: 130px"><input name="txtadmissiontype" disabled type="text" /></td>
-								<td colspan="2"><input name="txtemgcontact" disabled type="text" /></td>
+								<td style="width: 87px"><input readonly type="text" value="${opd.patient.registrationNo}"/></td>
+								<td style="width: 130px"><input readonly type="text" value="${opd.patient.registrationDate}" /></td>
+								<td colspan="2"><input readonly type="text" value="${opd.patient.contactInfo}" /></td>
 							</tr>
 							<tr>
 								<td style="width: 87px">Patient Name </td>
 								<td style="width: 130px">Age</td>
-								<td colspan="2">Emergency Contact Name</td>
+								<td colspan="3">&nbsp</td>
 							</tr>
 							<tr>
-								<td style="width: 87px"><input name="txtpname" disabled type="text" value="${opd.patient.firstName}" /></td>
-								<td style="width: 130px"><input name="txtage" disabled type="text" value="${opd.patient.firstName}" /></td>
-								<td colspan="2"><input name="txtemgcontactname" disabled type="text" value="${opd.patient.contactInfo}"/></td>
+								<td style="width: 87px"><input readonly type="text" value="${opd.patient.firstName}" /></td>
+								<td style="width: 130px"><input readonly type="text" value="${opd.patient.birthDate}" /></td>
+								<td colspan="3">&nbsp</td>
 							</tr>
 							<tr>
 								<td style="width: 87px">OPD Date</td>
@@ -66,8 +68,8 @@
 								<td>&nbsp;</td>
 							</tr>
 							<tr>
-								<td style="width: 87px"><input name="txtipddate" disabled type="text" value="${opd.doctor.name}"/></td>
-								<td style="width: 130px"><input name="txtipddoctor" disabled type="text" value="${opd.entryDate}"/></td>
+								<td style="width: 87px"><input readonly type="text" value="${opd.entryDate}"/></td>
+								<td style="width: 130px"><input readonly type="text" value="${opd.doctor.name}"/></td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 							</tr>
@@ -88,9 +90,9 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td style="width: 69px"><input name="admissionId" type="text"  value="${opd.admissionId}"/></td>
-					<td><input name="admissionDate" type="text"/></td>
-					<td style="width: 180px"><input name="admissionTime" type="text" /></td>
+					<td style="width: 69px"><input name="admissionId" type="text" readonly  value="${opd.admissionId}"/></td>
+					<td><input name="admissionDate" required id="admissionDate" type="text"/></td>
+					<td style="width: 180px"><input name="admissionTime" id="admissionTime" type="text" /></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -105,16 +107,16 @@
 				</tr>
 				<tr>
 					<td style="width: 69px">
-						<select name="admissionTypeId">
-							<option>-select-</option>
+						<select name="admissionTypeId" required="required">
+							<option value="">-select-</option>
 							<c:forEach items="${admissionTypelist}" var="admissionType">
 								<option value="${admissionType.id}">${admissionType.name}</option>
 							</c:forEach>
 						</select>
 					</td>
 					<td>
-						<select name="doctorId">
-							<option>-select-</option>
+						<select name="doctorId" required="required">
+							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
 								<option value="${doctor.id}">${doctor.name}</option>
 							</c:forEach>
@@ -135,8 +137,8 @@
 				</tr>
 				<tr>
 					<td style="width: 69px">
-						<select name="ward">
-							<option>-select-</option>
+						<select name="ward" required="required">
+							<option value="">-select-</option>
 							<c:forEach items="${wardlist}" var="ward">
 								<option value="${ward.id}">${ward.name}</option>
 							</c:forEach>
@@ -216,7 +218,6 @@
 				<tr>
 					<td colspan="100%"><hr class="auto-style1" style="width: 100%" /></td>
 				</tr>
-				
 				<tr>
 					<td colspan="6" align="right">
 					<input name="action" type="submit" value="add" />&nbsp;&nbsp;&nbsp;
@@ -227,7 +228,16 @@
 				</tr>
 			</table>
 		</form>
-
+		<script>
+			Calendar.setup({
+	            trigger    : "admissionDate",
+	            inputField : "admissionDate",
+	            dateFormat: "%d-%m-%Y"
+	        });
+	        $(function(){
+	        	$('#admissionTime').clockpick({starthour : 0, endhour : 24 }); 
+			});
+		</script>
 <jsp:include page="../theme/parts/footer.jsp" />
 
 

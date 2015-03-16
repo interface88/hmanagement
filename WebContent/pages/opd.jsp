@@ -1,6 +1,6 @@
+<%@page import="com.app.framework.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/header.jsp" />
-		
 		<form name="opd" method="post" action="opd">
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
@@ -12,28 +12,32 @@
 				</tr>
 				<tr>
 					<td style="">Staff Name</td>
-					<td style=""><input name="staffName" type="text" /></td>
+					<td style=""><input name="staffName" type="text" readonly value="<%= Auth.getLoggedStaffName(request) %>"/></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">Entry Date Time</td>
-					<td style=""><input name="entryDate" type="text" /></td>
+					<td style="">
+						<input name="entryDate" readonly="readonly" type="text" value="<%= DateTimeUtil.getCurrentDate() %>" />
+					</td>
 				</tr>
 				<tr>
 					<td style="">Case Type</td>
-					<td style=""><select name="caseType">
-							<option value="-1">-Select-</option>
-							<option value="New">New</option>
-							<option value="Old">Old</option>
+					<td style=""><select name="caseType" id="caseType" onchange="showPatientRegNo()">
+							<option value="NEW">New</option>
+							<option value="OLD">Old</option>
 					</select></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">&nbsp;</td>
 					<td style="">&nbsp;</td>
 				</tr>
 				<tr>
-					<td style="">Patient Id</td>
-					<td style=""><input name="patientId" type="text" /></td>
+					<td style="">Patient Reg No</td>
+					<td style="">
+						<input id="registrationNo" name="registrationNo" type="text" value="${patient.registrationNo}" />
+						<input type="button" value="Load Patient" onclick="loadPatient();" id="loadPatientBtn">
+					</td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">Registration Date</td>
-					<td style=""><input name="registrationDate" type="text" /></td>
+					<td style=""><input name="registrationDate" id="registrationDate" type="text" value="${patient.registrationDate}" /></td>
 				</tr>
 				<tr>
 					<td colspan="6"><hr /></td>
@@ -55,9 +59,9 @@
 										<option value="Mrs.">Master</option>
 										<option value="Dr.">Miss.</option>
 								</select></td>
-								<td><input name="firstName" type="text" /></td>
-								<td><input name="lastName" type="text" /></td>
-								<td><input name="middleName" type="text" /></td>
+								<td><input name="firstName" type="text" value="${patient.firstName}" /></td>
+								<td><input name="lastName" type="text" value="${patient.lastName}"/></td>
+								<td><input name="middleName" type="text" value="${patient.middleName}" /></td>
 							</tr>
 						</table>
 					</td>
@@ -76,60 +80,7 @@
 							<option value="Other">Other</option>
 					</select></td>
 					<td colspan="3" style="">
-						<select name="year" style="width: 69px">
-							<option value=""></option><option value="2015">2015</option><option value="2014">2014</option><option value="2013">2013</option><option value="2012">2012</option><option value="2011">2011</option><option value="2010">2010</option><option value="2009">2009</option><option value="2008">2008</option><option value="2007">2007</option><option value="2006">2006</option><option value="2005">2005</option><option value="2004">2004</option><option value="2003">2003</option><option value="2002">2002</option><option value="2001">2001</option><option value="2000">2000</option><option value="1999">1999</option><option value="1998">1998</option><option value="1997">1997</option><option value="1996">1996</option><option value="1995">1995</option><option value="1994">1994</option><option value="1993">1993</option><option value="1992">1992</option><option value="1991">1991</option><option value="1990">1990</option><option value="1989">1989</option><option value="1988">1988</option><option value="1987">1987</option><option value="1986">1986</option><option value="1985">1985</option><option value="1984">1984</option><option value="1983">1983</option><option value="1982">1982</option><option value="1981">1981</option><option value="1980">1980</option><option value="1979">1979</option><option value="1978">1978</option><option value="1977">1977</option><option value="1976">1976</option><option value="1975">1975</option><option value="1974">1974</option><option value="1973">1973</option><option value="1972">1972</option><option value="1971">1971</option><option value="1970">1970</option>
-						</select>
-						&nbsp;
-						<select name="month" style="width: 63px">
-							<option value=""></option>
-							<option value="1">Jan</option>
-							<option value="2">Feb</option>
-							<option value="3">Mar</option>
-							<option value="4">Apr</option>
-							<option value="5">May</option>
-							<option value="6">Jun</option>
-							<option value="7">Jul</option>
-							<option value="8">Aug</option>
-							<option value="9">Sep</option>
-							<option value="10">Oct</option>
-							<option value="11">Nov</option>
-							<option value="12">Dec</option>
-						</select>
-						&nbsp;
-						<select name="day" style="width: 48px">
-							<option value=""></option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-							<option value="9">9</option>
-							<option value="10">10</option>
-							<option value="11">11</option>
-							<option value="12">12</option>
-							<option value="13">13</option>
-							<option value="14">14</option>
-							<option value="15">15</option>
-							<option value="16">16</option>
-							<option value="17">17</option>
-							<option value="18">18</option>
-							<option value="19">19</option>
-							<option value="20">20</option>
-							<option value="21">21</option>
-							<option value="22">22</option>
-							<option value="23">23</option>
-							<option value="24">24</option>
-							<option value="25">25</option>
-							<option value="26">26</option>
-							<option value="27">27</option>
-							<option value="28">28</option>
-							<option value="29">29</option>
-							<option value="30">30</option>
-							<option value="31">31</option>
-						</select>
+					<input type="text" name="birthDate" id="birthDate" value="${patient.birthDate}">
 					</td>
 					<td style="">
 						<select name="referredBy">
@@ -151,9 +102,10 @@
 				</tr>
 		
 				<tr>
-					<td style=""><input name="bloodGroup" style="width: 85px"
-						type="text" /></td>
-					<td style=""><input name="weight" type="text" /></td>
+					<td style="">
+						<input name="bloodGroup" style="width: 85px" type="text" value="${patient.bloodGroup}" />
+					</td>
+					<td style=""><input name="weight" type="text" value="${patient.weight}"/></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">&nbsp;</td>
 					<td style="">&nbsp;</td>
@@ -164,51 +116,51 @@
 				<tr>
 					<td style="">Address</td>
 					<td colspan="2"><textarea name="address"
-							style="width: 189px; height: 42px"></textarea></td>
+							style="width: 189px; height: 42px">{patient.textarea}</textarea></td>
 					<td colspan="2" style="">Contact Info</td>
-					<td style="">&nbsp;<input name="contactInfo" type="text" /></td>
+					<td style="">&nbsp;<input name="contactInfo" type="text" value="${patient.contactInfo}"/></td>
 				</tr>
 				<tr>
 					<td style="">Add1</td>
 					<td colspan="2" style=""><textarea cols="20" name="address1"
-							rows="1" style="width: 189px; height: 42px"></textarea></td>
+							rows="1" style="width: 189px; height: 42px">${patient.address1}</textarea></td>
 					<td colspan="2" style="">Tel.No (Home)</td>
-					<td style="">&nbsp;<input name="telephone" type="text" /></td>
+					<td style="">&nbsp;<input name="telephone" type="text" value="${patient.telephone}"/></td>
 				</tr>
 				<tr>
 					<td style="">Add2</td>
 					<td colspan="2"><textarea cols="20" name="address2" rows="1"
-							style="width: 189px; height: 42px"></textarea></td>
+							style="width: 189px; height: 42px">${patient.address2}</textarea></td>
 					<td colspan="2" style="">Mobile No.</td>
-					<td style="">&nbsp;<input name="mobile" type="text" /></td>
+					<td style="">&nbsp;<input name="mobile" type="text" value="${patient.mobile}"/></td>
 				</tr>
 				<tr>
 					<td style="">Add3</td>
 					<td colspan="2"><textarea cols="20" name="address3" rows="1"
-							style="width: 189px; height: 42px"></textarea></td>
+							style="width: 189px; height: 42px">${patient.address3}</textarea></td>
 					<td colspan="2" style="">Email</td>
-					<td style="">&nbsp;<input name="email" type="text" /></td>
+					<td style="">&nbsp;<input name="email" type="text" value="${patient.email}"/></td>
 				</tr>
 				<tr>
 					<td style="">Area</td>
 					<td style=""><input name="area" type="text" /></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">City</td>
-					<td style=""><input name="city" type="text" /></td>
+					<td style=""><input name="city" type="text" value="${patient.city}"/></td>
 				</tr>
 				<tr>
 					<td style="">District</td>
-					<td style=""><input name="district" type="text" /></td>
+					<td style=""><input name="district" type="text" value="${patient.district}"/></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">Zip</td>
-					<td style=""><input name="zip" type="text" /></td>
+					<td style=""><input name="zip" type="text" value="${patient.zip}"/></td>
 				</tr>
 				<tr>
 					<td style="">State</td>
-					<td style=""><input name="state" type="text" /></td>
+					<td style=""><input name="state" type="text" value="${patient.state}"/></td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">Country</td>
-					<td style=""><input name="country" type="text" /></td>
+					<td style=""><input name="country" type="text" value="${patient.country}"/></td>
 				</tr>
 				<tr>
 					<td colspan="6"><hr /></td>
@@ -251,4 +203,38 @@
 				</tr>
 			</table>
 		</form>
+		
+		<!-- 		hidden form to load patient data -->
+		<form name="loadPatientForm" action="opd" id="loadPatientForm" method="post">
+			<input name="action" value="load" type="text" />
+			<input name="patientRegistrationNo" id="patientRegistrationNo"  type="text" />
+		</form>
+		<script>
+			Calendar.setup({
+	            trigger    : "birthDate",
+	            inputField : "birthDate",
+	            dateFormat: "%d-%m-%Y"
+	        });
+			Calendar.setup({
+	            trigger    : "registrationDate",
+	            inputField : "registrationDate",
+	            dateFormat: "%d-%m-%Y"
+	        });
+
+			function showPatientRegNo(){
+				var caseTypeVal = document.getElementById('caseType').value;
+				if(caseTypeVal == "NEW"){
+					document.getElementById('registrationNo').setAttribute('readonly', 'readonly');
+					document.getElementById('loadPatientBtn').style.display = 'none';
+				}else{
+					document.getElementById('registrationNo').removeAttribute('readonly');
+					document.getElementById('loadPatientBtn').style.display = 'block';
+				}
+			}
+
+			function loadPatient(){
+				document.getElementById('patientRegistrationNo').value =  document.getElementById('registrationNo').value;
+				document.getElementById('loadPatientForm').submit();
+			}
+		</script>
 <jsp:include page="../theme/parts/footer.jsp" />

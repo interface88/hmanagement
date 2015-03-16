@@ -31,6 +31,23 @@ public class PatientDAO{
 		return patient;
 	}
 	
+	public Patient findByRegistrationNo(String registration) {
+		
+		Query query =  session.createQuery("from Patient as model where model.registrationNo = ?");
+		Patient result = (Patient) query.setParameter(0, registration)
+                .setMaxResults(1)
+                .uniqueResult();
+		return result;
+	}
+	
+	public Patient getLatestPatient() {
+		
+		Patient result = (Patient) session.createQuery("from Patient ORDER BY id DESC")
+                .setMaxResults(1)
+                .uniqueResult();
+		return result;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Patient> getList(){
 		List<Patient> list = new ArrayList<Patient>();

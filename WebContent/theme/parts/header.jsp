@@ -11,6 +11,16 @@
 		<link rel="stylesheet"type="text/css" href="theme/menu_files/mbcsmbmcp.css" type="text/css" />
 	
 		<script type="text/javascript" src="theme/js/jquery-1.9.0.min.js"></script>
+		
+		<!-- 		js calendar resource loading -->
+		<link rel="stylesheet"type="text/css" href="theme/js/JSCal2-1.9/css/jscal2.css" type="text/css" />
+		<script type="text/javascript" src="theme/js/JSCal2-1.9/js/jscal2.js"></script>
+		<script type="text/javascript" src="theme/js/JSCal2-1.9/js/lang/en.js"></script>
+		
+		<link rel="stylesheet"type="text/css" href="theme/js/clockpick/jquery.clockpick.1.2.9.css" type="text/css" />
+		<script type="text/javascript" src="theme/js/clockpick/jquery.clockpick.1.2.9.js"></script>
+		
+		
 		<style>
 			.borderzero td img {
 				border: 0px;
