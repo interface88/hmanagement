@@ -220,6 +220,18 @@
 		<servlet-name>finalBill</servlet-name>
 		<url-pattern>/finalBill</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** report ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>report</display-name>
+		<servlet-name>report</servlet-name>
+		<servlet-class>com.servlet.business.ReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>report</servlet-name>
+		<url-pattern>/report</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>authenticationFilter</filter-name>

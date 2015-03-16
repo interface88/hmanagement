@@ -92,7 +92,24 @@
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a>Final Bill</a></div></li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="#" >Discharge Ticket</a></div></li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="logout" >Logout</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 90px;"><a>&nbsp;</a></div></li>
+						  	<li class="topitem spaced_li">
+						  		<div class="buttonbg gradient_button gradient40" style="width: 121px;">
+						  			<div class="arrow">
+						  				<a class="button_3">Reports</a>
+						  			</div>
+						  		</div>
+								<ul>
+							  		<li><a href="report?report=admissionType">AdmissionType</a></li>
+							  		<li><a href="report?report=department">Department</a></li>
+							  		<li><a href="report?report=doctor">Doctor</a></li>
+									<li><a href="report?report=medicine">Medicine</a></li>
+									<li><a href="report?report=service">Service</a></li>
+									<li><a href="report?report=staff">Staff</a></li>
+									<li><a href="report?report=test">Test</a></li>
+									<li><a href="report?report=ward">Ward</a></li>
+									<li><a href="report?report=module">Module</a></li>
+							  	</ul>
+						  	</li>
 						 	<li class="topitem last_button"><div class="buttonbg gradient_button gradient40" style="width: *;"> <a style="font-color:#aa5555;" > <%= Auth.getLoggedStaffName(request) %>  &nbsp;!</a></div></li>
 						</ul>
 					</td>
