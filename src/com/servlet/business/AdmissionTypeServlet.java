@@ -38,7 +38,16 @@ public class AdmissionTypeServlet extends HttpServlet {
 		admissionTypelist = admissionTypeDAO.getList();
 		
 		request.setAttribute("admissionTypelist", admissionTypelist);
-		request.getRequestDispatcher("/pages/master/admissionType.jsp").forward(request, response);
+		
+		if(request.getParameter("report") != null)
+		{
+			request.getRequestDispatcher("/pages/master/admissionTypeReport.jsp").forward(request, response);
+		}
+		else
+		{
+			request.getRequestDispatcher("/pages/master/admissionType.jsp").forward(request, response);
+		}
+		
 		
 	}
 

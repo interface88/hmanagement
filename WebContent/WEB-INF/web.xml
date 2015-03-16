@@ -208,6 +208,18 @@
 		<servlet-name>dischargeTicket</servlet-name>
 		<url-pattern>/dischargeTicket</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** finalBill ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>finalBill</display-name>
+		<servlet-name>finalBill</servlet-name>
+		<servlet-class>com.app.entity.servlet.FinalBillServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>finalBill</servlet-name>
+		<url-pattern>/finalBill</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>authenticationFilter</filter-name>

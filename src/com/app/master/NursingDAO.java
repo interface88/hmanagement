@@ -34,6 +34,16 @@ public class NursingDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Nursing> findListByAdmissionId(String admissionId)
+	{
+		String hql = "from Nursing as model where model.admissionId = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, admissionId);
+		List<Nursing> results = query.list();
+		return results;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public Nursing findByAdmissionIdAndCurrentDate(String admissionId){
 		Date currentDate = null ;
 		Query query  = session.createQuery("from Nursing as model where model.admissionId = ? and model.nursingDate = ? ");

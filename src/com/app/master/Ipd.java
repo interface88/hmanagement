@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.app.entity.DischargeTicket;
+import com.app.entity.FinalBill;
 
 public class Ipd {
 
@@ -29,6 +30,7 @@ public class Ipd {
 	private String remark;
 
 	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
+	private Set<FinalBill> finalBills = new HashSet<FinalBill>();
 
 	// -------------- Getter and Setter----------------
 
@@ -182,6 +184,12 @@ public class Ipd {
 
 	public void setDischargeTickets(Set<DischargeTicket> dischargeTickets) {
 		this.dischargeTickets = dischargeTickets;
+	}
+	public Set<FinalBill> getFinalBills() {
+		return finalBills;
+	}
+	public void setFinalBills(Set<FinalBill> finalBills) {
+		this.finalBills = finalBills;
 	}
 
 }

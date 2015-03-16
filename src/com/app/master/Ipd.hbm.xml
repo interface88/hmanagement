@@ -65,6 +65,12 @@
 				<column name="IPD_ID"/>
 			</key>
 			<one-to-many class="com.app.entity.DischargeTicket" />
-		</set>	
+		</set>
+		<set name="finalBills" inverse="true" sort="unsorted">
+			<key>
+				<column name="IPD_ID"/>
+			</key>
+			<one-to-many class="com.app.entity.FinalBill" />
+		</set>		
 	</class>
 </hibernate-mapping>
