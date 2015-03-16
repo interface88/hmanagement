@@ -1,6 +1,6 @@
 package com.app.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import com.app.master.Patient;
 
 public class PaymentCollection {

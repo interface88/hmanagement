@@ -9,13 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.app.entity.DischargeTicket;
+import com.app.entity.PaymentCollection;
+import com.app.entity.PaymentCollectionDAO;
 import com.app.master.AdmissionType;
 import com.app.master.AdmissionTypeDAO;
 import com.app.master.Department;
 import com.app.master.DepartmentDAO;
 import com.app.master.DoctorDAO;
+import com.app.master.Ipd;
 import com.app.master.MedicineDAO;
 import com.app.master.ModuleDAO;
+import com.app.master.Nursing;
+import com.app.master.Opd;
+import com.app.master.OpdDAO;
+import com.app.master.Patient;
+import com.app.master.PatientDAO;
 import com.app.master.Service;
 import com.app.master.ServiceDAO;
 import com.app.master.StaffDAO;
@@ -25,14 +34,14 @@ import com.app.master.WardDAO;
 /**
  * Servlet implementation class admissionType_master
  */
-public class ReportServlet extends HttpServlet {
+public class PatientReportServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
 	 /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportServlet() {
+    public PatientReportServlet() {
         super();
     }
 
@@ -42,6 +51,7 @@ public class ReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String reportName = request.getParameter("report");
+		String admissionNo = request.getParameter("admissionNo");
 		
 		if("admissionType".equalsIgnoreCase(reportName)){
 			
@@ -99,8 +109,8 @@ public class ReportServlet extends HttpServlet {
 			request.setAttribute("modulelist", moduleDAO.getList());
 			request.getRequestDispatcher("/pages/master/moduleReport.jsp").forward(request, response);
 		}
-		else if("patient".equalsIgnoreCase(reportName)){
-			request.getRequestDispatcher("/pages/patientReport.jsp").forward(request, response);
+		else if("admissionReport".equalsIgnoreCase(reportName)){
+			request.getRequestDispatcher("/pages/admissionReport.jsp").forward(request, response);
 		}
 		
 	}
@@ -110,6 +120,34 @@ public class ReportServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String registrationNo = request.getParameter("registrationNo");
+		
+		String msg = "";
+		
+		PatientDAO patientDAO = new PatientDAO();
+		Patient patient = patientDAO.findByRegistrationNo(registrationNo);
+		if(patient != null){
+			List<PaymentCollection> paymentCollectionlist = new  ArrayList<PaymentCollection>(patient.getPaymentCollections());
+			List<Ipd> ipdlist = new  ArrayList<Ipd>(patient.getIpds());
+			List<Opd> opdlist = new  ArrayList<Opd>(patient.getOpds());
+			List<Nursing> nursinglist = new  ArrayList<Nursing>(patient.getNursings());
+			List<DischargeTicket> dischargeTicketlist = new  ArrayList<DischargeTicket>(patient.getDischargeTickets());
+			
+			request.setAttribute("paymentCollectionlist", paymentCollectionlist);
+			request.setAttribute("ipdlist", ipdlist);
+			request.setAttribute("opdlist", opdlist);
+			request.setAttribute("dischargeTicketlist", dischargeTicketlist);
+			request.setAttribute("nursinglist", nursinglist);
+		}else{
+			msg = "Patient with reg no : " + registrationNo + " doesn't exist";
+		}
+		
+		
+		request.setAttribute("msg", msg);
+		
+		
+		
+		request.getRequestDispatcher("/pages/patientReport.jsp").forward(request, response);
 		
 	}
 

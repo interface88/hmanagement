@@ -232,6 +232,17 @@
 		<servlet-name>report</servlet-name>
 		<url-pattern>/report</url-pattern>
 	</servlet-mapping>
+	<!-- 	**************** admissionReport ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>patientReport</display-name>
+		<servlet-name>patientReport</servlet-name>
+		<servlet-class>com.servlet.business.PatientReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>patientReport</servlet-name>
+		<url-pattern>/patientReport</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>authenticationFilter</filter-name>

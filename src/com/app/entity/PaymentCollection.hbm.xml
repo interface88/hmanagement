@@ -12,7 +12,7 @@
 		<property name="staff" type="java.lang.String">
 			<column name="STAFF" not-null="true" />
 		</property>
-		<property name="entryDate" type="java.util.Date">
+		<property name="entryDate" type="java.sql.Date">
 			<column name="ENTRY_DATE" not-null="true" />
 		</property>
 		<property name="admissionId" type="java.lang.String">
@@ -21,7 +21,7 @@
         <many-to-one name="patient" class="com.app.master.Patient" fetch="select">
             <column name="PATIENT_ID" not-null="true" />
         </many-to-one>
-		<property name="paymentDate" type="java.util.Date">
+		<property name="paymentDate" type="java.sql.Date">
 			<column name="PAYMENT_DATE" not-null="true" />
 		</property>
 		<property name="receiveAmount" type="java.lang.Double">

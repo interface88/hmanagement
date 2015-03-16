@@ -17,6 +17,9 @@
 		<property name="caseType" type="java.lang.String">
 			<column name="CASE_TYPE" not-null="true" />
 		</property>
+		<property name="consulationFee" type="java.lang.Double">
+			<column name="CONSULATION_FEE" not-null="true" />
+		</property>
 		<property name="admissionId" type="java.lang.String">
 			<column name="ADMISSION_ID" not-null="true" />
 		</property>

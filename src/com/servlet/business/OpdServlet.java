@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.app.framework.DateTimeUtil;
+import com.app.framework.MyObject;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Opd;
@@ -70,7 +71,7 @@ public class OpdServlet extends HttpServlet {
 				String contactInfo =  request.getParameter("contactInfo").trim();
 				String referredBy =  request.getParameter("referredBy").trim();
 				String bloodGroup =  request.getParameter("bloodGroup").trim();
-				Integer weight =  Integer.parseInt(request.getParameter("weight").trim());
+				Integer weight =  MyObject.stringToInt(request.getParameter("weight"));
 				String telephone =  request.getParameter("telephone").trim();
 				String mobile =  request.getParameter("mobile").trim();
 				String email =  request.getParameter("email").trim();
@@ -120,14 +121,18 @@ public class OpdServlet extends HttpServlet {
 			
 			//---------- doctor object -----------------------
 			Doctor doctor = new Doctor();
-			int doctor_id = Integer.parseInt(request.getParameter("doctorId").trim()); 
+			Integer doctor_id = MyObject.stringToInt(request.getParameter("doctorId")); 
 			doctor = doctorDAO.findById(doctor_id);
 			
 			String staffName = request.getParameter("staffName");
 			Date entryDate = DateTimeUtil.ParseString(request.getParameter("entryDate"));
 			String caseType = request.getParameter("caseType");
 			String admissionNo = generateAdmissionId();
-			Double consulationFee = Double.parseDouble(request.getParameter("consulationFee"));
+			Double consulationFee = MyObject.stringToDouble(request.getParameter("consulationFee"));
+			
+			if(consulationFee == null){
+				consulationFee = 0.0; // Default price
+			}
 			
 			Opd opd = new Opd();
 			

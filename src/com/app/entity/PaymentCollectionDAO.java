@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.app.master.Opd;
+
 import common.HibernateUtil;
 
 public class PaymentCollectionDAO{
@@ -43,6 +45,15 @@ public class PaymentCollectionDAO{
 	public PaymentCollection findById(Integer id) {
 		PaymentCollection paymentCollection = (PaymentCollection) session.get(PaymentCollection.class, id);
 		return paymentCollection;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<PaymentCollection> findByAdmissionId(String admissionNo) {
+		
+		Query query  = session.createQuery("from PaymentCollection as model where model.admissionId = ?");
+		query.setParameter(0, admissionNo);
+		List<PaymentCollection> list = query.list();
+		return list;
 	}
 	
 	@SuppressWarnings("unchecked")

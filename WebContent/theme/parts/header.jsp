@@ -85,7 +85,7 @@
 						  			</div>
 						  		</div>
 						  		<ul>
-						  			<li><a href="#" title="">Payment Collection</a></li>
+						  			<li><a href="paymentCollection" title="">Payment Collection</a></li>
 						  		</ul>
 						  	</li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
@@ -108,6 +108,8 @@
 									<li><a href="report?report=test">Test</a></li>
 									<li><a href="report?report=ward">Ward</a></li>
 									<li><a href="report?report=module">Module</a></li>
+									<li><a href="report?report=patient">Patient</a></li>
+									
 							  	</ul>
 						  	</li>
 						 	<li class="topitem last_button"><div class="buttonbg gradient_button gradient40" style="width: *;"> <a style="font-color:#aa5555;" > <%= Auth.getLoggedStaffName(request) %>  &nbsp;!</a></div></li>

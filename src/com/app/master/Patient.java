@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.app.entity.DischargeTicket;
 import com.app.entity.FinalBill;
+import com.app.entity.PaymentCollection;
 
 public class Patient {
 
@@ -41,6 +42,7 @@ public class Patient {
 	private Set<Nursing> nursings = new HashSet<Nursing>();
 	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
 	private Set<FinalBill> finalBills = new HashSet<FinalBill>();
+	private Set<PaymentCollection> paymentCollections = new HashSet<PaymentCollection>();
 	
 
 	// -------------- Getter and Setter----------------
@@ -291,5 +293,13 @@ public class Patient {
 
 	public void setFinalBills(Set<FinalBill> finalBills) {
 		this.finalBills = finalBills;
+	}
+
+	public Set<PaymentCollection> getPaymentCollections() {
+		return paymentCollections;
+	}
+
+	public void setPaymentCollections(Set<PaymentCollection> paymentCollections) {
+		this.paymentCollections = paymentCollections;
 	}
 }

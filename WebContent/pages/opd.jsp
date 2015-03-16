@@ -4,46 +4,49 @@
 		<form name="opd" method="post" action="opd">
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
-					<td align="center" colspan="6">
-						<strong>OPD Registration</strong></td>
+					<td align="center" colspan="4">
+						<strong>OPD Registration</strong>
+					</td>
 				</tr>
 				<tr>
-					<td colspan="6"><hr /></td>
+					<td colspan="4"><hr /></td>
 				</tr>
 				<tr>
-					<td style="">Staff Name</td>
-					<td style=""><input name="staffName" type="text" readonly value="<%= Auth.getLoggedStaffName(request) %>"/></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Entry Date Time</td>
-					<td style="">
+					<td colspan="4"><h4 style="color:red;">${msg}</h4></td>
+				</tr>
+				<tr>
+					<td>Staff Name</td>
+					<td><input name="staffName" type="text" readonly value="<%= Auth.getLoggedStaffName(request) %>"/></td>
+					<td>Entry Date Time</td>
+					<td>
 						<input name="entryDate" readonly="readonly" type="text" value="<%= DateTimeUtil.getCurrentDate() %>" />
 					</td>
 				</tr>
 				<tr>
-					<td style="">Case Type</td>
-					<td style=""><select name="caseType" id="caseType" onchange="showPatientRegNo()">
+					<td>Case Type</td>
+					<td>
+						<select name="caseType" id="caseType" onchange="showPatientRegNo()">
 							<option value="NEW">New</option>
 							<option value="OLD">Old</option>
-					</select></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
+						</select>
+					</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td style="">Patient Reg No</td>
-					<td style="">
+					<td>Patient Reg No</td>
+					<td>
 						<input id="registrationNo" name="registrationNo" type="text" value="${patient.registrationNo}" />
 						<input type="button" value="Load Patient" onclick="loadPatient();" id="loadPatientBtn">
 					</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Registration Date</td>
-					<td style=""><input name="registrationDate" id="registrationDate" type="text" value="${patient.registrationDate}" /></td>
+					<td>Registration Date</td>
+					<td><input name="registrationDate" required="required" id="registrationDate" type="text" value="${patient.registrationDate}" /></td>
 				</tr>
 				<tr>
-					<td colspan="6"><hr /></td>
+					<td colspan="4"><hr /></td>
 				</tr>
 				<tr align="left">
-					<td colspan="6">
+					<td colspan="4">
 						<table style="width: 77%">
 							<tr>
 								<td>Title</td>
@@ -52,162 +55,157 @@
 								<td>Middle Name</td>
 							</tr>
 							<tr>
-								<td><select name="title">
-										<option value="-1">-Select-</option>
+								<td><select name="title" required="required">
+										<option value="">-Select-</option>
 										<option value="Mr.">Mr.</option>
 										<option value="Ms.">Mrs.</option>
 										<option value="Mrs.">Master</option>
 										<option value="Dr.">Miss.</option>
 								</select></td>
-								<td><input name="firstName" type="text" value="${patient.firstName}" /></td>
-								<td><input name="lastName" type="text" value="${patient.lastName}"/></td>
+								<td><input name="firstName" required="required" type="text" value="${patient.firstName}" /></td>
+								<td><input name="lastName" required="required" type="text" value="${patient.lastName}"/></td>
 								<td><input name="middleName" type="text" value="${patient.middleName}" /></td>
 							</tr>
 						</table>
 					</td>
 				</tr>
 				<tr align="left">
-					<td style="">Gender</td>
-					<td colspan="2" style="">Age (Years/Month/Days)</td>
-					<td colspan="2" style="">Referred by</td>
-					<td style="">&nbsp;</td>
+					<td>Gender</td>
+					<td>Age (Years/Month/Days)</td>
+					<td>Referred by</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td style=""><select name="gender">
-							<option value="-1">-select</option>
+					<td>
+						<select name="gender" required="required">
+							<option value="">-select</option>
 							<option value="Male">Male</option>
 							<option value="Female">Female</option>
 							<option value="Other">Other</option>
-					</select></td>
-					<td colspan="3" style="">
-					<input type="text" name="birthDate" id="birthDate" value="${patient.birthDate}">
+						</select>
 					</td>
-					<td style="">
-						<select name="referredBy">
-							<option>-select-</option>
+					<td>
+						<input type="text" name="birthDate" required="required" id="birthDate" value="${patient.birthDate}">
+					</td>
+					<td>
+						<select name="referredBy" required="required">
+							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
 								<option value="${doctor.id}">${doctor.name}</option>
 							</c:forEach>
 						</select>
 					</td>
-					<td style=""></td>
+					<td></td>
 				</tr>
 		
 				<tr>
-					<td style="">Blood Group</td>
-					<td style="">Weight (Kgs.)</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style=""></td>
-					<td style=""></td>
+					<td>Blood Group</td>
+					<td>Weight (Kgs.)</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 		
 				<tr>
-					<td style="">
+					<td>
 						<input name="bloodGroup" style="width: 85px" type="text" value="${patient.bloodGroup}" />
 					</td>
-					<td style=""><input name="weight" type="text" value="${patient.weight}"/></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
+					<td><input name="weight" type="text" value="${patient.weight}"/></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td colspan="6"><hr /></td>
+					<td colspan="4"><hr /></td>
 				</tr>
 				<tr>
-					<td style="">Address</td>
-					<td colspan="2"><textarea name="address"
-							style="width: 189px; height: 42px">{patient.textarea}</textarea></td>
-					<td colspan="2" style="">Contact Info</td>
-					<td style="">&nbsp;<input name="contactInfo" type="text" value="${patient.contactInfo}"/></td>
+					<td>Address</td>
+					<td>
+						<textarea name="address" style="width: 189px; height: 42px">${patient.address}</textarea>
+					</td>
+					<td>Contact Info</td>
+					<td>&nbsp;<input name="contactInfo" type="text" value="${patient.contactInfo}"/></td>
 				</tr>
 				<tr>
-					<td style="">Add1</td>
-					<td colspan="2" style=""><textarea cols="20" name="address1"
-							rows="1" style="width: 189px; height: 42px">${patient.address1}</textarea></td>
-					<td colspan="2" style="">Tel.No (Home)</td>
-					<td style="">&nbsp;<input name="telephone" type="text" value="${patient.telephone}"/></td>
+					<td>Add1</td>
+					<td>
+						<textarea cols="20" name="address1" rows="1" style="width: 189px; height: 42px">${patient.address1}</textarea>
+					</td>
+					<td>Tel.No (Home)</td>
+					<td>&nbsp;<input name="telephone" type="text" value="${patient.telephone}"/></td>
 				</tr>
 				<tr>
-					<td style="">Add2</td>
-					<td colspan="2"><textarea cols="20" name="address2" rows="1"
-							style="width: 189px; height: 42px">${patient.address2}</textarea></td>
-					<td colspan="2" style="">Mobile No.</td>
-					<td style="">&nbsp;<input name="mobile" type="text" value="${patient.mobile}"/></td>
+					<td>Add2</td>
+					<td>
+						<textarea cols="20" name="address2" rows="1" style="width: 189px; height: 42px">${patient.address2}</textarea>
+					</td>
+					<td>Mobile No.</td>
+					<td>&nbsp;<input name="mobile" type="text" value="${patient.mobile}"/></td>
 				</tr>
 				<tr>
-					<td style="">Add3</td>
-					<td colspan="2"><textarea cols="20" name="address3" rows="1"
-							style="width: 189px; height: 42px">${patient.address3}</textarea></td>
-					<td colspan="2" style="">Email</td>
-					<td style="">&nbsp;<input name="email" type="text" value="${patient.email}"/></td>
+					<td>Add3</td>
+					<td>
+						<textarea cols="20" name="address3" rows="1"
+							style="width: 189px; height: 42px">${patient.address3}</textarea>
+					</td>
+					<td>Email</td>
+					<td>&nbsp;<input name="email" type="text" value="${patient.email}"/></td>
 				</tr>
 				<tr>
-					<td style="">Area</td>
-					<td style=""><input name="area" type="text" /></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">City</td>
-					<td style=""><input name="city" type="text" value="${patient.city}"/></td>
+					<td>Area</td>
+					<td><input name="area" type="text" /></td>
+					<td>City</td>
+					<td><input name="city" type="text" value="${patient.city}"/></td>
 				</tr>
 				<tr>
-					<td style="">District</td>
-					<td style=""><input name="district" type="text" value="${patient.district}"/></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Zip</td>
-					<td style=""><input name="zip" type="text" value="${patient.zip}"/></td>
+					<td>District</td>
+					<td><input name="district" type="text" value="${patient.district}"/></td>
+					<td>Zip</td>
+					<td><input name="zip" type="text" value="${patient.zip}"/></td>
 				</tr>
 				<tr>
-					<td style="">State</td>
-					<td style=""><input name="state" type="text" value="${patient.state}"/></td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Country</td>
-					<td style=""><input name="country" type="text" value="${patient.country}"/></td>
+					<td>State</td>
+					<td><input name="state" type="text" value="${patient.state}"/></td>
+					<td>Country</td>
+					<td><input name="country" type="text" value="${patient.country}"/></td>
 				</tr>
 				<tr>
-					<td colspan="6"><hr /></td>
+					<td colspan="4"><hr /></td>
 				</tr>
 				<tr>
-					<td style=""><strong>IPD Details</strong></td>
-					<td style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
+					<td><strong>IPD Details</strong></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td style="">Doctor Name</td>
-					<td style="">
-						<select name="doctorId">
+					<td>Doctor Name</td>
+					<td>
+						<select name="doctorId" required="required">
+							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
 								<option value="${doctor.id}">${doctor.name}</option>
 							</c:forEach>
 						</select>
 					</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Consultation Fee</td>
-					<td style=""><input name="consulationFee" type="text" /></td>
+					<td>Consultation Fee</td>
+					<td><input name="consulationFee" required="required" type="text" /></td>
 				</tr>
 				<tr>
 					<td colspan="100%"><hr /></td>
 				</tr>
 				<tr>
-					<td colspan="6" align="right">
+					<td colspan="4" align="right">
 						<input name="action" type="submit" value="save" />&nbsp;&nbsp;&nbsp;
-						<input name="reset" type="reset" value="reset" /></td>
+						<input name="reset" type="reset" value="reset" />
+					</td>
 				</tr>
 		
-				<tr>
-					<td style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-				</tr>
 			</table>
 		</form>
 		
 		<!-- 		hidden form to load patient data -->
 		<form name="loadPatientForm" action="opd" id="loadPatientForm" method="post">
-			<input name="action" value="load" type="text" />
-			<input name="patientRegistrationNo" id="patientRegistrationNo"  type="text" />
+			<input name="action" value="load" type="hidden" />
+			<input name="patientRegistrationNo" id="patientRegistrationNo"  type="hidden" />
 		</form>
 		<script>
 			Calendar.setup({
