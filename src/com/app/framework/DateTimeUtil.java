@@ -38,4 +38,5 @@ public class DateTimeUtil
 	    String strDate = sdfDate.format(now);
 	    return strDate;
 	}
+	
 }

@@ -3,4 +3,9 @@ ADD TIME SELECTOR.
 ADD DATE SELECTOR.
 
 
+Repair load for paymentCollection
+
 CAHNGE GETTER FOR DATE;
+
+
+Apply maxlenght validation on ipd, opd and nursing.

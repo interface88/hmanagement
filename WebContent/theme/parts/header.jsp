@@ -89,8 +89,8 @@
 						  		</ul>
 						  	</li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a>Final Bill</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="#" >Discharge Ticket</a></div></li>
+						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a href="finalBill">Final Bill</a></div></li>
+						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="dischargeTicket" >Discharge Ticket</a></div></li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="logout" >Logout</a></div></li>
 						  	<li class="topitem spaced_li">
 						  		<div class="buttonbg gradient_button gradient40" style="width: 121px;">
