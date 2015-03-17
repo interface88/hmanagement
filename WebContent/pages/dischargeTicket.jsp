@@ -15,7 +15,7 @@
 			</tr>
 		</table>
 	</form>
-		<form name="dischargeTicketForm" method="post" action="dischargeTicket">
+		<form name="dischargeTicketForm" method="post" action="dischargeTicket" onsubmit="readData();">
 			<input type="hidden" name="patientId" value="${ipd.patient.id}" />
 			<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
 			<input type="hidden" name="ipdId" value="${ipd.id}" />
@@ -150,11 +150,51 @@
 				<tr>
 					<td colspan="4">Prescribed Medicine</td>
 				</tr>
+				<tr style="display:none;">
+					<td colspan="4">
+						<textarea cols="20" name="prescribedMedicine" id="prescribedMedicine" rows="1" style="width: 582px; height: 83px"></textarea>
+					</td>
+				</tr>
 				<tr>
 					<td colspan="4">
-						<textarea cols="20" name="prescribedMedicine" rows="1"
-							style="width: 582px; height: 83px"></textarea>
-						</td>
+						<table>
+							<thead>
+								<tr>
+									<td>Sno</td>
+									<td>Name</td>
+									<td>Dosage</td>
+									<td>Time</td>
+									<td>Remark</td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody id="medicineTableData">
+								<tr>
+									<td>1</td>
+									<td>
+										<select class="medicine">
+											<option value="">-select-</option>
+											<c:forEach items="${medicinelist}" var="medicine">
+												<option value="${medicine.id}">${medicine.name}</option>
+											</c:forEach>
+										</select>
+									</td>
+									<td>
+										<input type="text" class="medicineDosage">
+									</td>
+									<td>
+										<input type="text" class="medicineTime">
+									</td>
+									<td>
+										<textarea class="medicineRemark"></textarea>
+									</td>
+									<td class="medicineBtnRow">
+										<input type="button" value="Add" onclick="addMedicine();" >
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="4">Follow up Schedule</td>
@@ -170,11 +210,56 @@
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: right;">
+						<input type="button" value="TEST" onclick="readData();">
 						<input name="action" type="submit" value="submit" />&nbsp;&nbsp;&nbsp; 
 						<input name="Reset1" type="reset" value="reset" />
 					</td>
 				</tr>
 			</table>
-		
 		</form>
+		<script>
+			// function to add medicine row
+			function addMedicine(){
+				var medicineRow = $('#medicineTableData tr:first').clone();
+	
+				// replacing add button with delete button.
+				medicineRow.find('.medicineBtnRow').html('<input type="button" class="delete" value="Delete">'); 
+				$('#medicineTableData').append(medicineRow);
+				updateMedicineRowSerialNo();
+				
+			}
+
+			function updateMedicineRowSerialNo(){
+				var count = 1;
+				$('#medicineTableData tr').each(function(){
+					$(this).find('td:first').html(count);
+					count++;
+				});
+			}
+
+			function readData(){
+
+				var final_data = "";
+				// -------- code to read medicine ----
+				$('#medicineTableData tr').each(function(){
+					var medicine = $(this).find('.medicine').val();
+					if(medicine != ''){
+						var medicineDosage = $(this).find('.medicineDosage').val();
+						var medicineTime = $(this).find('.medicineTime').val();
+						var medicineRemark = $(this).find('.medicineRemark').val();
+	
+						final_data = final_data + medicine + ',' + medicineDosage + ',' + 
+						medicineTime+ ',' + medicineRemark + '\n' ;
+					}
+
+				});
+				$('#prescribedMedicine').val(final_data);
+			}
+
+			// --------- code to delete medicine row----------
+			$('#medicineTableData ').on('click','.delete',function(){
+				$(this).parent().parent().remove();
+				updateMedicineRowSerialNo();
+			});
+		</script>
 <jsp:include page="../theme/parts/footer.jsp" />

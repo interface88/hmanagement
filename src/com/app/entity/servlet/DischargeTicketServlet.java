@@ -13,7 +13,10 @@ import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
+import com.app.master.Medicine;
+import com.app.master.MedicineDAO;
 import com.app.master.PatientDAO;
+import com.app.master.Test;
 import com.app.entity.DischargeTicket;
 import com.app.entity.DischargeTicketDAO;
 import com.app.framework.Auth;
@@ -30,6 +33,7 @@ public class DischargeTicketServlet extends HttpServlet {
 	PatientDAO patientDAO = new PatientDAO();
 	IpdDAO ipdDAO = new IpdDAO();
 	DoctorDAO doctorDAO = new DoctorDAO();
+	MedicineDAO medicineDAO = new MedicineDAO();
 	 /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,6 +48,11 @@ public class DischargeTicketServlet extends HttpServlet {
 		DischargeTicket dischargeTicket = new DischargeTicket();
 		dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("dischargeTicket", dischargeTicket);
+		
+		// ---------- medicine list -----------
+		List<Medicine> medicinelist= new ArrayList<Medicine>();
+		medicinelist = medicineDAO.getList();
+		request.setAttribute("medicinelist", medicinelist);
 		
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
 	}
@@ -127,14 +136,14 @@ public class DischargeTicketServlet extends HttpServlet {
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
 	}
 	
-private void loadData(HttpServletRequest request){
-		
-		// ---------- doctor list -----------
-		List<Doctor> doctorlist= new ArrayList<Doctor>();
-		doctorlist = doctorDAO.getList();
-		
-		request.setAttribute("doctorlist", doctorlist);
-		
+	private void loadData(HttpServletRequest request){
+			
+			// ---------- doctor list -----------
+			List<Doctor> doctorlist= new ArrayList<Doctor>();
+			doctorlist = doctorDAO.getList();
+			
+			request.setAttribute("doctorlist", doctorlist);
+			
+		}
+	
 	}
-
-}
