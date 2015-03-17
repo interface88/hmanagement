@@ -107,9 +107,9 @@
 				<td style="width: 128px">Payment Mode</td>
 				<td>
 					<select name="paymentMode">
-							<option value="Cash">Cash</option>
-							<option value="Cheque">Cheque</option>
-						</select>
+						<option value="Cash">Cash</option>
+						<option value="Cheque">Cheque</option>
+					</select>
 				</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>

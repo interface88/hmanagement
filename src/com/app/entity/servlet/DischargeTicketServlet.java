@@ -16,6 +16,7 @@ import com.app.master.IpdDAO;
 import com.app.master.PatientDAO;
 import com.app.entity.DischargeTicket;
 import com.app.entity.DischargeTicketDAO;
+import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
 
 /**
@@ -41,7 +42,7 @@ public class DischargeTicketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DischargeTicket dischargeTicket = new DischargeTicket();
-		dischargeTicket.setStaffName("Default Staff name");
+		dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("dischargeTicket", dischargeTicket);
 		
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
@@ -108,13 +109,13 @@ public class DischargeTicketServlet extends HttpServlet {
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
 			
 			DischargeTicket dischargeTicket = new DischargeTicket();
-			dischargeTicket.setStaffName("Default Staff name");
+			dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 			
 			if(ipd != null){
 				request.setAttribute("ipd", ipd);
 				
 			}else{
-				msg = "No data to load";
+				msg = "Invalid Admission no.";
 			}
 			
 			loadData(request);
