@@ -39,7 +39,10 @@ public class IpdDAO{
 		Query query = session.createQuery(hql);
 		query.setParameter(0, admissionId);
 		List<Ipd> results = query.list();
-		return results.get(0);
+		if(!results.isEmpty()){
+			return results.get(0);
+		}
+		return null;
 	}
 
 	

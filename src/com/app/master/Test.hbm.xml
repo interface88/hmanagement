@@ -15,6 +15,9 @@
 		<property name="code" type="java.lang.String">
 			<column name="CODE" not-null="true" />
 		</property>
+		<property name="testType" type="java.lang.String">
+			<column name="TEST_TYPE" not-null="true" />
+		</property>
 		<property name="rate" type="java.lang.Double">
 			<column name="RATE" not-null="true" />
 		</property>

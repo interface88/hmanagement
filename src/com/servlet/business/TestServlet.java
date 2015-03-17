@@ -31,14 +31,28 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Test> testlist= new ArrayList<Test>();
+		String action = request.getParameter("action");
 		
-		// ---------- database fetch -----------
-		TestDAO testDAO = new TestDAO();
-		testlist = testDAO.getList();
-		
-		request.setAttribute("testlist", testlist);
-		request.getRequestDispatcher("/pages/master/test.jsp").forward(request, response);
+		if(action != null){
+			if("testComboList".equalsIgnoreCase(action)){
+				String testType = request.getParameter("testType");
+				List<Test> testlist= new ArrayList<Test>();
+				TestDAO testDAO = new TestDAO();
+				testlist = testDAO.findByTestType(testType);
+				
+				request.setAttribute("testlist", testlist);
+				request.getRequestDispatcher("/pages/master/testComboList.jsp").forward(request, response);
+			}
+		}else{
+			
+			List<Test> testlist= new ArrayList<Test>();
+			// ---------- database fetch -----------
+			TestDAO testDAO = new TestDAO();
+			testlist = testDAO.getList();
+			
+			request.setAttribute("testlist", testlist);
+			request.getRequestDispatcher("/pages/master/test.jsp").forward(request, response);
+		}
 		
 	}
 
@@ -59,11 +73,13 @@ public class TestServlet extends HttpServlet {
 			
 			String code = request.getParameter("code").trim();
 			String name = request.getParameter("name").trim();
+			String testType = request.getParameter("testType").trim();
 			Double rate = Double.parseDouble(request.getParameter("rate").trim());
 			
 			test.setCode(code);
 			test.setName(name);
 			test.setRate(rate);
+			test.setTestType(testType);
 			
 			testDAO.add(test);
 			

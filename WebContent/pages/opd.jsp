@@ -187,7 +187,7 @@
 						</select>
 					</td>
 					<td>Consultation Fee</td>
-					<td><input name="consulationFee" required="required" type="text" /></td>
+					<td><input name="consulationFee" required="required" type="number" step="any" type="text" /></td>
 				</tr>
 				<tr>
 					<td colspan="100%"><hr /></td>

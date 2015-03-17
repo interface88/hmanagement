@@ -189,7 +189,7 @@
 				</tr>
 				<tr>
 					<td style="width: 69px">Advance Payment</td>
-					<td><input name="advancePayment" type="text" /></td>
+					<td><input name="advancePayment" type="number" step="any" type="text" /></td>
 					<td colspan="4">&nbsp;</td>
 				</tr>
 				<tr>

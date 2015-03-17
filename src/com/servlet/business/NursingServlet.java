@@ -2,7 +2,6 @@ package com.servlet.business;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.app.framework.Constants;
 import com.app.framework.DateTimeUtil;
-import com.app.master.AdmissionType;
-import com.app.master.AdmissionTypeDAO;
+import com.app.framework.MyObject;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
@@ -26,17 +22,11 @@ import com.app.master.Nursing;
 import com.app.master.NursingDAO;
 import com.app.master.NursingTransaction;
 import com.app.master.NursingTransactionDAO;
-import com.app.master.Opd;
-import com.app.master.OpdDAO;
 import com.app.master.Patient;
 import com.app.master.PatientDAO;
 import com.app.master.Test;
 import com.app.master.TestDAO;
-import com.app.master.Ward;
 import com.app.master.WardDAO;
-
-import common.commonmethods;
-import common.dbconnection;
 
 /**
  * Servlet implementation class doctor_master
@@ -71,76 +61,77 @@ public class NursingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String msg= "";
-		WardDAO wardDAO = new WardDAO();
-		
 		String btnclick = request.getParameter("action");
 		
 		// ----------checking action to perform --------------
 		if("save".equalsIgnoreCase(btnclick)){
 			
-			// check if entry for same date present
+			Integer patientId = MyObject.stringToInt(request.getParameter("patientId"));
 			
-			NursingDAO nursingDAO = new NursingDAO();
-			Nursing nursing = new Nursing();
-			
-			
-			int patientId = Integer.parseInt(request.getParameter("patientId").trim());
-			Patient patient = patientDAO.findById(patientId);
-			
-			int doctorId = Integer.parseInt(request.getParameter("doctorId").trim());
-			Doctor doctor = doctorDAO.findById(doctorId);
-
-			String admissionId = request.getParameter("admissionId").trim();
-			String staffName = request.getParameter("staffName").trim();
-			Integer noOfVisit = Integer.parseInt(request.getParameter("noOfVisit").trim());
-			Date nursingDate = DateTimeUtil.ParseString(request.getParameter("nursingDate").trim());
-			String pressure = request.getParameter("pressure").trim();
-			String pulse = request.getParameter("pulse").trim();
-			String temperature = request.getParameter("temperature").trim();
-			String sugar = request.getParameter("sugar").trim();
-			String examingTime = request.getParameter("examingTime").trim();
-			String remark = request.getParameter("remark").trim();
-			
-			
-			nursing.setAdmissionId(admissionId);
-			nursing.setPatient(patient);
-			nursing.setDoctor(doctor);
-			nursing.setStaffName(staffName);
-			nursing.setNoOfVisit(noOfVisit);
-			nursing.setNursingDate(nursingDate);
-			nursing.setPressure(pressure);
-			nursing.setPulse(pulse);
-			nursing.setTemperature(temperature);
-			nursing.setSugar(sugar);
-			nursing.setExamingTime(examingTime);
-			nursing.setRemark(remark);
-			
-			nursingDAO.add(nursing);
-			
-			Double medicineTotalCost = Double.parseDouble(request.getParameter("medicineTotalPrice").trim());
-			Double testTotalCost = Double.parseDouble(request.getParameter("testTotalPrice").trim());
-			
-			if(medicineTotalCost > 0){
-				NursingTransaction nursingMedicineTransaction = new NursingTransaction();
-				nursingMedicineTransaction.setTreatmentCost(medicineTotalCost);
-				nursingMedicineTransaction.setTreatment(Constants.TREATMENT_MEDICINE);
-				nursingMedicineTransaction.setNursing(nursing);
-
-				// ---------- saving medicine information ---------------
-				NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
-				nursingTransactionDAO.add(nursingMedicineTransaction);
-			}
-			
-			
-			if(testTotalCost > 0){
-				NursingTransaction nursingTestTransaction = new NursingTransaction();
-				nursingTestTransaction.setNursing(nursing);;
-				nursingTestTransaction.setTreatment(Constants.TREATMENT_TEST);
-				nursingTestTransaction.setTreatmentCost(testTotalCost);
+			if(patientId != null){
 				
-				// ---------- saving test information ---------------
-				NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
-				nursingTransactionDAO.add(nursingTestTransaction);
+				NursingDAO nursingDAO = new NursingDAO();
+				Nursing nursing = new Nursing();
+				
+				Patient patient = patientDAO.findById(patientId);
+				
+				Integer doctorId = MyObject.stringToInt(request.getParameter("doctorId"));
+				Doctor doctor = doctorDAO.findById(doctorId);
+				
+				String admissionId = request.getParameter("admissionId").trim();
+				String staffName = request.getParameter("staffName").trim();
+				Integer noOfVisit = MyObject.stringToInt(request.getParameter("noOfVisit"));
+				Date nursingDate = DateTimeUtil.ParseString(request.getParameter("nursingDate"));
+				String pressure = request.getParameter("pressure").trim();
+				String pulse = request.getParameter("pulse").trim();
+				String temperature = request.getParameter("temperature").trim();
+				String sugar = request.getParameter("sugar").trim();
+				String examingTime = request.getParameter("examingTime").trim();
+				String remark = request.getParameter("remark").trim();
+				
+				
+				nursing.setAdmissionId(admissionId);
+				nursing.setPatient(patient);
+				nursing.setDoctor(doctor);
+				nursing.setStaffName(staffName);
+				nursing.setNoOfVisit(noOfVisit);
+				nursing.setNursingDate(nursingDate);
+				nursing.setPressure(pressure);
+				nursing.setPulse(pulse);
+				nursing.setTemperature(temperature);
+				nursing.setSugar(sugar);
+				nursing.setExamingTime(examingTime);
+				nursing.setRemark(remark);
+				
+				nursingDAO.add(nursing);
+				
+				Double medicineTotalCost = MyObject.stringToDouble(request.getParameter("medicineTotalPrice"));
+				Double testTotalCost = MyObject.stringToDouble(request.getParameter("testTotalPrice").trim());
+				
+				if(medicineTotalCost > 0){
+					NursingTransaction nursingMedicineTransaction = new NursingTransaction();
+					nursingMedicineTransaction.setTreatmentCost(medicineTotalCost);
+					nursingMedicineTransaction.setTreatment(Constants.TREATMENT_MEDICINE);
+					nursingMedicineTransaction.setNursing(nursing);
+					
+					// ---------- saving medicine information ---------------
+					NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
+					nursingTransactionDAO.add(nursingMedicineTransaction);
+				}
+				
+				
+				if(testTotalCost > 0){
+					NursingTransaction nursingTestTransaction = new NursingTransaction();
+					nursingTestTransaction.setNursing(nursing);;
+					nursingTestTransaction.setTreatment(Constants.TREATMENT_TEST);
+					nursingTestTransaction.setTreatmentCost(testTotalCost);
+					
+					// ---------- saving test information ---------------
+					NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
+					nursingTransactionDAO.add(nursingTestTransaction);
+				}
+			}else{
+				msg = "Please load patient data for nursing entry";
 			}
 			
 			
@@ -153,7 +144,7 @@ public class NursingServlet extends HttpServlet {
 				request.setAttribute("ipd", ipd);
 				
 			}else{
-				msg = "No data to load";
+				msg = "Invalid Admission no.";
 			}
 			loadData(request);
 		}
@@ -174,11 +165,11 @@ public class NursingServlet extends HttpServlet {
 		medicinelist = medicineDAO.getList();
 		
 		// ---------- medicine list -----------
-		List<Test> testlist= new ArrayList<Test>();
-		testlist = testDAO.getList();
+		List<Test> testTypelist= new ArrayList<Test>();
+		testTypelist = testDAO.getUniqueTestTypeList();
 		
 		request.setAttribute("medicinelist", medicinelist);
-		request.setAttribute("testlist", testlist);
+		request.setAttribute("testTypelist", testTypelist);
 		request.setAttribute("doctorlist", doctorlist);
 		
 	}
