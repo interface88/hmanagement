@@ -20,6 +20,13 @@ public class DateTimeUtil
 		}
 	}
 	
+	public static String DateToString(Date date)
+	{
+		SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy");//dd/MM/yyyy
+	    String strDate = sdfDate.format(date);
+	    return strDate;
+	}
+	
 	public static Date getCurrentDateObject(){
 		java.util.Date date = new java.util.Date();
 		return new Date(date.getTime());

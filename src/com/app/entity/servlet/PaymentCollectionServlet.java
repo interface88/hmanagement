@@ -10,6 +10,7 @@ import com.app.master.IpdDAO;
 import com.app.master.PatientDAO;
 import com.app.entity.PaymentCollection;
 import com.app.entity.PaymentCollectionDAO;
+import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
 
 /**
@@ -30,7 +31,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PaymentCollection paymentCollection = new PaymentCollection();
-		paymentCollection.setStaff("Default Staff name");
+		paymentCollection.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("paymentCollection", paymentCollection);
 		
 		request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
@@ -54,7 +55,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 			
 			PaymentCollection paymentCollection = new PaymentCollection();
 			
-			String staff = request.getParameter("staff").trim();
+			String staffName = request.getParameter("staffName").trim();
 			String entryDate = request.getParameter("entryDate").trim();
 			String admissionId = request.getParameter("admissionId").trim();
 			Integer patientId = Integer.parseInt(request.getParameter("patientId").trim());
@@ -78,7 +79,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 			paymentCollection.setReceiveAmount(receiveAmount);
 			paymentCollection.setAdmissionId(admissionId);
 			paymentCollection.setRemark(remark);
-			paymentCollection.setStaff(staff);
+			paymentCollection.setStaffName(staffName);
 			
 			paymentCollectionDAO.add(paymentCollection);
 			
@@ -89,7 +90,7 @@ public class PaymentCollectionServlet extends HttpServlet {
 			PaymentCollection paymentCollection = new PaymentCollection();
 			paymentCollection.setPatient(ipd.getPatient());
 			paymentCollection.setAdmissionId(ipd.getAdmissionId());
-			paymentCollection.setStaff("Default Staff name");
+			paymentCollection.setStaffName(Auth.getLoggedStaffName(request));
 			
 			request.setAttribute("paymentCollection", paymentCollection);
 		}

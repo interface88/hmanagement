@@ -9,8 +9,8 @@
 			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="staff" type="java.lang.String">
-			<column name="STAFF" not-null="true" />
+		<property name="staffName" type="java.lang.String">
+			<column name="STAFF_NAME" not-null="true" />
 		</property>
 		<property name="entryDate" type="java.sql.Date">
 			<column name="ENTRY_DATE" not-null="true" />
