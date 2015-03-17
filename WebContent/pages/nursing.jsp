@@ -94,7 +94,7 @@
 			</tr>
 		</table>
 	</form>
-	<form name="nursing" method="post" action="nursing">
+	<form name="nursing" method="post" action="nursing" onsubmit="readData();">
 		<input type="hidden" name="patientId" value="${ipd.patient.id}" />
 		<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
 		<input type="hidden" id="medicineTotalPrice" name="medicineTotalPrice" value="0" />
