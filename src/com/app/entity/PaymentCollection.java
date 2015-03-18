@@ -1,12 +1,12 @@
 package com.app.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import com.app.master.Patient;
 
 public class PaymentCollection {
 
 	private Integer id;
-	private String staff;
+	private String staffName;
 	private Date entryDate;
 	private String admissionId;
 	private Patient patient = new Patient();
@@ -89,11 +89,12 @@ public class PaymentCollection {
 	public void setChequeDate(Date chequeDate) {
 		this.chequeDate = chequeDate;
 	}
-	public String getStaff() {
-		return staff;
+	
+	public String getStaffName() {
+		return staffName;
 	}
-	public void setStaff(String staff) {
-		this.staff = staff;
+	public void setStaffName(String staffName) {
+		this.staffName = staffName;
 	}
 	public String getAdmissionId() {
 		return admissionId;

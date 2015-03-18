@@ -8,8 +8,8 @@
 			<column name="ID" />
 			<generator class="increment" />
 		</id>
-		<property name="code" type="java.lang.String">
-			<column name="CODE" not-null="true" />
+		<property name="registrationNo" type="java.lang.String">
+			<column name="REGISTRATION_NO" not-null="true" />
 		</property>
 		<property name="registrationDate" type="java.sql.Date">
 			<column name="REGISTRATION_DATE" not-null="true" />
@@ -29,26 +29,20 @@
 		<property name="gender" type="java.lang.String">
 			<column name="GENDER" not-null="true" />
 		</property>
-		<property name="day" type="java.lang.Integer">
-			<column name="DAY" not-null="true" />
-		</property>
-		<property name="month" type="java.lang.Integer">
-			<column name="MONTH" not-null="true" />
-		</property>
-		<property name="year" type="java.lang.Integer">
-			<column name="YEAR" not-null="true" />
+		<property name="birthDate" type="java.sql.Date">
+			<column name="BIRTH_DATE" not-null="true" />
 		</property>
 		<property name="contactInfo" type="java.lang.String">
-			<column name="CONTACT_INFO" not-null="true" />
+			<column name="CONTACT_INFO" />
 		</property>
 		<property name="referredBy" type="java.lang.String">
 			<column name="REFERRED_BY" not-null="true" />
 		</property>
 		<property name="bloodGroup" type="java.lang.String">
-			<column name="BLOOD_GROUP" not-null="true" />
+			<column name="BLOOD_GROUP" />
 		</property>
 		<property name="weight" type="java.lang.Integer">
-			<column name="WEIGHT" not-null="true" />
+			<column name="WEIGHT" />
 		</property>
 		<property name="telephone" type="java.lang.String">
 			<column name="TELEPHONE" />
@@ -72,7 +66,7 @@
 			<column name="ADDRESS_3" />
 		</property>
 		<property name="area" type="java.lang.String">
-			<column name="AREA" not-null="true" />
+			<column name="AREA" />
 		</property>
 		<property name="district" type="java.lang.String">
 			<column name="DISTRICT" />
@@ -118,6 +112,12 @@
 				<column name="PATIENT_ID"/>
 			</key>
 			<one-to-many class="com.app.entity.FinalBill" />
+		</set>
+		<set name="paymentCollections" inverse="true" sort="unsorted">
+			<key>
+				<column name="PATIENT_ID"/>
+			</key>
+			<one-to-many class="com.app.entity.PaymentCollection" />
 		</set>			
 	</class>
 </hibernate-mapping>

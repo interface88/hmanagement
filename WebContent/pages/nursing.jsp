@@ -1,16 +1,7 @@
+<%@page import="com.app.framework.DateTimeUtil"%>
+<%@page import="com.app.framework.Auth"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/header.jsp" />
-	<form name="nursing" method="post" action="nursing">
-		<table style="width: 82%" cellpadding="3px">
-			<tr>
-				<td align="center"><strong>Admission Id</strong></td>
-				<td>
-					<input type="text" name="admissionId" value="" required/>
-					<input type="submit" name="action" value="load" />
-				</td>
-			</tr>
-		</table>
-	</form>
 	<script>
 		// function to add medicine row
 		function addMedicine(){
@@ -40,6 +31,10 @@
 			$('#testTable ').on('click','.delete',function(){
 				$(this).parent().parent().remove();
 			});
+
+			// applying time selector
+			$('#examingTime').clockpick({starthour : 0, endhour : 24 }); 
+			
 			
 		});
 
@@ -64,18 +59,48 @@
 
 			$('#testTotalPrice').val(testRate);
 		}
+
+		function loadTestCombo(testTypeSelectObj){
+
+			var nextTd = $(testTypeSelectObj).parent().next();
+			var testCombo = nextTd.find('.testPrice');
+
+			var testTypeVal = testTypeSelectObj.value;
+			if(testTypeVal != ''){
+				var url = 'test?action=testComboList&testType=' + testTypeVal;
+				$.get(url,function(response){
+					testCombo.html(response);
+				});
+			}
+		}
 		
 	</script>
 	<form name="nursing" method="post" action="nursing">
-		<input type="text" name="patientId" value="${ipd.patient.id}" />
-		<input type="text" name="admissionId" value="${ipd.admissionId}" />
-		<input type="text" id="medicineTotalPrice" name="medicineTotalPrice" value="0" />
-		<input type="text" id="testTotalPrice" name="testTotalPrice" value="0" />
+		<table style="width: 82%" cellpadding="3px">
+			<tr>
+				<td align="center" colspan="2"><strong>Nursing Module</strong></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<h4 style="text-align:center; color:red;">${msg}</h4>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><strong>Admission Id </strong></td>
+				<td>
+					<input type="text" name="admissionId" value="" required/>
+					<input type="submit" name="action" value="load" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	<form name="nursing" method="post" action="nursing" onsubmit="readData();">
+		<input type="hidden" name="patientId" value="${ipd.patient.id}" />
+		<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
+		<input type="hidden" id="medicineTotalPrice" name="medicineTotalPrice" value="0" />
+		<input type="hidden" id="testTotalPrice" name="testTotalPrice" value="0" />
 		
 		<table style="width: 93%" cellpadding="3px;">
-			<tr>
-				<td align="center" colspan="6"><strong>Nursing Module</strong></td>
-			</tr>
 			<tr>
 				<td colspan="6"><hr class="auto-style1" style="width: 100%" /></td>
 			</tr>
@@ -83,34 +108,34 @@
 			<tr>
 				<td>Staff Name</td>
 				<td style="width: 130px">
-					<input name="staffName" type="text" value="" /></td>
+					<input name="staffName" readonly="readonly" type="text" value="<%= Auth.getLoggedStaffName(request) %>" /></td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>Entry Date Time</td>
-				<td><input name="nursingDate" type="text" value="" style="width: 120px" /></td>
+				<td><input name="nursingDate" type="text" readonly="readonly" value="<%= DateTimeUtil.getCurrentDate() %>" style="width: 100px" /></td>
 			</tr>
 			<tr>
 				<td style="height: 23px">Patient Id</td>
 				<td style="width: 130px; height: 23px">Patient name</td>
-				<td style="height: 23px">Date</td>
-				<td style="height: 23px">Time</td>
+				<td>Date</td>
+				<td>Time</td>
 				<td style="height: 23px">Doctor</td>
 				<td style="height: 23px">no. of visit</td>
 			</tr>
 			<tr>
-				<td><input disabled style="width: 110px" type="text" value=""/></td>
-				<td style="width: 130px"><input disabled type="text" value=""/></td>
-				<td><input disabled type="text" value=""/></td>
-				<td><input disabled type="text" value=""/></td>
+				<td><input disabled style="width: 110px" required="required" type="text" value="${ipd.patient.registrationNo}"/></td>
+				<td style="width: 130px"><input disabled type="text" value="${ipd.patient.firstName}  ${ipd.patient.lastName}"/></td>
+				<td><input disabled type="text" value="${ipd.admissionDate}" style="width: 100px" /></td>
+				<td><input disabled type="text" value="${ipd.admissionTime}"style="width: 100px" /></td>
 				<td>
-					<select name="doctorId">
-						<option>-select-</option>
+					<select name="doctorId" required="required">
+						<option value="">-select-</option>
 						<c:forEach items="${doctorlist}" var="doctor">
 							<option value="${doctor.id}">${doctor.name}</option>
 						</c:forEach>
 					</select>
 				</td>
-				<td><input name="noOfVisit" type="text" style="width: 120px" /></td>
+				<td><input name="noOfVisit" type="number" step="any" required="required" style="width: 120px" /></td>
 			</tr>
 			<tr>
 				<td colspan="6"><hr class="auto-style1" style="width: 100%" /></td>
@@ -132,11 +157,11 @@
 				<td>Remark</td>
 			</tr>
 			<tr>
-				<td><input name="pressure" type="text" style="width: 110px" /></td>
-				<td style="width: 130px"><input name="pulse" type="text" /></td>
-				<td><input name="temperature" type="text" /></td>
-				<td><input name="sugar" type="text" /></td>
-				<td><input name="examingTime" type="text" /></td>
+				<td><input name="pressure" type="text" style="width: 110px" maxlength="10" /></td>
+				<td style="width: 130px"><input name="pulse" type="text" maxlength="10" /></td>
+				<td><input name="temperature" type="text" maxlength="10" /></td>
+				<td><input name="sugar" type="text" maxlength="10"/></td>
+				<td><input name="examingTime" id="examingTime" type="text"  maxlength="10"/></td>
 				<td>
 					<textarea name="remark" style="width: 95%; height: 35px" cols="20" rows="1"></textarea>
 				</td>
@@ -183,6 +208,7 @@
 							<td style="height: 29px; width: 62px"></td>
 							<td style="height: 29px; width: 182px">
 								<select class="medicinePrice">
+									<option>-select-</option>
 									<c:forEach items="${medicinelist}" var="medicine">
 										<option value="${medicine.rate}">${medicine.name}</option>
 									</c:forEach>
@@ -229,19 +255,24 @@
 						</tr>
 						<tr valign="top" class="testRow">
 							<td style="height: 39px; width: 62px"></td>
-							<td style="height: 39px; width: 182px"><select
-								class="ddlmidium" name="Select5">
-									<option></option>
+							<td style="height: 39px; width: 182px">
+								<select class="testType" onchange="loadTestCombo(this);">
+									<option value="">-select-</option>
+									<c:forEach items="${testTypelist}" var="test">
+										<option value="${test.testType}">${test.testType}</option>
+									</c:forEach>
 							</select></td>
 							<td style="height: 39px; width: 131px">
-								<select class="testPrice"  name="Select6">
+								<select class="testPrice">
+									<option value="">-select-</option>
 									<c:forEach items="${testlist}" var="test">
 										<option value="${test.rate}">${test.name}</option>
 									</c:forEach>
 								</select>
 							</td>
 							<td style="height: 39px; width: 123px">
-								<input name="Text18" type="text" /></td>
+								<input name="Text18" type="text" />
+							</td>
 							<td style="height: 39px; width: 266px">
 								<textarea name="TextArea1" style="width: 95%; height: 35px"></textarea>
 							</td>
@@ -260,8 +291,8 @@
 			<tr>
 				<td colspan="6" align="right">
 					<input name="action" type="submit" value="save" />&nbsp;&nbsp;&nbsp;
-					<input type="button" value="TEST" onclick="readData();" />&nbsp;&nbsp;&nbsp;  
-					<input name="Reset1" type="reset" value="reset" /></td>
+					<input name="Reset1" type="reset" value="reset" />
+				</td>
 			</tr>
 			<tr>
 				<td colspan="6">&nbsp;</td>

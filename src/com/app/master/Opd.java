@@ -14,8 +14,6 @@ public class Opd{
 	private Double consulationFee;
 
 	// -------------- Getter and Setter----------------
-
-	
 	
 	public Patient getPatient() {
 		return patient;

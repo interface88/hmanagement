@@ -6,20 +6,19 @@ import java.util.Set;
 
 import com.app.entity.DischargeTicket;
 import com.app.entity.FinalBill;
+import com.app.entity.PaymentCollection;
 
 public class Patient {
 
 	private Integer id;
-	private String code;
 	private Date registrationDate;
+	private String registrationNo;
 	private String title;
 	private String firstName;
 	private String middleName;
 	private String lastName;
 	private String gender;
-	private Integer day;
-	private Integer month;
-	private Integer year;
+	private Date birthDate;
 	private String contactInfo;
 	private String referredBy;
 	private String bloodGroup;
@@ -43,6 +42,7 @@ public class Patient {
 	private Set<Nursing> nursings = new HashSet<Nursing>();
 	private Set<DischargeTicket> dischargeTickets = new HashSet<DischargeTicket>();
 	private Set<FinalBill> finalBills = new HashSet<FinalBill>();
+	private Set<PaymentCollection> paymentCollections = new HashSet<PaymentCollection>();
 	
 
 	// -------------- Getter and Setter----------------
@@ -53,14 +53,6 @@ public class Patient {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public Date getRegistrationDate() {
@@ -109,30 +101,6 @@ public class Patient {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	public Integer getDay() {
-		return day;
-	}
-
-	public void setDay(Integer day) {
-		this.day = day;
-	}
-
-	public Integer getMonth() {
-		return month;
-	}
-
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
-
-	public Integer getYear() {
-		return year;
-	}
-
-	public void setYear(Integer year) {
-		this.year = year;
 	}
 
 	public String getContactInfo() {
@@ -303,7 +271,23 @@ public class Patient {
 		this.dischargeTickets = dischargeTickets;
 	}
 
-	public Set<FinalBill> getFinalBills() {
+	public String getRegistrationNo() {
+		return registrationNo;
+	}
+
+	public void setRegistrationNo(String registrationNo) {
+		this.registrationNo = registrationNo;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+		public Set<FinalBill> getFinalBills() {
 		return finalBills;
 	}
 
@@ -311,4 +295,11 @@ public class Patient {
 		this.finalBills = finalBills;
 	}
 
+	public Set<PaymentCollection> getPaymentCollections() {
+		return paymentCollections;
+	}
+
+	public void setPaymentCollections(Set<PaymentCollection> paymentCollections) {
+		this.paymentCollections = paymentCollections;
+	}
 }

@@ -17,6 +17,7 @@ import com.app.master.NursingDAO;
 import com.app.master.PatientDAO;
 import com.app.entity.FinalBill;
 import com.app.entity.FinalBillDAO;
+import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
 
 /**
@@ -44,7 +45,7 @@ public class FinalBillServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FinalBill finalBill = new FinalBill();
-		finalBill.setStaffName("Default Staff name");
+		finalBill.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("finalBill", finalBill);
 		
 		request.getRequestDispatcher("/pages/finalBill.jsp").forward(request, response);
@@ -134,16 +135,13 @@ public class FinalBillServlet extends HttpServlet {
 		List<Nursing> nursingList = nursingDAO.findListByAdmissionId(request.getParameter("admissionId"));
 		
 		FinalBill finalBill = new FinalBill();
-		finalBill.setStaffName("Default Staff name");
+		finalBill.setStaffName(Auth.getLoggedStaffName(request));
 		
 		if(ipd != null){
 			request.setAttribute("ipd", ipd);
-			System.out.print(ipd.getPatient().getId());
-			System.out.print(ipd.getPatient().getFirstName());
-			System.out.print(ipd.getAdmissionType().getName());
 			
 		}else{
-			msg = "No data to load";
+			msg = "Invalid Admission no.";
 		}
 		
 		request.setAttribute("nursingList", nursingList);

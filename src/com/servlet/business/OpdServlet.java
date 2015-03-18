@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.app.framework.DateTimeUtil;
+import com.app.framework.MyObject;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Opd;
@@ -24,6 +25,8 @@ import com.app.master.PatientDAO;
 public class OpdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	PatientDAO patientDAO = new PatientDAO();
+	DoctorDAO doctorDAO = new DoctorDAO();
 	/**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,22 +38,8 @@ public class OpdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		// ---------- patient list -----------
-		List<Patient> patientlist= new ArrayList<Patient>();
-		PatientDAO patientDAO = new PatientDAO();
-		patientlist = patientDAO.getList();
-		
-		// ---------- doctor list -----------
-		List<Doctor> doctorlist= new ArrayList<Doctor>();
-		DoctorDAO doctorDAO = new DoctorDAO();
-		doctorlist = doctorDAO.getList();
-		
-		request.setAttribute("doctorlist", doctorlist);
-		request.setAttribute("patientlist", patientlist);
+		loadList(request);
 		request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
-		
 	}
 
 	/**
@@ -58,15 +47,6 @@ public class OpdServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// ---------- patient list -----------
-		List<Patient> patientlist= new ArrayList<Patient>();
-		PatientDAO patientDAO = new PatientDAO();
-		patientlist = patientDAO.getList();
-		
-		// ---------- doctor list -----------
-		List<Doctor> doctorlist= new ArrayList<Doctor>();
-		DoctorDAO doctorDAO = new DoctorDAO();
-		doctorlist = doctorDAO.getList();
 		
 		String msg= "";
 		
@@ -76,24 +56,22 @@ public class OpdServlet extends HttpServlet {
 		if("save".equalsIgnoreCase(btnclick)){
 			
 			//- ---------- patient object -----------------------
-			String patient_id = request.getParameter("patientId").trim();
+			String registrationNo = request.getParameter("registrationNo");
 			
 			Patient patient = new Patient();
-			if("".equalsIgnoreCase(patient_id)){
-				String code =  "PATIENT";
+			if("".equalsIgnoreCase(registrationNo.trim())){
 				Date registrationDate = DateTimeUtil.ParseString(request.getParameter("registrationDate").trim());
+				String regNo = generatePatientRegNo();
 				String title =  request.getParameter("title").trim();
 				String firstName =  request.getParameter("firstName").trim();
 				String middleName =  request.getParameter("middleName").trim();
 				String lastName =  request.getParameter("lastName").trim();
 				String gender =  request.getParameter("gender").trim();
-				Integer day =  Integer.parseInt(request.getParameter("day").trim());
-				Integer month =  Integer.parseInt(request.getParameter("month").trim());
-				Integer year =  Integer.parseInt(request.getParameter("year").trim());
+				Date birthDate =  DateTimeUtil.ParseString(request.getParameter("birthDate").trim());
 				String contactInfo =  request.getParameter("contactInfo").trim();
 				String referredBy =  request.getParameter("referredBy").trim();
 				String bloodGroup =  request.getParameter("bloodGroup").trim();
-				Integer weight =  Integer.parseInt(request.getParameter("weight").trim());
+				Integer weight =  MyObject.stringToInt(request.getParameter("weight"));
 				String telephone =  request.getParameter("telephone").trim();
 				String mobile =  request.getParameter("mobile").trim();
 				String email =  request.getParameter("email").trim();
@@ -108,16 +86,14 @@ public class OpdServlet extends HttpServlet {
 				String zip =  request.getParameter("zip").trim();
 				String country =  request.getParameter("country").trim();
 				
-				patient.setCode(code);
 				patient.setRegistrationDate(registrationDate);
+				patient.setRegistrationNo(regNo);
 				patient.setTitle(title);
 				patient.setFirstName(firstName);
 				patient.setMiddleName(middleName);
 				patient.setLastName(lastName);
 				patient.setGender(gender);
-				patient.setDay(day);
-				patient.setMonth(month);
-				patient.setYear(year);
+				patient.setBirthDate(birthDate);
 				patient.setContactInfo(contactInfo);
 				patient.setReferredBy(referredBy);
 				patient.setBloodGroup(bloodGroup);
@@ -139,22 +115,24 @@ public class OpdServlet extends HttpServlet {
 				patientDAO.add(patient);
 			}else{
 				// got id  so load from database.
-				patientDAO.findById(Integer.parseInt(patient_id));
+				patientDAO.findByRegistrationNo(registrationNo);
 			}
 			
 			
 			//---------- doctor object -----------------------
 			Doctor doctor = new Doctor();
-			int doctor_id = Integer.parseInt(request.getParameter("doctorId").trim()); 
+			Integer doctor_id = MyObject.stringToInt(request.getParameter("doctorId")); 
 			doctor = doctorDAO.findById(doctor_id);
 			
 			String staffName = request.getParameter("staffName");
 			Date entryDate = DateTimeUtil.ParseString(request.getParameter("entryDate"));
 			String caseType = request.getParameter("caseType");
-			String admissionNo = "ADDD1";
-			Double consulationFee = Double.parseDouble(request.getParameter("consulationFee"));
+			String admissionNo = generateAdmissionId();
+			Double consulationFee = MyObject.stringToDouble(request.getParameter("consulationFee"));
 			
-			
+			if(consulationFee == null){
+				consulationFee = 0.0; // Default price
+			}
 			
 			Opd opd = new Opd();
 			
@@ -170,16 +148,57 @@ public class OpdServlet extends HttpServlet {
 			OpdDAO opdDAO = new OpdDAO();
 			opdDAO.add(opd);
 			
+		}else if("load".equalsIgnoreCase(btnclick)){
+			String registrationNo = request.getParameter("patientRegistrationNo").trim();
+			Patient patient =  patientDAO.findByRegistrationNo(registrationNo);
+			if(patient == null){
+				msg = "No patient found";
+			}else{
+				request.setAttribute("patient", patient);
+			}
 		}
 		
-		request.setAttribute("doctorist", doctorlist);
-		request.setAttribute("patientlist", patientlist);
+		loadList(request);
+		request.setAttribute("msg", msg);
 		request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
 		
 	}
 	
-	private String generateAdmissionNo(){
-		return "ADMI1133";
+	private void loadList(HttpServletRequest request){
+		// ---------- patient list -----------
+		List<Patient> patientlist= new ArrayList<Patient>();
+		patientlist = patientDAO.getList();
+		
+		// ---------- doctor list -----------
+		List<Doctor> doctorlist= new ArrayList<Doctor>();
+		doctorlist = doctorDAO.getList();
+		
+		request.setAttribute("doctorlist", doctorlist);
+		request.setAttribute("patientlist", patientlist);
+		
+	}
+	
+	private String generateAdmissionId(){
+		OpdDAO opdDAO = new OpdDAO();
+		Opd opd = opdDAO.getLatestOpd();
+		if(opd == null){
+			return "HMS/ADD_ID/1"; // inintial no patient present in database
+		}
+		
+		String[] regNoParts = opd.getAdmissionId().split("/");
+		int newRegIncrement =  Integer.parseInt(regNoParts[2]) + 1;
+		return "HMS/ADD_ID/" + newRegIncrement;
+	}
+	
+	private String generatePatientRegNo(){
+		Patient patient = patientDAO.getLatestPatient();
+		if(patient == null){
+			return "HMS/PAT/1"; // inintial no patient present in database
+		}
+		
+		String[] regNoParts = patient.getRegistrationNo().split("/");
+		int newRegIncrement =  Integer.parseInt(regNoParts[2]) + 1;
+		return "HMS/PAT/" + newRegIncrement;
 	}
 
 }

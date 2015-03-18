@@ -11,6 +11,16 @@
 		<link rel="stylesheet"type="text/css" href="theme/menu_files/mbcsmbmcp.css" type="text/css" />
 	
 		<script type="text/javascript" src="theme/js/jquery-1.9.0.min.js"></script>
+		
+		<!-- 		js calendar resource loading -->
+		<link rel="stylesheet"type="text/css" href="theme/js/JSCal2-1.9/css/jscal2.css" type="text/css" />
+		<script type="text/javascript" src="theme/js/JSCal2-1.9/js/jscal2.js"></script>
+		<script type="text/javascript" src="theme/js/JSCal2-1.9/js/lang/en.js"></script>
+		
+		<link rel="stylesheet"type="text/css" href="theme/js/clockpick/jquery.clockpick.1.2.9.css" type="text/css" />
+		<script type="text/javascript" src="theme/js/clockpick/jquery.clockpick.1.2.9.js"></script>
+		
+		
 		<style>
 			.borderzero td img {
 				border: 0px;
@@ -75,14 +85,33 @@
 						  			</div>
 						  		</div>
 						  		<ul>
-						  			<li><a href="#" title="">Payment Collection</a></li>
+						  			<li><a href="paymentCollection" title="">Payment Collection</a></li>
 						  		</ul>
 						  	</li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a>Final Bill</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="#" >Discharge Ticket</a></div></li>
+						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a href="finalBill">Final Bill</a></div></li>
+						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="dischargeTicket" >Discharge Ticket</a></div></li>
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="logout" >Logout</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 90px;"><a>&nbsp;</a></div></li>
+						  	<li class="topitem spaced_li">
+						  		<div class="buttonbg gradient_button gradient40" style="width: 121px;">
+						  			<div class="arrow">
+						  				<a class="button_3">Reports</a>
+						  			</div>
+						  		</div>
+								<ul>
+							  		<li><a href="report?report=admissionType">AdmissionType</a></li>
+							  		<li><a href="report?report=department">Department</a></li>
+							  		<li><a href="report?report=doctor">Doctor</a></li>
+									<li><a href="report?report=medicine">Medicine</a></li>
+									<li><a href="report?report=service">Service</a></li>
+									<li><a href="report?report=staff">Staff</a></li>
+									<li><a href="report?report=test">Test</a></li>
+									<li><a href="report?report=ward">Ward</a></li>
+									<li><a href="report?report=module">Module</a></li>
+									<li><a href="report?report=patient">Patient</a></li>
+									
+							  	</ul>
+						  	</li>
 						 	<li class="topitem last_button"><div class="buttonbg gradient_button gradient40" style="width: *;"> <a style="font-color:#aa5555;" > <%= Auth.getLoggedStaffName(request) %>  &nbsp;!</a></div></li>
 						</ul>
 					</td>

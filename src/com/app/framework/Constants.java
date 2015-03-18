@@ -6,4 +6,6 @@ public class Constants
 	
 	public static final String TREATMENT_MEDICINE = "MEDICINE";
 	public static final String TREATMENT_TEST = "TEST";
+	
+	
 }

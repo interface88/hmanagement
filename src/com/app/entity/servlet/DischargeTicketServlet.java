@@ -13,9 +13,13 @@ import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
+import com.app.master.Medicine;
+import com.app.master.MedicineDAO;
 import com.app.master.PatientDAO;
+import com.app.master.Test;
 import com.app.entity.DischargeTicket;
 import com.app.entity.DischargeTicketDAO;
+import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
 
 /**
@@ -29,6 +33,7 @@ public class DischargeTicketServlet extends HttpServlet {
 	PatientDAO patientDAO = new PatientDAO();
 	IpdDAO ipdDAO = new IpdDAO();
 	DoctorDAO doctorDAO = new DoctorDAO();
+	MedicineDAO medicineDAO = new MedicineDAO();
 	 /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,8 +46,13 @@ public class DischargeTicketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DischargeTicket dischargeTicket = new DischargeTicket();
-		dischargeTicket.setStaffName("Default Staff name");
+		dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("dischargeTicket", dischargeTicket);
+		
+		// ---------- medicine list -----------
+		List<Medicine> medicinelist= new ArrayList<Medicine>();
+		medicinelist = medicineDAO.getList();
+		request.setAttribute("medicinelist", medicinelist);
 		
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
 	}
@@ -108,13 +118,13 @@ public class DischargeTicketServlet extends HttpServlet {
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
 			
 			DischargeTicket dischargeTicket = new DischargeTicket();
-			dischargeTicket.setStaffName("Default Staff name");
+			dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 			
 			if(ipd != null){
 				request.setAttribute("ipd", ipd);
 				
 			}else{
-				msg = "No data to load";
+				msg = "Invalid Admission no.";
 			}
 			
 			loadData(request);
@@ -126,14 +136,14 @@ public class DischargeTicketServlet extends HttpServlet {
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
 	}
 	
-private void loadData(HttpServletRequest request){
-		
-		// ---------- doctor list -----------
-		List<Doctor> doctorlist= new ArrayList<Doctor>();
-		doctorlist = doctorDAO.getList();
-		
-		request.setAttribute("doctorlist", doctorlist);
-		
+	private void loadData(HttpServletRequest request){
+			
+			// ---------- doctor list -----------
+			List<Doctor> doctorlist= new ArrayList<Doctor>();
+			doctorlist = doctorDAO.getList();
+			
+			request.setAttribute("doctorlist", doctorlist);
+			
+		}
+	
 	}
-
-}

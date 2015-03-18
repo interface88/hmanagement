@@ -15,6 +15,9 @@
 		<property name="admissionId" type="java.lang.String">
 			<column name="ADMISSION_ID" not-null="true" />
 		</property>
+		<property name="entryDate" type="java.sql.Date">
+			<column name="ENTRY_DATE" not-null="true" />
+		</property>
 		<property name="admissionDate" type="java.sql.Date">
 			<column name="ADMISSION_DATE" not-null="true" />
 		</property>
@@ -25,7 +28,7 @@
 			<column name="WARD" not-null="true" />
 		</property>
 		<property name="bedNo" type="java.lang.Integer">
-			<column name="BED_NO" not-null="true" />
+			<column name="BED_NO" />
 		</property>
 		<property name="admissionDiagnosis" type="java.lang.String">
 			<column name="ADMISSION_DIAGNOSIS" />

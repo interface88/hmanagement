@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import common.HibernateUtil;
 
 public class OpdDAO{
-	
+	//+2348051095858
 	Session session;
 	public OpdDAO() {
 		session = HibernateUtil.getSession();
@@ -29,6 +29,14 @@ public class OpdDAO{
 	public Opd findByCode(Integer code) {
 		Opd opd = (Opd) session.get(Opd.class, code);
 		return opd;
+	}
+	
+	public Opd getLatestOpd() {
+		
+		Opd result = (Opd) session.createQuery("from Opd ORDER BY id DESC")
+                .setMaxResults(1)
+                .uniqueResult();
+		return result;
 	}
 	
 	@SuppressWarnings("unchecked")

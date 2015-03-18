@@ -46,6 +46,15 @@ public class PaymentCollectionDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<PaymentCollection> findByAdmissionId(String admissionNo) {
+		
+		Query query  = session.createQuery("from PaymentCollection as model where model.admissionId = ?");
+		query.setParameter(0, admissionNo);
+		List<PaymentCollection> list = query.list();
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<PaymentCollection> getList(){
 		List<PaymentCollection> list = new ArrayList<PaymentCollection>();
 		Query query  = session.createQuery("from PaymentCollection");

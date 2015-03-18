@@ -5,6 +5,7 @@ public class Test {
 	private Integer id;
 	private String code;
 	private String name;
+	private String testType;
 	private Double rate;
 
 	// --------- GETTER AND SETTER -----------
@@ -31,6 +32,14 @@ public class Test {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTestType() {
+		return testType;
+	}
+
+	public void setTestType(String testType) {
+		this.testType = testType;
 	}
 
 	public Double getRate() {
