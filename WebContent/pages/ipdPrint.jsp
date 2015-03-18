@@ -2,6 +2,7 @@
 <%@page import="com.app.framework.DateTimeUtil"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/headerReport.jsp" />
+		<h3 class="clearfix">IPD Report</h3>
 		<table>
 			<tr>
 				<td><b>Staff Name</b> &nbsp;&nbsp;&nbsp;<code>${ipd.staffName}</code></code></td>
@@ -116,8 +117,9 @@ DECLARATION
 I _________________(Patient of Relation) being the ____________(relationship with patient) 								
 declare that : The details provided in this admission form are true and complete.								
 								
-Date: 								
-Signature of Patient/Relatives ____________________							Operator Name 	
+Date: 	<br />	<br />						
+Signature of Patient/Relatives ___________________<span style="float: right">Operator Name</span> 	
+<br /><br /><br />
 					</code>
 				</td>
 			</tr>

@@ -41,7 +41,7 @@
 <body>
 	<div id="mydiv">
 		<h1 class="clearfix">XYZ Hospital Management</h1>
-		<h3 class="clearfix">OPD Registration</h3>
+		<h3 class="clearfix">IPD Report</h3>
 			<table cellpadding="5px" style="width: 100%; height: 100%;">
 				<tr>
 					<td colspan="4"><hr /></td>
@@ -177,10 +177,7 @@
 				<input type="button" value="Print" onclick="PrintElem('#mydiv')" />&nbsp;&nbsp;&nbsp;&nbsp;
 						<a href="opd"><input type="button" value="Cancel" /></a></td>
 				</tr>
-
 			</table>
-		
-	</div>
-	
+		</div>
 </body>
 </html>
