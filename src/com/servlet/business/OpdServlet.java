@@ -14,6 +14,8 @@ import com.app.framework.DateTimeUtil;
 import com.app.framework.MyObject;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
+import com.app.master.Ipd;
+import com.app.master.IpdDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
@@ -58,6 +60,29 @@ public class OpdServlet extends HttpServlet {
 			Opd opd = opdDAO.findById(id);
 			request.setAttribute("opd", opd);
 			request.getRequestDispatcher("/pages/opdPrescription.jsp").forward(request, response);
+			
+		}else if("delete".equalsIgnoreCase(action)){
+			String msg = "";
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Opd opd = opdDAO.findById(id);
+			
+			IpdDAO ipdDAO  = new IpdDAO();
+			Ipd ipd = ipdDAO.findByAdmissionId(opd.getAdmissionId());
+			
+			if(ipd != null){
+				msg = "Cannot delete OPD, IPD information is present. <br>";
+				
+			}else{
+				opdDAO.delete(opd);
+				msg = "OPD deleted successfully";
+				// deletion of patient goes here
+			}
+			
+			List<Opd> opdlist =  opdDAO.getList();
+			request.setAttribute("opdlist", opdlist);
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
 		}else{
 			List<Opd> opdlist =  opdDAO.getList();
 			request.setAttribute("opdlist", opdlist);
@@ -184,6 +209,7 @@ public class OpdServlet extends HttpServlet {
 			request.setAttribute("patient", patient);
 			request.setAttribute("opd", opd);
 			request.getRequestDispatcher("/pages/opdprint.jsp").forward(request, response);
+			return;
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			String registrationNo = request.getParameter("patientRegistrationNo").trim();

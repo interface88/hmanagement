@@ -9,6 +9,11 @@
 				<td  align="center" colspan="3" ><strong>IPD Registration</strong></td>
 			</tr>
 			<tr>
+				<td colspan="2">
+					<h4 style="text-align:center; color:red;">${msg}</h4>
+				</td>
+			</tr>
+			<tr>
 				<td align="center"><strong>Admission No</strong></td>
 				<td>
 					<input type="text" name="admissionId" value="" placeholder="OPD Admission no" required/>
@@ -23,9 +28,6 @@
 		<table style="width: 82%" cellpadding="3px">
 			<tr>
 				<td colspan="3"><hr class="auto-style1" style="width: 100%" /></td>
-			</tr>
-			<tr>
-				<td colspan="3"><h4 style="color:red;">${msg}</h4></td>
 			</tr>
 			<tr>
 				<td>Staff Name&nbsp;&nbsp;&nbsp; <input name="staffName" type="text" readonly="readonly" value="<%= Auth.getLoggedStaffName(request) %>"/></td>

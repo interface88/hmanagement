@@ -26,7 +26,7 @@
 						<td>${patient.firstName} ${patient.middleName} ${patient.lastName}</td>
 						<td>${patient.gender}</td>
 						<th><a href="patient?action=edit&id=${patient.id}">Edit</a></th>
-						<th><a href="">Delete</a></th>
+						<th><a href="patient?action=delete&id=${patient.id}">Delete</a></th>
 					</tr>
 				</c:forEach>
 			</c:if>

@@ -34,7 +34,8 @@ public class PatientServlet extends HttpServlet {
 	PatientDAO patientDAO = new PatientDAO();
 	DoctorDAO doctorDAO = new DoctorDAO();
 	IpdDAO ipdDAO = new IpdDAO();
-  /**
+	
+   /**
     * @see HttpServlet#HttpServlet()
     */
    public PatientServlet() {
@@ -47,7 +48,6 @@ public class PatientServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String action = request.getParameter("action");
-		
 		if("edit".equalsIgnoreCase(action)){
 			loadData(request);
 			
@@ -55,6 +55,35 @@ public class PatientServlet extends HttpServlet {
 			Patient patient = patientDAO.findById(id);
 			request.setAttribute("patient", patient);
 			request.getRequestDispatcher("/pages/patientEdit.jsp").forward(request, response);
+		}
+		else if("delete".equalsIgnoreCase(action)){
+			loadData(request);
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			String msg = "";
+			Patient patient = patientDAO.findById(id);
+			boolean flag = true;
+			if(!patient.getIpds().isEmpty()){
+				msg = "Cannot delete patient, IPD information is present. <br>";
+				flag = false;
+			}
+			
+			if(!patient.getOpds().isEmpty()){
+				msg = "Cannot delete patient, Opd information is present. <br>";
+				flag = false;
+			}
+			
+			if(flag){
+				patientDAO.delete(patient);
+				msg = "Patient deleted successfully";
+				// deletion of patient goes here
+			}
+			request.setAttribute("msg", msg);
+			
+			List<Patient> patientlist = new ArrayList<Patient>();
+			patientlist = patientDAO.getList();
+			request.setAttribute("patientlist", patientlist);
+			request.getRequestDispatcher("/pages/patient.jsp").forward(request, response);
 		}else{
 			// ---------- patient list -----------
 			List<Patient> patientlist = new ArrayList<Patient>();

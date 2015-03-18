@@ -1,63 +1,68 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 		<jsp:include page="../theme/parts/headerReport.jsp" />
+			<h3 class="clearfix">Payment Collection Report</h3>
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
-					<td align="center" colspan="6"><strong>Payment Collection</strong></td>
+					<td class="strong">Staff Name</td>
+					<td><code>${paymentCollection.staffName}</code></td>
+					<td class="strong">Entry Date Time</td>
+					<td><code>${paymentCollection.entryDate}</code></td>
 				</tr>
 				<tr>
-					<td style="">Staff Name</td>
-					<td style="">${paymentCollection.staffName}</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Entry Date Time</td>
-					<td style="">${paymentCollection.entryDate}</td>
-				</tr>
-				<tr>
-					<td style="">Admission Id</td>
-					<td style="">
-						${paymentCollection.admissionId}
+					<td class="strong">Admission Id</td>
+					<td>
+						<code>${paymentCollection.admissionId}</code>
 					</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Payment Date</td>
-					<td style="">${paymentCollection.paymentDate}</td>
+					<td class="strong">Payment Date</td>
+					<td><code>${paymentCollection.paymentDate}</code></td>
 				</tr>
 				<tr>
-					<td style="">Patient Name</td>
-					<td colspan="6" style="">${paymentCollection.patient.firstName} ${paymentCollection.patient.lastName}</td>
+					<td class="strong">Patient Name</td>
+					<td colspan="3"><code>${paymentCollection.patient.firstName} ${paymentCollection.patient.lastName}</code></td>
 				</tr>
 				<tr>
-					<td style="">Receive Amount</td>
-					<td style="">${paymentCollection.receiveAmount}</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Payment Mode</td>
-					<td style="">${paymentCollection.paymentMode}
+					<td class="strong">Receive Amount</td>
+					<td><code>${paymentCollection.receiveAmount}</code></td>
+					<td class="strong">Payment Mode</td>
+					<td>
+						<code>${paymentCollection.paymentMode}</code>
 					</td>
 				</tr>
 				<tr id="chequeDiv">
-					<td style="">Cheque Number</td>
-					<td style="">${paymentCollection.chequeNumber}</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">Cheque Date</td>
-					<td style="">${paymentCollection.chequeDate}</td>
+					<td class="strong">Cheque Number</td>
+					<td>
+						<code>
+							<c:if test="${not empty paymentCollection.chequeNumber}">
+								${paymentCollection.chequeNumber}
+							</c:if>
+							<c:if test="${empty paymentCollection.chequeNumber}">
+								N/A
+							</c:if>
+						</code>
+					</td>
+					<td><code>${paymentCollection.chequeDate}</code></td>
+					<td>
+						<code>
+							<c:if test="${not empty paymentCollection.chequeDate}">
+								${paymentCollection.chequeDate}
+							</c:if>
+							<c:if test="${empty paymentCollection.chequeDate}">
+								N/A
+							</c:if>
+						</code>
+					</td>
 				</tr>
 				<tr id="bankDiv">
-					<td style="">Bank</td>
-					<td colspan="4" style="">${paymentCollection.bank}</td>
+					<td class="strong">Bank</td>
+					<td colspan="3"><code>${paymentCollection.bank}</code></td>
 				</tr>
 				<tr>
-					<td style="">Other Details</td>
-					<td colspan="4" style="">${paymentCollection.otherDetails}</td>
+					<td class="strong">Other Details</td>
+					<td colspan="3"><code>${paymentCollection.otherDetails}</code></td>
 				</tr>
 				<tr>
-					<td style="">Remark</td>
-					<td colspan="4" style="">${paymentCollection.remark}</td>
-				</tr>
-				
-				<tr>
-					<td style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
-					<td colspan="2" style="">&nbsp;</td>
-					<td style="">&nbsp;</td>
+					<td class="strong">Remark</td>
+					<td colspan="3"><code>${paymentCollection.remark}</code></td>
 				</tr>
 			</table>
 <jsp:include page="../theme/parts/footerReport.jsp" />

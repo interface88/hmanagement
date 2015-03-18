@@ -66,4 +66,14 @@ public class Auth {
 		return (String)request.getSession().getAttribute("userId");
 	}
 	
+	/**
+	 * Function to get logged staff name by HttpServletRequest request.
+	 * 
+	 * @param HttpServletRequest request
+	 * @return String staffName
+	 */
+	public static String getRole(HttpServletRequest request){
+		return (String)request.getSession().getAttribute("loginRole");
+	}
+	
 }

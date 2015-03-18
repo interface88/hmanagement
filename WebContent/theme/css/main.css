@@ -52,7 +52,7 @@
 body {
 	font-family: Cambria, Palatino, "Palatino Linotype", "Palatino LT STD",
 		Georgia, serif;
-	background-image:url("../webbg/bg2.jpg");
+	background-image:url("../images/bg2.jpg");
 	margin-left:10%;
 	margin-right:5%;
 	width: 100%;
@@ -352,3 +352,7 @@ tableTdLeftAlign td
 .pure-table-horizontal tbody > tr:last-child > td {
     border-bottom-width: 0;
 }
+ .smtxt input[type=text]{
+ 	max-width: 122px;
+ 	
+ }

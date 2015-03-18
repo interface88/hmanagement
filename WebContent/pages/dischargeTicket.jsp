@@ -4,6 +4,9 @@
 	<form name="dischargeTicketForm" method="post" action="dischargeTicket">
 		<table style="width: 82%" cellpadding="3px">
 			<tr>
+				<td align="center" colspan="4"><strong>Patient Discharge</strong></td>
+			</tr>
+			<tr>
 				<td colspan="4"><h4 style="color:red;">${msg}</h4></td>
 			</tr>
 			<tr>
@@ -20,9 +23,6 @@
 			<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
 			<input type="hidden" name="ipdId" value="${ipd.id}" />
 			<table style="width: 93%" class="tdright">
-				<tr>
-					<td align="center" colspan="4">Patient Discharge</td>
-				</tr>
 				<tr>
 					<td colspan="4"><hr style="width: 100%" /></td>
 				</tr>

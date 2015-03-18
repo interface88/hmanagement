@@ -7,7 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import common.HibernateUtil;
+import com.app.framework.HibernateUtil;
+
 
 public class ServiceDAO{
 	
@@ -32,7 +33,9 @@ public class ServiceDAO{
 	
 	
 	public void delete(Service service){
+		Transaction transaction = session.beginTransaction();
 		session.delete(service);
+		transaction.commit();
 	}
 	
 	public Service findByCode(String code) {

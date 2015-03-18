@@ -4,7 +4,7 @@
 		<form name="ipd" method="post" action="paymentCollection" >
 			<table style="width: 82%" cellpadding="3px">
 				<tr>
-					<td  align="center" colspan="3" ><strong>IPD Registration</strong></td>
+					<td  align="center" colspan="2" ><strong>Payment Collection</strong></td>
 				</tr>
 				<tr>
 					<td align="center"><strong>Admission No</strong></td>
@@ -18,9 +18,6 @@
 		<form name="paymentCollectionForm" method="post" action="paymentCollection">
 		<input type="hidden" name="patientId" value="${paymentCollection.patient.id}"/>
 			<table cellpadding="5px" style="width: 100%">
-				<tr>
-					<td align="center" colspan="6"><strong>Payment Collection</strong></td>
-				</tr>
 				<tr>
 					<td colspan="6"><hr /></td>
 				</tr>

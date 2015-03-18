@@ -25,6 +25,8 @@ public class AuthenticationFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
+		
+		
 
 		HttpSession session = req.getSession();
 		
@@ -32,10 +34,12 @@ public class AuthenticationFilter implements Filter {
         String file = req.getServletPath();
         
         String uri = ((HttpServletRequest)request).getRequestURI();
-
-        //TODO : implement better quality check
+        
         if ( uri.indexOf("/theme") > 0 || uri.indexOf("/login") > 0){
-            chain.doFilter(request, response);
+    		chain.doFilter(request, response);
+        }else if("/hms/".equalsIgnoreCase(uri) && Auth.isUserLogged(req)){
+        	String loginURL = req.getContextPath() + "/home.jsp";
+			res.sendRedirect(loginURL);
         }
         else if (Auth.isUserLogged(req) || file.equals("/index.jsp")) {
 			chain.doFilter(request, response);

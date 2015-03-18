@@ -19,6 +19,7 @@ import com.app.entity.FinalBill;
 import com.app.entity.FinalBillDAO;
 import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
+import com.app.framework.MyObject;
 
 /**
  * Servlet implementation class 
@@ -99,12 +100,12 @@ public class FinalBillServlet extends HttpServlet {
 			finalBill.setBillNo(billNo);
 			finalBill.setBillDate(DateTimeUtil.ParseString(billDate));
 			finalBill.setDischargeDate(DateTimeUtil.ParseString(dischargeDate));
-			finalBill.setGrossTotal(Double.parseDouble(grossTotal));
-			finalBill.setDiscount(Double.parseDouble(discount));
-			finalBill.setTax(Double.parseDouble(tax));
+			finalBill.setGrossTotal(MyObject.stringToDouble(grossTotal));
+			finalBill.setDiscount(MyObject.stringToDouble(discount));
+			finalBill.setTax(MyObject.stringToDouble(tax));
 			finalBill.setNetAmount(Double.parseDouble(netAmount));
-			finalBill.setBalanceReceiveAmount(Double.parseDouble(balanceReceiveAmount));
-			finalBill.setFinalReceiveAmount(Double.parseDouble(finalReceiveAmount));
+			finalBill.setBalanceReceiveAmount(MyObject.stringToDouble(balanceReceiveAmount));
+			finalBill.setFinalReceiveAmount(MyObject.stringToDouble(finalReceiveAmount));
 			finalBill.setPaymentMode(paymentMode);
 			finalBill.setChequeNumber(chequeNumber);
 			finalBill.setChequeDate(DateTimeUtil.ParseString(chequeDate));

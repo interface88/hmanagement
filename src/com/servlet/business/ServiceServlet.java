@@ -31,8 +31,6 @@ public class ServiceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		
 		// ---------- service list -----------
 		List<Service> serviceList= new ArrayList<Service>();
 		ServiceDAO serviceDAO = new ServiceDAO();

@@ -64,7 +64,7 @@
 							<td><input name="address1" id="fee" value="${staff.address1}" type="text" /></td>
 						</tr>
 						<tr>
-							<td align="left">Address 1</td> 
+							<td align="left">Address 2</td> 
 							<td><input name="address2" id="fee" value="${staff.address2}" type="text" /></td>
 						</tr>
 						<tr>
@@ -74,6 +74,17 @@
 						<tr>
 							<td align="left">Qualification</td> 
 							<td><input name="qualification" id="fee" value="${staff.qualification}" type="text" /></td>
+						</tr>
+						<tr>
+							<td align="left">Login type</td>
+							<td>
+								<select name="loginType" required="required">
+									<option value="">-select-</option>
+									<c:forEach items="${loginTypeList}" var="loginType">
+										<option <c:if test="${loginType.id==staff.id}">selected=selected</c:if> value="${loginType.id}">${loginType.name}</option>
+									</c:forEach>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td align="left">User ID</td> 

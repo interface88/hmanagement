@@ -7,7 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import common.HibernateUtil;
+import com.app.framework.HibernateUtil;
+
 
 public class PatientDAO{
 	
@@ -29,7 +30,9 @@ public class PatientDAO{
 	}
 	
 	public void delete(Patient patient){
+		Transaction transaction = session.beginTransaction();
 		session.delete(patient);
+		transaction.commit();
 	}
 	
 	public Patient findById(Integer id) {

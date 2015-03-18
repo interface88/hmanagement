@@ -11,10 +11,10 @@
 		<thead>
 			<tr>
 				<th>Admission No</th>
-				<th>Entry Date</th>
 				<th>Patient</th>
+				<th>Entry Date</th>
 				<th>Doctor</th>
-				<th>Consulation Fee</th>
+				<th>Consultation Fee</th>
 				<th></th>
 				<th></th>
 				<th></th>

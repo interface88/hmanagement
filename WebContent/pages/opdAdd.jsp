@@ -95,23 +95,22 @@
 					<td>
 						<select name="year">
 							<c:set var="year" value="0" scope="page" />
-							<option value="0">-0 year -</option>
-							<% for(int i = 0; i < 120; i++) { %>
+							<% for(int i = 0; i < 121; i++) { %>
 						       <option value="<%=i%>" ${year == patient.year ? 'selected' : ''}><%=i%> year </option>
 								<c:set var="year" value="${year + 1}"/>
 						    <% } %>
 						</select>
 						<select name="month">
 							<c:set var="month" value="0" scope="page" />
-							<% for(int i = 0; i < 11; i++) { %>
+							<% for(int i = 0; i < 12; i++) { %>
 						       <option value="<%=i%>" ${month == patient.month ? 'selected' : ''}><%=i%> month </option>
 						    	<c:set var="month" value="${month + 1}"/>
 						    <% } %>
 						</select>
 						<select name="day">
 							<c:set var="day" value="0" scope="page" />
-							<% for(int i = 0; i < 364; i++) { %>
-						        <option value="<%=i%>" ${i == patient.day ? 'selected' : ''}><%=i%> day </option>
+							<% for(int i = 0; i < 31; i++) { %>
+						        <option value="<%=i%>" ${day == patient.day ? 'selected' : ''}><%=i%> day </option>
 						        <c:set var="day" value="${day + 1}"/>
 						    <% } %>
 						</select>
@@ -120,7 +119,7 @@
 						<select name="referredBy" required="required">
 							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
-								<option <c:if test="${patient.referredBy==doctor.id}">selected=selected</c:if> value="${doctor.id}">${doctor.name}</option>
+								<option <c:if test="${patient.referredBy==doctor.name}">selected=selected</c:if> value="${doctor.name}">${doctor.name}</option>
 							</c:forEach>
 						</select>
 					</td>

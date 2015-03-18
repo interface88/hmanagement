@@ -8,7 +8,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import common.HibernateUtil;
+import com.app.framework.HibernateUtil;
+
 
 public class NursingDAO{
 	

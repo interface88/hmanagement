@@ -72,7 +72,7 @@
 									type="text" /></td>
 							</tr>
 							<tr>
-								<td align="left">Address 1</td> 
+								<td align="left">Address 2</td> 
 								<td><input name="address2" 
 									id="fee" value="${doctor.address2}"
 									type="text" /></td>

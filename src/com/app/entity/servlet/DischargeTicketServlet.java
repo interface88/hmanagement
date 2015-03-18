@@ -49,11 +49,8 @@ public class DischargeTicketServlet extends HttpServlet {
 		dischargeTicket.setStaffName(Auth.getLoggedStaffName(request));
 		request.setAttribute("dischargeTicket", dischargeTicket);
 		
-		// ---------- medicine list -----------
-		List<Medicine> medicinelist= new ArrayList<Medicine>();
-		medicinelist = medicineDAO.getList();
-		request.setAttribute("medicinelist", medicinelist);
 		
+		loadData(request);// loading UI related list for combobox(select)
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
 	}
 
@@ -127,10 +124,10 @@ public class DischargeTicketServlet extends HttpServlet {
 				msg = "Invalid Admission no.";
 			}
 			
-			loadData(request);
-			
 			request.setAttribute("dischargeTicket", dischargeTicket);
 		}
+		
+		loadData(request);
 		
 		request.setAttribute("msg",msg);
 		request.getRequestDispatcher("/pages/dischargeTicket.jsp").forward(request, response);
@@ -138,11 +135,16 @@ public class DischargeTicketServlet extends HttpServlet {
 	
 	private void loadData(HttpServletRequest request){
 			
-			// ---------- doctor list -----------
-			List<Doctor> doctorlist= new ArrayList<Doctor>();
-			doctorlist = doctorDAO.getList();
-			
-			request.setAttribute("doctorlist", doctorlist);
+		// ---------- medicine list -----------
+		List<Medicine> medicinelist= new ArrayList<Medicine>();
+		medicinelist = medicineDAO.getList();
+		request.setAttribute("medicinelist", medicinelist);
+				
+		// ---------- doctor list -----------
+		List<Doctor> doctorlist= new ArrayList<Doctor>();
+		doctorlist = doctorDAO.getList();
+		
+		request.setAttribute("doctorlist", doctorlist);
 			
 		}
 	

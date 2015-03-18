@@ -64,7 +64,39 @@ public class IpdServlet extends HttpServlet {
 			Opd opd = opdDAO.findByAdmissionId(ipd.getAdmissionId());
 			request.setAttribute("ipd", ipd);
 			request.setAttribute("opd", opd);
+			request.setAttribute("admissionDate", DateTimeUtil.DateToString(ipd.getAdmissionDate()));
 			request.getRequestDispatcher("/pages/ipdEdit.jsp").forward(request, response);
+		}else if("delete".equalsIgnoreCase(action)){
+			String msg = "";
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			
+			IpdDAO ipdDAO  = new IpdDAO();
+			Ipd ipd = ipdDAO.findById(id);
+			
+			boolean flag = true;
+			if(!ipd.getDischargeTickets().isEmpty()){
+				msg = "Cannot delete IPD, Discharge Ticket information is present. <br>";
+				flag = false;
+			}
+			
+			if(!ipd.getFinalBills().isEmpty()){
+				msg = "Cannot delete IPD, Final Bill information is present. <br>";
+				flag = false;
+			}
+			
+			if(flag){
+				ipdDAO.delete(ipd);
+				msg = "IPD deleted successfully";
+				// deletion of patient goes here
+			}
+			request.setAttribute("msg", msg);
+			
+			List<Ipd> ipdlist =  ipdDAO.getList();
+			request.setAttribute("ipdlist", ipdlist);
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
+				
 		}else{
 			List<Ipd> ipdlist =  ipdDAO.getList();
 			request.setAttribute("ipdlist", ipdlist);
@@ -133,6 +165,15 @@ public class IpdServlet extends HttpServlet {
 
 				IpdDAO ipdDAO = new IpdDAO();
 				ipdDAO.add(ipd);// saving ipd object to database with DAO
+				
+				OpdDAO opdDAO = new OpdDAO();
+				Opd opd = opdDAO.findByAdmissionId(ipd.getAdmissionId());
+				
+				request.setAttribute("msg", "IPD added successfully");
+				request.setAttribute("opd", opd);
+				request.setAttribute("ipd", ipd);
+				request.getRequestDispatcher("/pages/ipdPrint.jsp").forward(request, response);
+				return;
 				
 			}else{
 				msg = "Please load data for admission in IPD";

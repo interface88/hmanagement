@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2015 at 08:44 AM
+-- Generation Time: Mar 18, 2015 at 09:51 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -158,14 +158,15 @@ CREATE TABLE IF NOT EXISTS `final_bill` (
   `OTHER_DETAILS` varchar(100) DEFAULT NULL,
   `REMARK` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `final_bill`
 --
 
 INSERT INTO `final_bill` (`ID`, `STAFF_NAME`, `ENTRY_DATE`, `ADMISSION_ID`, `PATIENT_ID`, `IPD_ID`, `ADMISSION_TYPE_ID`, `DOCTOR_ID`, `BILL_NO`, `BILL_DATE`, `GROSS_TOTAL`, `DISCOUNT`, `TAX`, `NET_AMOUNT`, `BALANCE_RECEIVE_AMOUNT`, `FINAL_RECEIVE_AMOUNT`, `PAYMENT_MODE`, `CHEQUE_NUMBER`, `CHEQUE_DATE`, `DISCHARGE_DATE`, `BANK`, `OTHER_DETAILS`, `REMARK`) VALUES
-(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, 1, 1, 2, 'RAF4455', '2015-03-17', 790.00, 10.00, 5.00, 785.00, 100.00, 685.00, 'Cash', '', NULL, '2015-03-06', '', '', '');
+(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, 1, 1, 2, 'RAF4455', '2015-03-17', 790.00, 10.00, 5.00, 785.00, 100.00, 685.00, 'Cash', '', NULL, '2015-03-06', '', '', ''),
+(2, 'hemant', '2015-03-19', 'HMS/ADD_ID/2', 2, 1, 1, 2, 'RTy788899', '2015-03-04', 1040.00, NULL, NULL, 1035.00, 500.00, 1035.00, 'Cash', '', NULL, '2015-03-12', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,15 @@ CREATE TABLE IF NOT EXISTS `ipd` (
   `ADVANCE_PAYMENT` double DEFAULT NULL,
   `REMARK` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `ipd`
+--
+
+INSERT INTO `ipd` (`ID`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `ADMISSION_ID`, `ADMISSION_DATE`, `ENTRY_DATE`, `ADMISSION_TIME`, `ADMISSION_TYPE_ID`, `WARD`, `BED_NO`, `ADMISSION_DIAGNOSIS`, `ADMISSION_DETAIL`, `ADMISSION_TREATMENT`, `ALLERGY_DETAIL`, `SPECIAL_NOTE`, `ADVANCE_PAYMENT`, `REMARK`) VALUES
+(1, 2, 2, 'hemant', 'HMS/ADD_ID/2', '2015-02-19', '2015-03-18', '5:00 AM', 1, 'General', 55, 'Admission Diagnosis1', 'Admission Details1', 'Suggested Treatment1', 'Allergy Details1', 'Special Notes1', NULL, 'Remarks'),
+(2, 1, 2, 'hemant', 'HMS/ADD_ID/1', '2015-03-19', '2015-03-18', '6:00 AM', 1, 'General', 45, 'dfdsfsd', 'sdfds', 'sdf', 'sdfdsf', 'sdffsd', NULL, 'dsfsdf');
 
 -- --------------------------------------------------------
 
@@ -284,14 +293,17 @@ CREATE TABLE IF NOT EXISTS `nursing` (
   `SUGAR` varchar(10) DEFAULT NULL,
   `EXAMING_TIME` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `nursing`
 --
 
 INSERT INTO `nursing` (`ID`, `ADMISSION_ID`, `PATIENT_ID`, `DOCTOR_ID`, `NURSING_DATE`, `STAFF_NAME`, `NO_OF_VISIT`, `PULSE`, `TEMPERATURE`, `PRESSURE`, `REMARK`, `SUGAR`, `EXAMING_TIME`) VALUES
-(1, 'HMS/ADD_ID/3', 4, 3, '2015-03-17', 'hemant', 4, '55', '8', '44', '', '54', '7:00 AM');
+(1, 'HMS/ADD_ID/3', 4, 3, '2015-03-17', 'hemant', 4, '55', '8', '44', '', '54', '7:00 AM'),
+(2, 'HMS/ADD_ID/2', 2, 2, '2015-03-18', 'hemant', 2, '9988', '33', '899', 'FDSDF', '54', '7:00 AM'),
+(3, 'HMS/ADD_ID/1', 1, 2, '2015-03-18', 'hemant', 5, '55', '33', '44', '', '54', ''),
+(4, 'HMS/ADD_ID/1', 1, 2, '2015-03-18', 'hemant', 4, '55', '33', '898', '', '54', '7:00 AM');
 
 -- --------------------------------------------------------
 
@@ -305,7 +317,17 @@ CREATE TABLE IF NOT EXISTS `nursing_transaction` (
   `TREATMENT` varchar(50) NOT NULL,
   `TREATMENT_COST` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `nursing_transaction`
+--
+
+INSERT INTO `nursing_transaction` (`ID`, `NURSING_ID`, `TREATMENT`, `TREATMENT_COST`) VALUES
+(1, 2, 'MEDICINE', 250),
+(2, 2, 'TEST', 790),
+(3, 4, 'MEDICINE', 250),
+(4, 4, 'TEST', 340);
 
 -- --------------------------------------------------------
 
@@ -323,7 +345,7 @@ CREATE TABLE IF NOT EXISTS `opd` (
   `CASE_TYPE` varchar(50) NOT NULL,
   `CONSULATION_FEE` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `opd`
@@ -369,15 +391,15 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `COUNTRY` varchar(50) DEFAULT NULL,
   `REGISTRATION_NO` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `patient`
 --
 
 INSERT INTO `patient` (`ID`, `REGISTRATION_DATE`, `TITLE`, `FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `GENDER`, `DAY`, `MONTH`, `YEAR`, `CONTACT_INFO`, `REFERRED_BY`, `BLOOD_GROUP`, `WEIGHT`, `TELEPHONE`, `MOBILE`, `EMAIL`, `ADDRESS`, `ADDRESS_1`, `ADDRESS_2`, `ADDRESS_3`, `AREA`, `DISTRICT`, `CITY`, `STATE`, `ZIP`, `COUNTRY`, `REGISTRATION_NO`) VALUES
-(1, '2015-03-02', 'Mr.', 'rajesh', '', 'kakawat', 'Male', 7, 4, 27, '', '2', 'B', '60', '', '', '', 'Address', 'Add1', 'Add2', 'Add3', 'Kharsan', 'Vallabhnagar', 'udaipur', 'Rajasthan', '313602', 'India', 'HMS/PAT/1'),
-(2, '2015-03-02', 'Dr.', 'Candice', '', 'Taylor', 'Female', 5, 8, 24, '', '3', 'A', '60', '', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/2');
+(1, '2015-03-02', 'Mr.', 'Rajesh', '', 'Kakawat', 'Male', 0, 4, 28, '34545435', '2', 'B', '65', '234324', '9667636133', '', 'Address', 'Add1', 'Add2', 'Add3', '', 'Vallabhnagar', 'udaipur', 'Rajasthan', '313602', 'India', 'HMS/PAT/1'),
+(2, '2015-03-02', 'Dr.', 'Candice', '', 'Taylor', 'Female', 4, 9, 24, '67678', '3', 'A', '60', '5566767', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/2');
 
 -- --------------------------------------------------------
 
@@ -400,14 +422,15 @@ CREATE TABLE IF NOT EXISTS `payment_collection` (
   `OTHER_DETAILS` varchar(100) DEFAULT NULL,
   `REMARK` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `payment_collection`
 --
 
 INSERT INTO `payment_collection` (`ID`, `STAFF_NAME`, `ENTRY_DATE`, `ADMISSION_ID`, `PATIENT_ID`, `PAYMENT_DATE`, `RECEIVE_AMOUNT`, `PAYMENT_MODE`, `CHEQUE_NUMBER`, `CHEQUE_DATE`, `BANK`, `OTHER_DETAILS`, `REMARK`) VALUES
-(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, '2015-03-10', 500.00, 'Cash', '', NULL, '', '', '');
+(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, '2015-03-10', 500.00, 'Cash', '', NULL, '', '', ''),
+(2, 'hemant', '2015-03-18', 'HMS/ADD_ID/2', 2, '2015-03-04', 100.00, 'Cash', '', NULL, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -422,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `services` (
   `DEPARTMENT_ID` int(11) NOT NULL,
   `SERVICES_CHARGES` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `services`
@@ -452,14 +475,15 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `PASSWORD` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `USER_ID` (`USER_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`ID`, `CODE`, `NAME`, `ADDRESS1`, `ADDRESS2`, `DEPARTMENT_ID`, `DUTY_HRS`, `QUALIFICATION`, `LOGIN_TYPE_ID`, `USER_ID`, `PASSWORD`) VALUES
-(1, '1', 'Hemant', 'udaipur', NULL, 1, '08AM. to 04PM', 'BCA,MCA,Phd', 1, 'hemant', '1234');
+(1, '1', 'Hemant', 'udaipur', NULL, 1, '08AM. to 04PM', 'BCA,MCA,Phd', 1, 'hemant', '1234'),
+(2, 'RAJ', 'Rajesh', 'Kharsan', '', 1, '8', 'BA', 1, 'rajesh', '1234');
 
 -- --------------------------------------------------------
 

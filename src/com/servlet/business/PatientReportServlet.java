@@ -11,27 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.app.entity.DischargeTicket;
 import com.app.entity.DischargeTicketDAO;
+import com.app.entity.FinalBill;
+import com.app.entity.FinalBillDAO;
 import com.app.entity.PaymentCollection;
 import com.app.entity.PaymentCollectionDAO;
-import com.app.master.AdmissionType;
-import com.app.master.AdmissionTypeDAO;
-import com.app.master.Department;
-import com.app.master.DepartmentDAO;
-import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
 import com.app.master.IpdDAO;
-import com.app.master.MedicineDAO;
-import com.app.master.ModuleDAO;
 import com.app.master.Nursing;
+import com.app.master.NursingDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
 import com.app.master.PatientDAO;
-import com.app.master.Service;
-import com.app.master.ServiceDAO;
-import com.app.master.StaffDAO;
-import com.app.master.TestDAO;
-import com.app.master.WardDAO;
 
 /**
  * Servlet implementation class admissionType_master
@@ -53,7 +44,6 @@ public class PatientReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String reportName = request.getParameter("report");
-		String admissionNo = request.getParameter("admissionNo");
 		
 		if("opd".equalsIgnoreCase(reportName)){
 			OpdDAO opdDAO = new OpdDAO();
@@ -85,6 +75,25 @@ public class PatientReportServlet extends HttpServlet {
 			DischargeTicket dischargeTicket = dischargeTicketDAO.findById(id);
 			request.setAttribute("dischargeTicket", dischargeTicket);
 			request.getRequestDispatcher("/pages/dischargeTicketPrint.jsp").forward(request, response);
+		}
+		else if("paymentCollection".equalsIgnoreCase(reportName)){
+			PaymentCollectionDAO paymentCollectionDAO = new PaymentCollectionDAO();
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			PaymentCollection paymentCollection = paymentCollectionDAO.findById(id);
+			request.setAttribute("paymentCollection", paymentCollection);
+			request.getRequestDispatcher("/pages/paymentCollectionPrint.jsp").forward(request, response);
+		}else if("finalBill".equalsIgnoreCase(reportName)){
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			FinalBillDAO finalBillDAO = new FinalBillDAO();
+			FinalBill printFinalBill = finalBillDAO.findById(id);
+			NursingDAO nursingDAO = new NursingDAO();
+			List<Nursing> nursingList = nursingDAO.findListByAdmissionId(printFinalBill.getAdmissionId());
+			
+			request.setAttribute("nursingList", nursingList);
+			request.setAttribute("finalBill", printFinalBill);
+			request.getRequestDispatcher("/pages/finalBillPrint.jsp").forward(request, response);
 		}else if("admissionReport".equalsIgnoreCase(reportName)){
 			request.getRequestDispatcher("/pages/admissionReport.jsp").forward(request, response);
 		}
@@ -107,6 +116,7 @@ public class PatientReportServlet extends HttpServlet {
 			List<Ipd> ipdlist = new  ArrayList<Ipd>(patient.getIpds());
 			List<Opd> opdlist = new  ArrayList<Opd>(patient.getOpds());
 			List<Nursing> nursinglist = new  ArrayList<Nursing>(patient.getNursings());
+			List<FinalBill> finalBilllist = new  ArrayList<FinalBill>(patient.getFinalBills());
 			List<DischargeTicket> dischargeTicketlist = new  ArrayList<DischargeTicket>(patient.getDischargeTickets());
 			
 			request.setAttribute("paymentCollectionlist", paymentCollectionlist);
@@ -114,6 +124,7 @@ public class PatientReportServlet extends HttpServlet {
 			request.setAttribute("opdlist", opdlist);
 			request.setAttribute("dischargeTicketlist", dischargeTicketlist);
 			request.setAttribute("nursinglist", nursinglist);
+			request.setAttribute("finalBilllist", finalBilllist);
 		}else{
 			msg = "Patient with reg no : " + registrationNo + " doesn't exist";
 		}

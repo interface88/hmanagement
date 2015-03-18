@@ -68,7 +68,7 @@
 				</tr>
 				<tr>
 					<td style="width: 69px"><input name="admissionId" type="text" readonly  value="${ipd.admissionId}"/></td>
-					<td><input name="admissionDate" required id="admissionDate" value="${ipd.admissionDate}" type="text"/></td>
+					<td><input name="admissionDate" required id="admissionDate" value="${admissionDate}" type="text"/></td>
 					<td style="width: 180px"><input name="admissionTime" id="admissionTime" value="${ipd.admissionTime}" type="text" /></td>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>

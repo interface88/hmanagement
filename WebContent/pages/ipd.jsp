@@ -11,9 +11,9 @@
 		<thead>
 			<tr>
 				<th>Admission No</th>
+				<th>Patient</th>
 				<th>Admission Date</th>
 				<th>Admission Time</th>
-				<th>Patient</th>
 				<th>Doctor</th>
 				<th>Admission Type</th>
 				<th></th>

@@ -4,6 +4,11 @@
 	<form name="finalBillLoadForm" method="post" action="finalBill">
 		<table style="width: 82%" cellpadding="3px">
 			<tr>
+				<td align="center" colspan="2">
+					<strong>Final Bill</strong>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2"><h4 style="color:red;">${msg}</h4></td>
 			</tr>
 			<tr>
@@ -21,12 +26,7 @@
 		<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
 		<input type="hidden" name="doctorId" value="${ipd.doctor.id}" />
 		<input type="hidden" name="admissionTypeId" value="${ipd.admissionType.id}" />
-		<table style="width: 90%" class="tdright" cellpadding="3px">
-			<tr>
-				<td align="center" colspan="6">
-					<strong>Final Bill</strong>
-				</td>
-			</tr>
+		<table style="width: 90%" class="tdright smtxt" cellpadding="3px">
 			<tr>
 				<td colspan="6">
 					<hr class="auto-style1" style="width: 100%" />

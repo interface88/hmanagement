@@ -1,7 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@page import="com.app.framework.Auth"%>
-<%@page import="common.commonmethods"%>
-<%@page import="common.constants"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title>HMS-HOME</title>
@@ -53,8 +51,18 @@
 					<td align="center">
 						<ul id="mbmcpebul_table" class="mbmcpebul_menulist css_menu" style="width: 100%;background-image:url('theme/menu_files/menuback.png'); height: 40px;">
 							<li class="topitem spaced_li first_button"><div class="buttonbg gradient_button gradient40" style="width: 67px;"><a href="home.jsp" >Home</a></div></li>
+						  	
+						<%
+					
+						String role=Auth.getRole(request).toString();
+					//dashbord function for admin and nursing admin and nusing staff
+					if(role.equalsIgnoreCase("Administrator"))
+					{
+					%>
+									  	
 						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><div class="arrow"><a class="button_2">Master</a></div></div>
 								<ul>
+								  
 								  	<li><a href="department" title="">Department</a></li>
 								  	<li><a href="doctor" title="">Doctor</a></li>
 								  	<li><a href="staff" title="">Staff</a></li>
@@ -64,9 +72,15 @@
 								  	<li><a href="medicine" title="">Medicine</a></li>
 								  	<li><a href="admissiontype" title="">Admission Type</a></li>
 								  	<li><a href="module" title="">Modules</a></li>
-								  	<li><a href="login" title="">Login</a></li>
 							  	</ul>
 						  	</li>
+					<% } 
+					
+
+					//dashbord function for admin and nursing 1- admin and  nusing staff
+					if(role.equalsIgnoreCase("Administrator")||role.equalsIgnoreCase("Nursing"))
+					{
+					%>
 						  	<li class="topitem spaced_li">
 						  		<div class="buttonbg gradient_button gradient40" style="width: 121px;">
 						  			<div class="arrow">
@@ -76,9 +90,18 @@
 								<ul>
 							  		<li><a href="opd" title="">OPD Registration</a></li>
 							  		<li><a href="ipd" title="">IPD Registration</a></li>
-							  		<li><a href="patient" title="">Patient</a></li>
+							  		<li><a href="patient" title="">Patient List</a></li>
 							  	</ul>
 							</li>
+							<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
+						
+					<% } 
+		
+				
+					//dashbord function for admin and nursing admin and  Cashier
+					if(role.equalsIgnoreCase("Administrator")||role.equalsIgnoreCase("Cashier"))
+					{
+					%>
 						  	<li class="topitem spaced_li">
 						  		<div class="buttonbg gradient_button gradient40" style="width: 101px;">
 						  			<div class="arrow">
@@ -89,10 +112,26 @@
 						  			<li><a href="paymentCollection" title="">Payment Collection</a></li>
 						  		</ul>
 						  	</li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 78px;"><a href="nursing" >Nursing</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a href="finalBill">Final Bill</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="dischargeTicket" >Discharge Ticket</a></div></li>
-						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="logout" >Logout</a></div></li>
+					<% } 
+					
+					//dashbord function for admin and nursing 1- admin and  nusing staff
+					if(role.equalsIgnoreCase("Administrator")||role.equalsIgnoreCase("Nursing"))
+					{
+					%>
+						  	
+						   <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 135px;"><a href="dischargeTicket" >Discharge Ticket</a></div></li>
+					<% }
+					
+					//dashbord function for admin and nursing admin and  Cashier
+					if(role.equalsIgnoreCase("Administrator")||role.equalsIgnoreCase("Cashier"))
+					{
+					%>
+						   <li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40"><a href="finalBill">Final Bill</a></div></li>
+					<% }   	
+						  
+						  	
+					if(role.equalsIgnoreCase("Administrator")||role.equalsIgnoreCase("Nursing"))
+					{ %>
 						  	<li class="topitem spaced_li">
 						  		<div class="buttonbg gradient_button gradient40" style="width: 121px;">
 						  			<div class="arrow">
@@ -109,11 +148,15 @@
 									<li><a href="report?report=test">Test</a></li>
 									<li><a href="report?report=ward">Ward</a></li>
 									<li><a href="report?report=module">Module</a></li>
+							
 									<li><a href="report?report=patient">Patient</a></li>
-									
+								
 							  	</ul>
 						  	</li>
-						 	<li class="topitem last_button"><div class="buttonbg gradient_button gradient40" style="width: *;"> <a style="font-color:#aa5555;" > <%= Auth.getLoggedStaffName(request) %>  &nbsp;!</a></div></li>
+						  	
+						<% } %>
+						  	<li class="topitem spaced_li"><div class="buttonbg gradient_button gradient40" style="width: 74px;"><a href="logout" >Logout</a></div></li>
+						 	<li class="topitem last_button"><div class="buttonbg gradient_button gradient40" style="width: *;"> <a style="font-color:#aa5555;" > Hi..<%= Auth.getLoggedStaffName(request) %>  &nbsp;!</a></div></li>
 						</ul>
 					</td>
 				</tr>
@@ -127,7 +170,7 @@
 									<table class="boxLeft">
 										<tr>
 											<td>
-												<marquee direction="up" scrollamount="3"><blink style="color: #aa0000">Bulletin Board:-</blink> ________________ ________________________ ________________________ ________________________ </marquee>
+												<marquee direction="up" scrollamount="3"><blink style="color: #aa0000">Bulletin Board:- </blink> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>Welcome to Xyz Hospital Management System. </marquee>
 		
 											</td>
 										</tr>

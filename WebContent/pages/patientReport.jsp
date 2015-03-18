@@ -48,7 +48,7 @@
 						<td>${opd.entryDate}</td>
 						<td>${opd.caseType}</td>
 						<td>${opd.consulationFee}</td>
-						<th><a href="patientReport?report=opd&id=${opd.id}">view detail</a></th>
+						<th><a href="patientReport?report=opd&id=${opd.id}">View Report</a></th>
 						<th><a href="patientReport?report=prescription&id=${opd.id}">Print prescription</a></th>
 					</tr>
 				</c:forEach>
@@ -76,7 +76,7 @@
 						<td>${ipd.admissionDate}</td>
 						<td>${ipd.entryDate}</td>
 						<td>${ipd.admissionTime}</td>
-						<th><a href="patientReport?report=ipd&id=${ipd.id}">view detail</a></th>
+						<th><a href="patientReport?report=ipd&id=${ipd.id}">View Report</a></th>
 					</tr>
 				</c:forEach>
 			</tbody>			
@@ -123,7 +123,53 @@
 						<td>${dischargeTicket.entryDate}</td>
 						<td>${dischargeTicket.doctor}</td>
 						<td>${dischargeTicket.treatmentNote}</td>
-						<th><a href="patientReport?report=dischargeTicket&id=${dischargeTicket.id}">view detail</a></th>
+						<th><a href="patientReport?report=dischargeTicket&id=${dischargeTicket.id}">View Report</a></th>
+					</tr>
+				</c:forEach>
+			</tbody>			
+		</table>
+		<h3 class="clearfix"> Payment Collection</h3>
+		<table  class="pure-table">
+			<thead>
+				<tr>
+					<th>Admission No</th>
+					<th>Payment Date</th>
+					<th>Payment Mode</th>
+					<th>Received Ammount</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>			
+				<c:forEach items="${paymentCollectionlist}" var="paymentCollection">
+					<tr>
+						<td>${paymentCollection.admissionId}</td>
+						<td>${paymentCollection.paymentDate}</td>
+						<td>${paymentCollection.paymentMode}</td>
+						<td>${paymentCollection.receiveAmount}</td>
+						<th><a href="patientReport?report=paymentCollection&id=${paymentCollection.id}">View Report</a></th>
+					</tr>
+				</c:forEach>
+			</tbody>			
+		</table>
+		<h3 class="clearfix"> Final Bill</h3>
+		<table  class="pure-table">
+			<thead>
+				<tr>
+					<th>Admission No</th>
+					<th>Bill No</th>
+					<th>Bill Date</th>
+					<th>Net Amount</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>			
+				<c:forEach items="${finalBilllist}" var="finalBill">
+					<tr>
+						<td>${finalBill.admissionId}</td>
+						<td>${finalBill.billNo}</td>
+						<td>${finalBill.billDate}</td>
+						<td>${finalBill.netAmount}</td>
+						<th><a href="patientReport?report=finalBill&id=${finalBill.id}">View Report</a></th>
 					</tr>
 				</c:forEach>
 			</tbody>			

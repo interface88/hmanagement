@@ -12,6 +12,7 @@ import com.app.entity.PaymentCollection;
 import com.app.entity.PaymentCollectionDAO;
 import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
+import com.app.framework.MyObject;
 
 /**
  * Servlet implementation class doctor_master
@@ -58,9 +59,9 @@ public class PaymentCollectionServlet extends HttpServlet {
 			String staffName = request.getParameter("staffName").trim();
 			String entryDate = request.getParameter("entryDate").trim();
 			String admissionId = request.getParameter("admissionId").trim();
-			Integer patientId = Integer.parseInt(request.getParameter("patientId").trim());
+			Integer patientId = MyObject.stringToInt(request.getParameter("patientId").trim());
 			String paymentDate =  request.getParameter("paymentDate").trim();
-			Double receiveAmount = Double.parseDouble(request.getParameter("receiveAmount").trim());
+			Double receiveAmount = MyObject.stringToDouble(request.getParameter("receiveAmount").trim());
 			String paymentMode = request.getParameter("paymentMode").trim();
 			String chequeNumber = request.getParameter("chequeNumber").trim();
 			String chequeDate = request.getParameter("chequeDate").trim();
@@ -91,10 +92,17 @@ public class PaymentCollectionServlet extends HttpServlet {
 		}else if("load".equalsIgnoreCase(btnclick)){
 			
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
-			
 			PaymentCollection paymentCollection = new PaymentCollection();
-			paymentCollection.setPatient(ipd.getPatient());
-			paymentCollection.setAdmissionId(ipd.getAdmissionId());
+			
+			if(ipd != null){
+				paymentCollection.setPatient(ipd.getPatient());
+				paymentCollection.setAdmissionId(ipd.getAdmissionId());
+				
+			}else{
+				msg = "Invalid Admission No";
+			}
+			request.setAttribute("msg", msg);
+			
 			paymentCollection.setStaffName(Auth.getLoggedStaffName(request));
 			
 			request.setAttribute("paymentCollection", paymentCollection);

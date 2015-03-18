@@ -6,6 +6,7 @@
 		// function to add medicine row
 		function addMedicine(){
 			var medicineRow = $('#medicineTable .medicineRow:first').clone();
+			medicineRow.find('input').val('');
 
 			// replacing add button with delete button.
 			medicineRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
@@ -14,11 +15,11 @@
 		}
 		// function to add test row
 		function addTest(){
-			var medicineRow = $('#testTable .testRow:first').clone();
-
+			var testRow = $('#testTable .testRow:first').clone();
+			testRow.find('input').val('');
 			// replacing add button with delete button.
-			medicineRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
-			$('#testTable').append(medicineRow);
+			testRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
+			$('#testTable').append(testRow);
 			
 		}
 		$(function(){
@@ -100,7 +101,7 @@
 		<input type="hidden" id="medicineTotalPrice" name="medicineTotalPrice" value="0" />
 		<input type="hidden" id="testTotalPrice" name="testTotalPrice" value="0" />
 		
-		<table style="width: 93%" cellpadding="3px;">
+		<table style="width: 93%" cellpadding="3px;" class="smtxt">
 			<tr>
 				<td colspan="6"><hr class="auto-style1" style="width: 100%" /></td>
 			</tr>
