@@ -22,12 +22,18 @@ public class OpdDAO{
 		transaction.commit();
 	}
 	
+	public void update(Opd opd){
+		Transaction transaction = session.beginTransaction();
+		session.merge(opd);
+		transaction.commit();
+	}
+	
 	public void delete(Opd opd){
 		session.delete(opd);
 	}
 	
-	public Opd findByCode(Integer code) {
-		Opd opd = (Opd) session.get(Opd.class, code);
+	public Opd findById(Integer id) {
+		Opd opd = (Opd) session.get(Opd.class, id);
 		return opd;
 	}
 	

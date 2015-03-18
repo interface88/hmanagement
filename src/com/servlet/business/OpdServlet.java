@@ -20,13 +20,15 @@ import com.app.master.Patient;
 import com.app.master.PatientDAO;
 
 /**
- * Servlet implementation class doctor_master
+ * Servlet implementation class Opd servlet
  */
 public class OpdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	PatientDAO patientDAO = new PatientDAO();
 	DoctorDAO doctorDAO = new DoctorDAO();
+	OpdDAO opdDAO = new OpdDAO();
+	
 	/**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,8 +40,25 @@ public class OpdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		loadList(request);
-		request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
+		String action = request.getParameter("action");
+		
+		if("addNew".equalsIgnoreCase(action)){
+			loadList(request);
+			request.getRequestDispatcher("/pages/opdAdd.jsp").forward(request, response);
+		}else if("edit".equalsIgnoreCase(action)){
+			loadList(request);
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Opd opd = opdDAO.findById(id);
+			request.setAttribute("opd", opd);
+			request.getRequestDispatcher("/pages/opdEdit.jsp").forward(request, response);
+		}else{
+			List<Opd> opdlist =  opdDAO.getList();
+			request.setAttribute("opdlist", opdlist);
+			request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
+		}
+		
+		//loadList(request);
 	}
 
 	/**
@@ -67,11 +86,13 @@ public class OpdServlet extends HttpServlet {
 				String middleName =  request.getParameter("middleName").trim();
 				String lastName =  request.getParameter("lastName").trim();
 				String gender =  request.getParameter("gender").trim();
-				Date birthDate =  DateTimeUtil.ParseString(request.getParameter("birthDate").trim());
 				String contactInfo =  request.getParameter("contactInfo").trim();
 				String referredBy =  request.getParameter("referredBy").trim();
 				String bloodGroup =  request.getParameter("bloodGroup").trim();
 				Integer weight =  MyObject.stringToInt(request.getParameter("weight"));
+				Integer day =  MyObject.stringToInt(request.getParameter("day"));
+				Integer month =  MyObject.stringToInt(request.getParameter("month"));
+				Integer year =  MyObject.stringToInt(request.getParameter("year"));
 				String telephone =  request.getParameter("telephone").trim();
 				String mobile =  request.getParameter("mobile").trim();
 				String email =  request.getParameter("email").trim();
@@ -93,7 +114,9 @@ public class OpdServlet extends HttpServlet {
 				patient.setMiddleName(middleName);
 				patient.setLastName(lastName);
 				patient.setGender(gender);
-				patient.setBirthDate(birthDate);
+				patient.setDay(day);
+				patient.setMonth(month);
+				patient.setYear(year);
 				patient.setContactInfo(contactInfo);
 				patient.setReferredBy(referredBy);
 				patient.setBloodGroup(bloodGroup);
@@ -115,7 +138,11 @@ public class OpdServlet extends HttpServlet {
 				patientDAO.add(patient);
 			}else{
 				// got id  so load from database.
-				patientDAO.findByRegistrationNo(registrationNo);
+				patient=patientDAO.findByRegistrationNo(registrationNo);
+				Integer doctor_id = MyObject.stringToInt(patient.getReferredBy()); 
+				Doctor doc = doctorDAO.findById(doctor_id);
+				patient.setReferredBy(doc.getName());
+				
 			}
 			
 			
@@ -144,9 +171,13 @@ public class OpdServlet extends HttpServlet {
 			opd.setAdmissionId(admissionNo);
 			opd.setConsulationFee(consulationFee);
 			
-			
 			OpdDAO opdDAO = new OpdDAO();
 			opdDAO.add(opd);
+			
+			request.setAttribute("msg", "Opd added successfully");
+			request.setAttribute("patient", patient);
+			request.setAttribute("opd", opd);
+			request.getRequestDispatcher("/pages/opdprint.jsp").forward(request, response);
 			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			String registrationNo = request.getParameter("patientRegistrationNo").trim();
@@ -156,10 +187,32 @@ public class OpdServlet extends HttpServlet {
 			}else{
 				request.setAttribute("patient", patient);
 			}
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/pages/opdAdd.jsp").forward(request, response);
+			return;
+			
+		}else if("update".equalsIgnoreCase(btnclick)){
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			
+			Doctor doctor = new Doctor();
+			Integer doctor_id = MyObject.stringToInt(request.getParameter("doctorId")); 
+			doctor = doctorDAO.findById(doctor_id);
+			Double consulationFee = MyObject.stringToDouble(request.getParameter("consulationFee"));
+			
+			OpdDAO opdDAO = new OpdDAO();
+			Opd opd = opdDAO.findById(id);
+			
+			opd.setConsulationFee(consulationFee);
+			opd.setDoctor(doctor);
+			
+			opdDAO.update(opd);
+			
+			request.setAttribute("msg", "Opd updated successfull");
 		}
 		
-		loadList(request);
-		request.setAttribute("msg", msg);
+		List<Opd> opdlist =  opdDAO.getList();
+		request.setAttribute("opdlist", opdlist);
 		request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
 		
 	}

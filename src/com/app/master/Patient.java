@@ -18,7 +18,9 @@ public class Patient {
 	private String middleName;
 	private String lastName;
 	private String gender;
-	private Date birthDate;
+	private Integer day;
+	private Integer month;
+	private Integer year;
 	private String contactInfo;
 	private String referredBy;
 	private String bloodGroup;
@@ -279,14 +281,30 @@ public class Patient {
 		this.registrationNo = registrationNo;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public Integer getDay() {
+		return day;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setDay(Integer day) {
+		this.day = day;
 	}
-	
+
+	public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
 		public Set<FinalBill> getFinalBills() {
 		return finalBills;
 	}
