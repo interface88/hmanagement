@@ -4,7 +4,7 @@
 	<table style="width: 100%; margin:10px 0;">
 		<tr>
 			<td><h4 style="color:red;">${msg}</h4></td>
-			<td style="text-align: right;"><a href="ipd?action=addNew">Add new ipd</a></td>
+			<td style="text-align: right;"><a href="ipd?action=addNew">Add New IPD</a></td>
 		</tr>
 	</table>
 	<table class="pure-table">
@@ -17,6 +17,7 @@
 				<th>Doctor</th>
 				<th>Admission Type</th>
 				<th></th>
+				<th></th>
 			</tr>	
 		</thead>
 		<tbody>
@@ -28,7 +29,7 @@
 						<td>${ipd.admissionDate}</td>
 						<td>${ipd.admissionTime}</td>
 						<td>${ipd.doctor.name}</td>
-						<td>${ipd.admissionType}</td>
+						<td>${ipd.admissionType.name}</td>
 						<th><a href="ipd?action=edit&id=${ipd.id}">Edit</a></th>
 						<th><a href="">Delete</a></th>
 					</tr>
