@@ -55,62 +55,7 @@ public class PatientReportServlet extends HttpServlet {
 		String reportName = request.getParameter("report");
 		String admissionNo = request.getParameter("admissionNo");
 		
-		if("admissionType".equalsIgnoreCase(reportName)){
-			
-			AdmissionTypeDAO admissionTypeDAO = new AdmissionTypeDAO();
-			request.setAttribute("admissionTypelist", admissionTypeDAO.getList());
-			request.getRequestDispatcher("/pages/master/admissionTypeReport.jsp").forward(request, response);
-			
-		}else if("department".equalsIgnoreCase(reportName)){
-			
-			DepartmentDAO departmentDAO = new DepartmentDAO();
-			request.setAttribute("departmentlist", departmentDAO.getList());
-			request.getRequestDispatcher("/pages/master/departmentReport.jsp").forward(request, response);
-			
-		}else if("doctor".equalsIgnoreCase(reportName)){
-			
-			DoctorDAO doctorDAO = new DoctorDAO();
-			request.setAttribute("doctorlist", doctorDAO.getList());
-			request.getRequestDispatcher("/pages/master/doctorReport.jsp").forward(request, response);
-			
-		}else if("medicine".equalsIgnoreCase(reportName)){
-			
-
-			MedicineDAO medicineDAO = new MedicineDAO();
-			request.setAttribute("medicinelist", medicineDAO.getList());
-			request.getRequestDispatcher("/pages/master/medicineReport.jsp").forward(request, response);
-			
-		}else if("service".equalsIgnoreCase(reportName)){
-			
-			ServiceDAO serviceDAO = new ServiceDAO();
-			request.setAttribute("servicelist",  serviceDAO.getList());
-			request.getRequestDispatcher("/pages/master/serviceReport.jsp").forward(request, response);
-			
-		}else if("staff".equalsIgnoreCase(reportName)){
-			
-			StaffDAO staffDAO = new StaffDAO();
-			request.setAttribute("stafflist", staffDAO.getList());
-			request.getRequestDispatcher("/pages/master/staffReport.jsp").forward(request, response);
-			
-		}else if("test".equalsIgnoreCase(reportName)){
-			
-			TestDAO testDAO = new TestDAO();
-			request.setAttribute("testlist", testDAO.getList());
-			request.getRequestDispatcher("/pages/master/testReport.jsp").forward(request, response);
-			
-		}else if("ward".equalsIgnoreCase(reportName)){
-			// ---------- database fetch -----------
-			WardDAO wardDAO = new WardDAO();
-			
-			request.setAttribute("wardlist", wardDAO.getList());
-			request.getRequestDispatcher("/pages/master/wardReport.jsp").forward(request, response);
-		}else if("module".equalsIgnoreCase(reportName)){
-			// ---------- database fetch -----------
-			ModuleDAO moduleDAO = new ModuleDAO();
-			
-			request.setAttribute("modulelist", moduleDAO.getList());
-			request.getRequestDispatcher("/pages/master/moduleReport.jsp").forward(request, response);
-		}else if("opd".equalsIgnoreCase(reportName)){
+		if("opd".equalsIgnoreCase(reportName)){
 			OpdDAO opdDAO = new OpdDAO();
 			Opd opd = opdDAO.findById(Integer.parseInt(request.getParameter("id")));
 			request.setAttribute("opd", opd);
