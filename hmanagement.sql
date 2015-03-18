@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 17, 2015 at 12:55 PM
+-- Generation Time: Mar 18, 2015 at 08:44 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -195,13 +195,6 @@ CREATE TABLE IF NOT EXISTS `ipd` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
---
--- Dumping data for table `ipd`
---
-
-INSERT INTO `ipd` (`ID`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `ADMISSION_ID`, `ADMISSION_DATE`, `ENTRY_DATE`, `ADMISSION_TIME`, `ADMISSION_TYPE_ID`, `WARD`, `BED_NO`, `ADMISSION_DIAGNOSIS`, `ADMISSION_DETAIL`, `ADMISSION_TREATMENT`, `ALLERGY_DETAIL`, `SPECIAL_NOTE`, `ADVANCE_PAYMENT`, `REMARK`) VALUES
-(1, 4, 2, 'hemant', 'HMS/ADD_ID/3', '2015-03-11', '2015-03-16', '7:00 AM', 1, '2', NULL, '', '', '', '', '', NULL, '');
-
 -- --------------------------------------------------------
 
 --
@@ -291,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `nursing` (
   `SUGAR` varchar(10) DEFAULT NULL,
   `EXAMING_TIME` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `nursing`
@@ -314,14 +307,6 @@ CREATE TABLE IF NOT EXISTS `nursing_transaction` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `nursing_transaction`
---
-
-INSERT INTO `nursing_transaction` (`ID`, `NURSING_ID`, `TREATMENT`, `TREATMENT_COST`) VALUES
-(1, 1, 'MEDICINE', 250),
-(2, 1, 'TEST', 540);
-
 -- --------------------------------------------------------
 
 --
@@ -338,17 +323,15 @@ CREATE TABLE IF NOT EXISTS `opd` (
   `CASE_TYPE` varchar(50) NOT NULL,
   `CONSULATION_FEE` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `opd`
 --
 
 INSERT INTO `opd` (`ID`, `ADMISSION_ID`, `ENTRY_DATE`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `CASE_TYPE`, `CONSULATION_FEE`) VALUES
-(1, 'HMS/ADD_ID/1', '2015-03-15', 2, 2, 'hemant', 'New', 0),
-(2, 'HMS/ADD_ID/2', '2015-03-16', 3, 2, 'hemant', 'NEW', 0),
-(3, 'HMS/ADD_ID/3', '2015-03-16', 4, 2, 'hemant', 'NEW', 0),
-(4, 'HMS/ADD_ID/4', '2015-03-16', 5, 2, 'hemant', 'NEW', 300);
+(1, 'HMS/ADD_ID/1', '2015-03-18', 1, 2, 'hemant', 'NEW', 320),
+(2, 'HMS/ADD_ID/2', '2015-03-18', 2, 2, 'hemant', 'NEW', 600);
 
 -- --------------------------------------------------------
 
@@ -364,7 +347,9 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `MIDDLE_NAME` varchar(50) DEFAULT NULL,
   `LAST_NAME` varchar(50) NOT NULL,
   `GENDER` varchar(50) NOT NULL,
-  `BIRTH_DATE` date DEFAULT NULL,
+  `DAY` int(3) DEFAULT NULL,
+  `MONTH` int(2) DEFAULT NULL,
+  `YEAR` int(3) DEFAULT NULL,
   `CONTACT_INFO` varchar(50) DEFAULT NULL,
   `REFERRED_BY` varchar(50) NOT NULL,
   `BLOOD_GROUP` varchar(50) DEFAULT NULL,
@@ -390,11 +375,9 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`ID`, `REGISTRATION_DATE`, `TITLE`, `FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `GENDER`, `BIRTH_DATE`, `CONTACT_INFO`, `REFERRED_BY`, `BLOOD_GROUP`, `WEIGHT`, `TELEPHONE`, `MOBILE`, `EMAIL`, `ADDRESS`, `ADDRESS_1`, `ADDRESS_2`, `ADDRESS_3`, `AREA`, `DISTRICT`, `CITY`, `STATE`, `ZIP`, `COUNTRY`, `REGISTRATION_NO`) VALUES
-(2, '2015-03-28', 'Mr.', 'rajesh', '', 'kakawat', '-1', '1989-08-18', '', '-select-', 'A', '55', '', '', '', 'sdfsdf', '', '', '', '', '', '', '', '313602', 'India', 'HMS/PAT/2'),
-(3, '2015-03-11', 'Mr.', 'Dominic', '', 'Torreto', 'Male', '1976-08-12', '', '2', 'A', '55', '', '', '', '{patient.textarea}', '', '', '', '', '', 'New york', '', '313602', 'USA', 'HMS/PAT/3'),
-(4, '2015-03-11', 'Dr.', 'Candice', '', 'Taylor', 'Female', '2015-03-09', '', '2', '', NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/4'),
-(5, '2015-03-03', 'Dr.', 'Sonia', '', 'Sharma', 'Female', '1989-04-12', '', '2', '', NULL, '', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/5');
+INSERT INTO `patient` (`ID`, `REGISTRATION_DATE`, `TITLE`, `FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `GENDER`, `DAY`, `MONTH`, `YEAR`, `CONTACT_INFO`, `REFERRED_BY`, `BLOOD_GROUP`, `WEIGHT`, `TELEPHONE`, `MOBILE`, `EMAIL`, `ADDRESS`, `ADDRESS_1`, `ADDRESS_2`, `ADDRESS_3`, `AREA`, `DISTRICT`, `CITY`, `STATE`, `ZIP`, `COUNTRY`, `REGISTRATION_NO`) VALUES
+(1, '2015-03-02', 'Mr.', 'rajesh', '', 'kakawat', 'Male', 7, 4, 27, '', '2', 'B', '60', '', '', '', 'Address', 'Add1', 'Add2', 'Add3', 'Kharsan', 'Vallabhnagar', 'udaipur', 'Rajasthan', '313602', 'India', 'HMS/PAT/1'),
+(2, '2015-03-02', 'Dr.', 'Candice', '', 'Taylor', 'Female', 5, 8, 24, '', '3', 'A', '60', '', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/2');
 
 -- --------------------------------------------------------
 
