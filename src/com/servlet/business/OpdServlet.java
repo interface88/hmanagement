@@ -52,6 +52,12 @@ public class OpdServlet extends HttpServlet {
 			Opd opd = opdDAO.findById(id);
 			request.setAttribute("opd", opd);
 			request.getRequestDispatcher("/pages/opdEdit.jsp").forward(request, response);
+		}else if("prescription".equalsIgnoreCase(action)){
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Opd opd = opdDAO.findById(id);
+			request.setAttribute("opd", opd);
+			request.getRequestDispatcher("/pages/opdPrescription.jsp").forward(request, response);
 		}else{
 			List<Opd> opdlist =  opdDAO.getList();
 			request.setAttribute("opdlist", opdlist);

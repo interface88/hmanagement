@@ -108,8 +108,20 @@ public class PatientReportServlet extends HttpServlet {
 			
 			request.setAttribute("modulelist", moduleDAO.getList());
 			request.getRequestDispatcher("/pages/master/moduleReport.jsp").forward(request, response);
-		}
-		else if("admissionReport".equalsIgnoreCase(reportName)){
+		}else if("opd".equalsIgnoreCase(reportName)){
+			OpdDAO opdDAO = new OpdDAO();
+			Opd opd = opdDAO.findById(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("opd", opd);
+			request.setAttribute("patient", opd.getPatient());
+			request.getRequestDispatcher("/pages/opdprint.jsp").forward(request, response);
+		}else if("prescription".equalsIgnoreCase(reportName)){
+			OpdDAO opdDAO = new OpdDAO();
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Opd opd = opdDAO.findById(id);
+			request.setAttribute("opd", opd);
+			request.getRequestDispatcher("/pages/opdPrescription.jsp").forward(request, response);
+		}else if("admissionReport".equalsIgnoreCase(reportName)){
 			request.getRequestDispatcher("/pages/admissionReport.jsp").forward(request, response);
 		}
 		

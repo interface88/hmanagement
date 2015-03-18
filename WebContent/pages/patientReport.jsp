@@ -36,6 +36,8 @@
 					<th>CaseType</th>
 					<th>Consultation Fee</th>
 					<th></th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>			
@@ -46,7 +48,8 @@
 						<td>${opd.entryDate}</td>
 						<td>${opd.caseType}</td>
 						<td>${opd.consulationFee}</td>
-						<th><a href="">view detail</a></th>
+						<th><a href="patientReport?report=opd&id=${opd.id}">view detail</a></th>
+						<th><a href="patientReport?report=prescription&id=${opd.id}">Print prescription</a></th>
 					</tr>
 				</c:forEach>
 			</tbody>			

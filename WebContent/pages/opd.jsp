@@ -17,6 +17,7 @@
 				<th>Consulation Fee</th>
 				<th></th>
 				<th></th>
+				<th></th>
 			</tr>	
 		</thead>
 		<tbody>
@@ -30,6 +31,7 @@
 						<td>${opd.consulationFee}</td>
 						<th><a href="opd?action=edit&id=${opd.id}">Edit</a></th>
 						<th><a href="">Delete</a></th>
+						<th><a href="opd?action=prescription&id=${opd.id}">Print prescription</a></th>
 					</tr>
 				</c:forEach>
 			</c:if>
