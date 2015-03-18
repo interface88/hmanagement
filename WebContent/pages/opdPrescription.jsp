@@ -1,37 +1,35 @@
 <%@page import="com.app.framework.DateTimeUtil"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/headerReport.jsp" />
+	<h3 class="clearfix">Patient Prescription</h3>
 	<table style="width: 93%" class="tdright">
 		<tr>
-			<td align="center" colspan="6">Patient Prescription</td>
-		</tr>
-		<tr>
-			<td>OPD Number</td>
-			<td>${opd.admissionId}</td>
+			<td><b>OPD Number</b></td>
+			<td><code>${opd.admissionId}</code></td>
 			<td>&nbsp;</td>
 			<td>&nbsp;</td>
-			<td>Date</td>
-			<td>${opd.entryDate}</td>
+			<td><b>Date</b></td>
+			<td><code>${opd.entryDate}</code></td>
 		</tr>
 		<tr>
-			<td>Patient name</td>
-			<td>${opd.patient.firstName} ${opd.patient.lastName}</td>
-			<td>Sex</td>
-			<td>${opd.patient.gender}</td>
-			<td>Patient ID</td>
-			<td>${opd.patient.id}</td>
+			<td><b>Patient name</b></td>
+			<td><code>${opd.patient.firstName}</code> <code>${opd.patient.lastName}</code></td>
+			<td><b>Sex</b></td>
+			<td><code>${opd.patient.gender}</code></td>
+			<td><b>Patient Reg no</b></td>
+			<td><code>${opd.patient.registrationNo}</code></td>
 		</tr>
 		<tr>
-			<td>Patient age</td>
-			<td>${opd.patient.day} Day, ${opd.patient.month} Month, ${opd.patient.year} Year </td>
-			<td>Weight</td>
-			<td>${opd.patient.weight}</td>
-			<td>Contact no.</td>
-			<td>${opd.patient.mobile}</td>
+			<td><b>Patient age</b></td>
+			<td><code>${opd.patient.day}</code> Day, <code>${opd.patient.month}</code> Month, <code>${opd.patient.year}</code> Year </td>
+			<td><b>Weight</b></td>
+			<td><code>${opd.patient.weight}</code></td>
+			<td><b>Contact no.</b></td>
+			<td><code>${opd.patient.mobile}</code></td>
 		</tr>
 		<tr>
-			<td>Doctor name</td>
-			<td colspan="6">${opd.doctor.name} </td>
+			<td><b>Doctor name</b></td>
+			<td colspan="6"><code>${opd.doctor.name}</code> </td>
 		</tr>
 		<tr>
 			<td colspan="6"><div style="width: 100%; height: 400px; border: 1px solid;"><span style="padding: 20px;">Rx</span></div></td>

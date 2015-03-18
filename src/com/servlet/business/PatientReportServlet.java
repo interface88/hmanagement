@@ -119,6 +119,11 @@ public class PatientReportServlet extends HttpServlet {
 		}else if("ipd".equalsIgnoreCase(reportName)){
 			IpdDAO ipdDAO = new IpdDAO();
 			Ipd ipd = ipdDAO.findById(Integer.parseInt(request.getParameter("id")));
+			
+			OpdDAO opdDAO = new OpdDAO();
+			Opd opd = opdDAO.findByAdmissionId(ipd.getAdmissionId());
+			
+			request.setAttribute("opd", opd);
 			request.setAttribute("ipd", ipd);
 			request.getRequestDispatcher("/pages/ipdPrint.jsp").forward(request, response);
 		}else if("prescription".equalsIgnoreCase(reportName)){
