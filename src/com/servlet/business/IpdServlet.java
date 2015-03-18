@@ -26,7 +26,7 @@ import com.app.master.Ward;
 import com.app.master.WardDAO;
 
 /**
- * Servlet implementation class doctor_master
+ * Servlet implementation class Ipd servlet
  */
 public class IpdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class IpdServlet extends HttpServlet {
 	DoctorDAO doctorDAO = new DoctorDAO();
 	WardDAO wardDAO = new WardDAO();
 	AdmissionTypeDAO admissionTypeDAO = new AdmissionTypeDAO();
-	
+	IpdDAO ipdDAO = new IpdDAO();
   /**
     * @see HttpServlet#HttpServlet()
     */
@@ -47,8 +47,24 @@ public class IpdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		loadData(request);
-		request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
+		
+		String action = request.getParameter("action");
+		
+		if("addNew".equalsIgnoreCase(action)){
+			loadData(request);
+			request.getRequestDispatcher("/pages/ipdAdd.jsp").forward(request, response);
+		}else if("edit".equalsIgnoreCase(action)){
+			loadData(request);
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			Ipd ipd = ipdDAO.findById(id);
+			request.setAttribute("ipd", ipd);
+			request.getRequestDispatcher("/pages/ipdEdit.jsp").forward(request, response);
+		}else{
+			List<Ipd> ipdlist =  ipdDAO.getList();
+			request.setAttribute("ipdlist", ipdlist);
+			request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
+		}
 		
 	}
 
@@ -130,6 +146,27 @@ public class IpdServlet extends HttpServlet {
 				msg = "Invalid Admission No";
 			}
 			loadData(request);
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/pages/opdAdd.jsp").forward(request, response);
+			return;
+		}else if("update".equalsIgnoreCase(btnclick)){
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			
+			Doctor doctor = new Doctor();
+			Integer doctor_id = MyObject.stringToInt(request.getParameter("doctorId")); 
+			doctor = doctorDAO.findById(doctor_id);
+			Double consulationFee = MyObject.stringToDouble(request.getParameter("consulationFee"));
+			
+			OpdDAO opdDAO = new OpdDAO();
+			Opd opd = opdDAO.findById(id);
+			
+			opd.setConsulationFee(consulationFee);
+			opd.setDoctor(doctor);
+			
+			opdDAO.update(opd);
+			
+			request.setAttribute("msg", "Opd updated successfull");
 		}
 		
 		request.setAttribute("msg",msg);

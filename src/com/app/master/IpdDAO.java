@@ -27,8 +27,8 @@ public class IpdDAO{
 		session.delete(ipd);
 	}
 	
-	public Ipd findById(Integer code) {
-		Ipd ipd = (Ipd) session.get(Ipd.class, code);
+	public Ipd findById(Integer id) {
+		Ipd ipd = (Ipd) session.get(Ipd.class, id);
 		return ipd;
 	}
 	
