@@ -147,7 +147,7 @@ public class IpdServlet extends HttpServlet {
 			}
 			loadData(request);
 			request.setAttribute("msg", msg);
-			request.getRequestDispatcher("/pages/opdAdd.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/ipdAdd.jsp").forward(request, response);
 			return;
 		}else if("update".equalsIgnoreCase(btnclick)){
 			
