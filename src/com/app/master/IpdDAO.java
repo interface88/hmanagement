@@ -23,6 +23,12 @@ public class IpdDAO{
 		transaction.commit();
 	}
 	
+	public void update(Ipd ipd){
+		Transaction transaction = session.beginTransaction();
+		session.merge(ipd);
+		transaction.commit();
+	}
+	
 	public void delete(Ipd ipd){
 		session.delete(ipd);
 	}

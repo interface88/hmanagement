@@ -87,7 +87,7 @@
 						<select name="admissionTypeId" required="required">
 							<option value="">-select-</option>
 							<c:forEach items="${admissionTypelist}" var="admissionType">
-								<option value="${admissionType.id}">${admissionType.name}</option>
+							<option value="${admissionType.id}" ${admissionType.id == ipd.admissionType.id ? 'selected' : ''}>${admissionType.name}</option>
 							</c:forEach>
 						</select>
 					</td>
@@ -95,7 +95,7 @@
 						<select name="doctorId" required="required">
 							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
-								<option value="${doctor.id}">${doctor.name}</option>
+								<option value="${doctor.id}" ${doctor.id == ipd.doctor.id ? 'selected' : ''}>${doctor.name}</option>
 							</c:forEach>
 						</select>
 					</td>
@@ -117,7 +117,7 @@
 						<select name="ward" required="required">
 							<option value="">-select-</option>
 							<c:forEach items="${wardlist}" var="ward">
-								<option value="${ward.id}">${ward.name}</option>
+								<option value="${ward.name}" ${ward.name == ipd.ward ? 'selected' : ''}>${ward.name}</option>
 							</c:forEach>
 						</select>
 					</td>
@@ -188,7 +188,7 @@
 				</tr>
 				<tr>
 					<td colspan="6" align="right">
-					<input name="action" type="submit" value="add" />&nbsp;&nbsp;&nbsp;
+					<input name="action" type="submit" value="update" />&nbsp;&nbsp;&nbsp;
 					<input name="Reset1" type="reset" value="reset" /></td>
 				</tr>
 				<tr>

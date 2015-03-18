@@ -243,6 +243,18 @@
 		<servlet-name>patientReport</servlet-name>
 		<url-pattern>/patientReport</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 	**************** admissionReport ****************** -->
+	<servlet>
+		<description></description>
+		<display-name>patient</display-name>
+		<servlet-name>patient</servlet-name>
+		<servlet-class>com.servlet.business.PatientServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>patient</servlet-name>
+		<url-pattern>/patient</url-pattern>
+	</servlet-mapping>
 
 	<filter>
 		<filter-name>authenticationFilter</filter-name>

@@ -1,11 +1,12 @@
 <%@page import="com.app.framework.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/header.jsp" />
-		<form name="opd" method="post" action="opd">
+		<form name="patient" method="post" action="patient">
+			<input type="hidden" name="id" value="${patient.id}">
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
 					<td align="center" colspan="4">
-						<strong>OPD Registration</strong>
+						<strong>Patient Edit Form</strong>
 					</td>
 				</tr>
 				<tr>
@@ -15,40 +16,12 @@
 					<td colspan="4"><h4 style="color:red;">${msg}</h4></td>
 				</tr>
 				<tr>
-					<td>Staff Name</td>
-					<td><input name="staffName" type="text" readonly value="<%= Auth.getLoggedStaffName(request) %>"/></td>
-					<td>Entry Date Time</td>
-					<td>
-						<input name="entryDate" readonly="readonly" type="text" value="<%= DateTimeUtil.getCurrentDate() %>" />
-					</td>
-				</tr>
-				<tr>
-					<td>Case Type</td>
-					<td>
-					
-						<c:if test="${not empty patient.id}">
-							<select name="caseType" id="caseType" onchange="showPatientRegNo()">						
-								<option value="OLD">Old</option>
-							</select>
-						</c:if>
-						<c:if test="${empty patient.id}">
-							<select name="caseType" id="caseType" onchange="showPatientRegNo()">
-								<option value="NEW">New</option>
-								<option value="OLD">Old</option>
-							</select>
-						</c:if>
-					</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
 					<td>Patient Reg No</td>
 					<td>
-						<input id="registrationNo" name="registrationNo" type="text" value="${patient.registrationNo}" />
-						<input type="button" value="Load Patient" onclick="loadPatient();" id="loadPatientBtn">
+						<input id="registrationNo" readonly="readonly" type="text" value="${patient.registrationNo}" />
 					</td>
 					<td>Registration Date</td>
-					<td><input name="registrationDate" required="required" id="registrationDate" type="text" value="${patient.registrationDate}" /></td>
+					<td><input readonly="readonly" id="registrationDate" type="text" value="${patient.registrationDate}" /></td>
 				</tr>
 				<tr>
 					<td colspan="4"><hr /></td>
@@ -200,63 +173,12 @@
 					<td colspan="4"><hr /></td>
 				</tr>
 				<tr>
-					<td><strong>IPD Details</strong></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>Doctor Name</td>
-					<td>
-						<select name="doctorId" required="required">
-							<option value="">-select-</option>
-							<c:forEach items="${doctorlist}" var="doctor">
-								<option value="${doctor.id}">${doctor.name}</option>
-							</c:forEach>
-						</select>
-					</td>
-					<td>Consultation Fee</td>
-					<td><input name="consulationFee" required="required" type="number" step="any" type="text" /></td>
-				</tr>
-				<tr>
-					<td colspan="100%"><hr /></td>
-				</tr>
-				<tr>
 					<td colspan="4" align="right">
-						<input name="action" type="submit" value="save" />&nbsp;&nbsp;&nbsp;
+						<input name="action" type="submit" value="update" />&nbsp;&nbsp;&nbsp;
 						<input name="reset" type="reset" value="reset" />
 					</td>
 				</tr>
 		
 			</table>
 		</form>
-		
-		<!-- 		hidden form to load patient data -->
-		<form name="loadPatientForm" action="opd" id="loadPatientForm" method="post">
-			<input name="action" value="load" type="hidden" />
-			<input name="patientRegistrationNo" id="patientRegistrationNo"  type="hidden" />
-		</form>
-		<script>
-			Calendar.setup({
-	            trigger    : "registrationDate",
-	            inputField : "registrationDate",
-	            dateFormat: "%d-%m-%Y"
-	        });
-
-			function showPatientRegNo(){
-				var caseTypeVal = document.getElementById('caseType').value;
-				if(caseTypeVal == "NEW"){
-					document.getElementById('registrationNo').setAttribute('readonly', 'readonly');
-					document.getElementById('loadPatientBtn').style.display = 'none';
-				}else{
-					document.getElementById('registrationNo').removeAttribute('readonly');
-					document.getElementById('loadPatientBtn').style.display = 'block';
-				}
-			}
-
-			function loadPatient(){
-				document.getElementById('patientRegistrationNo').value =  document.getElementById('registrationNo').value;
-				document.getElementById('loadPatientForm').submit();
-			}
-		</script>
 <jsp:include page="../theme/parts/footer.jsp" />

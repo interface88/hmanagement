@@ -22,6 +22,12 @@ public class PatientDAO{
 		transaction.commit();
 	}
 	
+	public void update(Patient patient){
+		Transaction transaction = session.beginTransaction();
+		session.merge(patient);
+		transaction.commit();
+	}
+	
 	public void delete(Patient patient){
 		session.delete(patient);
 	}

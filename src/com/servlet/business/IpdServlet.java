@@ -58,7 +58,12 @@ public class IpdServlet extends HttpServlet {
 			
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			Ipd ipd = ipdDAO.findById(id);
+			
+			//loading opd 
+			OpdDAO opdDAO = new OpdDAO();
+			Opd opd = opdDAO.findByAdmissionId(ipd.getAdmissionId());
 			request.setAttribute("ipd", ipd);
+			request.setAttribute("opd", opd);
 			request.getRequestDispatcher("/pages/ipdEdit.jsp").forward(request, response);
 		}else{
 			List<Ipd> ipdlist =  ipdDAO.getList();
@@ -153,21 +158,41 @@ public class IpdServlet extends HttpServlet {
 			
 			Integer id = Integer.parseInt(request.getParameter("id"));
 			
-			Doctor doctor = new Doctor();
-			Integer doctor_id = MyObject.stringToInt(request.getParameter("doctorId")); 
-			doctor = doctorDAO.findById(doctor_id);
-			Double consulationFee = MyObject.stringToDouble(request.getParameter("consulationFee"));
 			
-			OpdDAO opdDAO = new OpdDAO();
-			Opd opd = opdDAO.findById(id);
+			Integer admissionTypeId = MyObject.stringToInt(request.getParameter("admissionTypeId"));
+			AdmissionType admissionType = admissionTypeDAO.findById(admissionTypeId);
+			Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate"));
+			String admissionTime = request.getParameter("admissionTime").trim();
+			String ward = request.getParameter("ward").trim();
+			Integer bedNo = MyObject.stringToInt(request.getParameter("bedNo"));
+			String admissionDiagnosis = request.getParameter("admissionDiagnosis").trim();
+			String admissionDetail = request.getParameter("admissionDetail").trim();
+			String admissionTreatment = request.getParameter("admissionTreatment").trim();
+			String allergyDetail = request.getParameter("allergyDetail").trim();
+			String specialNote = request.getParameter("specialNote").trim();
+			Double advancePayment = MyObject.stringToDouble(request.getParameter("advancePayment"));
+			String remark = request.getParameter("remark").trim();
 			
-			opd.setConsulationFee(consulationFee);
-			opd.setDoctor(doctor);
+			Ipd ipd = ipdDAO.findById(id);
+			ipd.setAdmissionType(admissionType);
+			ipd.setAdmissionDate(admissionDate);
+			ipd.setAdmissionTime(admissionTime);
+			ipd.setWard(ward);
+			ipd.setBedNo(bedNo);
+			ipd.setAdmissionDiagnosis(admissionDiagnosis);
+			ipd.setAdmissionDetail(admissionDetail);
+			ipd.setAdmissionTreatment(admissionTreatment);
+			ipd.setAllergyDetail(allergyDetail);
+			ipd.setSpecialNote(specialNote);
+			ipd.setAdvancePayment(advancePayment);
+			ipd.setRemark(remark);
 			
-			opdDAO.update(opd);
-			
-			request.setAttribute("msg", "Opd updated successfull");
+			ipdDAO.update(ipd);
+			request.setAttribute("msg", "Ipd updated successfull");
 		}
+		
+		List<Ipd> ipdlist =  ipdDAO.getList();
+		request.setAttribute("ipdlist", ipdlist);
 		
 		request.setAttribute("msg",msg);
 		request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
