@@ -82,6 +82,11 @@ public class PaymentCollectionServlet extends HttpServlet {
 			
 			paymentCollectionDAO.add(paymentCollection);
 			
+			PaymentCollection paymentCollectionPrint = paymentCollectionDAO.findById(paymentCollection.getId());
+			
+			request.setAttribute("paymentCollection", paymentCollectionPrint);
+			request.getRequestDispatcher("/pages/paymentCollectionPrint.jsp").forward(request, response);
+			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));
@@ -92,10 +97,10 @@ public class PaymentCollectionServlet extends HttpServlet {
 			paymentCollection.setStaff("Default Staff name");
 			
 			request.setAttribute("paymentCollection", paymentCollection);
+			request.setAttribute("msg",msg);
+			request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
 		}
 		
-		request.setAttribute("msg",msg);
-		request.getRequestDispatcher("/pages/paymentCollection.jsp").forward(request, response);
 	}
 
 }
