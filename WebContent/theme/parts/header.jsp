@@ -76,6 +76,7 @@
 								<ul>
 							  		<li><a href="opd" title="">OPD Registration</a></li>
 							  		<li><a href="ipd" title="">IPD Registration</a></li>
+							  		<li><a href="patient" title="">Patient</a></li>
 							  	</ul>
 							</li>
 						  	<li class="topitem spaced_li">

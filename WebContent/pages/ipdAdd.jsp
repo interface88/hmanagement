@@ -132,7 +132,7 @@
 						<select name="ward" required="required">
 							<option value="">-select-</option>
 							<c:forEach items="${wardlist}" var="ward">
-								<option value="${ward.id}">${ward.name}</option>
+								<option value="${ward.name}">${ward.name}</option>
 							</c:forEach>
 						</select>
 					</td>
