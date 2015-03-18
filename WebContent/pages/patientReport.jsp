@@ -76,7 +76,7 @@
 						<td>${ipd.admissionDate}</td>
 						<td>${ipd.entryDate}</td>
 						<td>${ipd.admissionTime}</td>
-						<th><a href="">view detail</a></th>
+						<th><a href="patientReport?report=ipd&id=${ipd.id}">view detail</a></th>
 					</tr>
 				</c:forEach>
 			</tbody>			
@@ -123,7 +123,7 @@
 						<td>${dischargeTicket.entryDate}</td>
 						<td>${dischargeTicket.doctor}</td>
 						<td>${dischargeTicket.treatmentNote}</td>
-						<th><a href="">view detail</a></th>
+						<th><a href="patientReport?report=dischargeTicket&id=${dischargeTicket.id}">view detail</a></th>
 					</tr>
 				</c:forEach>
 			</tbody>			

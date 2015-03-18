@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.app.entity.DischargeTicket;
+import com.app.entity.DischargeTicketDAO;
 import com.app.entity.PaymentCollection;
 import com.app.entity.PaymentCollectionDAO;
 import com.app.master.AdmissionType;
@@ -18,6 +19,7 @@ import com.app.master.Department;
 import com.app.master.DepartmentDAO;
 import com.app.master.DoctorDAO;
 import com.app.master.Ipd;
+import com.app.master.IpdDAO;
 import com.app.master.MedicineDAO;
 import com.app.master.ModuleDAO;
 import com.app.master.Nursing;
@@ -114,6 +116,11 @@ public class PatientReportServlet extends HttpServlet {
 			request.setAttribute("opd", opd);
 			request.setAttribute("patient", opd.getPatient());
 			request.getRequestDispatcher("/pages/opdprint.jsp").forward(request, response);
+		}else if("ipd".equalsIgnoreCase(reportName)){
+			IpdDAO ipdDAO = new IpdDAO();
+			Ipd ipd = ipdDAO.findById(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("ipd", ipd);
+			request.getRequestDispatcher("/pages/ipdPrint.jsp").forward(request, response);
 		}else if("prescription".equalsIgnoreCase(reportName)){
 			OpdDAO opdDAO = new OpdDAO();
 			
@@ -121,6 +128,13 @@ public class PatientReportServlet extends HttpServlet {
 			Opd opd = opdDAO.findById(id);
 			request.setAttribute("opd", opd);
 			request.getRequestDispatcher("/pages/opdPrescription.jsp").forward(request, response);
+		}else if("dischargeTicket".equalsIgnoreCase(reportName)){
+			DischargeTicketDAO dischargeTicketDAO = new DischargeTicketDAO();
+			
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			DischargeTicket dischargeTicket = dischargeTicketDAO.findById(id);
+			request.setAttribute("dischargeTicket", dischargeTicket);
+			request.getRequestDispatcher("/pages/dischargeTicketPrint.jsp").forward(request, response);
 		}else if("admissionReport".equalsIgnoreCase(reportName)){
 			request.getRequestDispatcher("/pages/admissionReport.jsp").forward(request, response);
 		}

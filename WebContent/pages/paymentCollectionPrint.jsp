@@ -1,15 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-		
+		<jsp:include page="../theme/parts/headerReport.jsp" />
 			<table cellpadding="5px" style="width: 100%">
 				<tr>
 					<td align="center" colspan="6"><strong>Payment Collection</strong></td>
 				</tr>
 				<tr>
-					<td colspan="6"><hr /></td>
-				</tr>
-				<tr>
 					<td style="">Staff Name</td>
-					<td style="">${paymentCollection.staff}</td>
+					<td style="">${paymentCollection.staffName}</td>
 					<td style="">&nbsp;</td>
 					<td colspan="2" style="">Entry Date Time</td>
 					<td style="">${paymentCollection.entryDate}</td>
@@ -26,9 +23,6 @@
 				<tr>
 					<td style="">Patient Name</td>
 					<td colspan="6" style="">${paymentCollection.patient.firstName} ${paymentCollection.patient.lastName}</td>
-				</tr>
-				<tr>
-					<td colspan="6"><hr /></td>
 				</tr>
 				<tr>
 					<td style="">Receive Amount</td>
@@ -59,9 +53,6 @@
 				</tr>
 				
 				<tr>
-					<td colspan="100%"><hr /></td>
-				</tr>
-				<tr>
 					<td style="">&nbsp;</td>
 					<td style="">&nbsp;</td>
 					<td style="">&nbsp;</td>
@@ -69,3 +60,4 @@
 					<td style="">&nbsp;</td>
 				</tr>
 			</table>
+<jsp:include page="../theme/parts/footerReport.jsp" />
