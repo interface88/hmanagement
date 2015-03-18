@@ -4,7 +4,7 @@
 	<table style="width: 100%; margin:10px 0;">
 		<tr>
 			<td><h4 style="color:red;">${msg}</h4></td>
-			<td style="text-align: right;"><a href="opd?action=addNew">Add new opd</a></td>
+			<td style="text-align: right;"><a href="opd?action=addNew">Add New OPD</a></td>
 		</tr>
 	</table>
 	<table class="pure-table">

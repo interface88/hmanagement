@@ -55,7 +55,7 @@
 			</tr>
 			<tr>
 				<td><input readonly type="text" value="${opd.patient.firstName}" /></td>
-				<td><input readonly type="text" value="${opd.patient.birthDate}" /></td>
+				<td><input readonly="readonly"type="text" value="${opd.patient.year} year / ${opd.patient.month} month / ${opd.patient.day} day" /></td>
 				<td>&nbsp</td>
 			</tr>
 			<tr>
