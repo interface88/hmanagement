@@ -13,9 +13,9 @@
 			<tbody>			
 				<c:forEach items="${testlist}" var="test">
 					<tr>
-						<td>${test.code}</td>
-						<td>${test.name}</td>
-						<td>${test.rate}</td>
+						<td><code>${test.code}</code></td>
+						<td><code>${test.name}</code></td>
+						<td><code>${test.rate}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

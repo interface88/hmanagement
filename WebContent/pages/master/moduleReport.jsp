@@ -12,8 +12,8 @@
 			<tbody>			
 				<c:forEach items="${modulelist}" var="module">
 					<tr>
-						<td>${module.code}</td>
-						<td>${module.name}</td>
+						<td><code>${module.code}</code></td>
+						<td><code>${module.name}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

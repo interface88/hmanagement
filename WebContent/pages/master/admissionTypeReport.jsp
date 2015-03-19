@@ -17,8 +17,8 @@
 							
 					<c:forEach items="${admissionTypelist}" var="admissionType">
 						<tr>
-							<td style="">${admissionType.code}</td>
-							<td style="">${admissionType.name}</td>
+							<td><code>${admissionType.code}</code></td>
+							<td><code>${admissionType.name}</code></td>
 						</tr>
 					</c:forEach>
 				</tbody>			

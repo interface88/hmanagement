@@ -1,183 +1,122 @@
+<jsp:include page="../theme/parts/headerReport.jsp" />
+	<h3 class="clearfix">OPD Report</h3>
+	<table style="width: 100%;">
+		<tr>
+			<td class="strong">Admission Id:</td>
+			<td><code>${opd.admissionId}</code></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="strong">Staff Name:</td>
+			<td><code>${opd.staffName}</code></td>
+			<td class="strong">Entry Date Time</td>
+			<td><code>${opd.entryDate}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">Case Type:</td>
+			<td><code>${opd.caseType}</code></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
 
+		<tr>
+			<td class="strong">Patient Reg No:</td>
+			<td><code>${patient.registrationNo}</code> </td>
+			<td class="strong">Registration Date:</td>
+			<td><code>${patient.registrationDate}</code></td>
+		</tr>
+		<tr style="border-top: 1px solid #333">
+			<td class="strong">Patient Name:</td>
+			<td><code>${patient.firstName}&nbsp;${patient.middleName}
+				&nbsp;${patient.lastName}</code></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr align="left">
+			<td class="strong">Gender</td>
+			<td class="strong">Age (Years/Month/Days)</td>
+			<td class="strong">Referred by</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td><code>${patient.gender}</code></td>
+			<td><code>${patient.year} year/ ${patient.month} month/ ${patient.day}</code> day</td>
+			<td><code>${patient.referredBy}</code></td>
+			<td></td>
+		</tr>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" type="text/css" href="theme/css/report.css" />
-<script type="text/javascript" src="theme/js/jquery-1.3.2.min.js" > </script>
-<script type="text/javascript">
+		<tr>
+			<td class="strong">Blood Group</td>
+			<td class="strong">Weight (Kgs.)</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
 
-    function PrintElem(elem)
-    {
-	
-        Popup($(elem).html());
-        
-    }
-    
-
-    function Popup(data) 
-    {
-        var mywindow = window.open('', 'my div', 'height=400,width=600');
-        mywindow.document.write('<html><head><title>my div</title>');
-        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-        mywindow.document.write('</head><body >');
-        mywindow.document.write(data);
-        mywindow.document.write('</body></html>');
-
-        mywindow.print();
-        mywindow.close();
-
-        return true;
-    }
-
-</script>
-
-
-<title>XYZ Hospital Management Report</title>
-<link rel="stylesheet" type="text/css" href="theme/css/report.css" />
-</head>
-<body>
-	<div id="mydiv">
-		<h1 class="clearfix">XYZ Hospital Management</h1>
-		<h3 class="clearfix">IPD Report</h3>
-			<table cellpadding="5px" style="width: 100%; height: 100%;">
-				<tr>
-					<td colspan="4"><hr /></td>
-				</tr>
-				<tr>
-					<td><strong>Admission Id:</strong></td>
-					<td><label>${opd.admissionId}</label></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td><strong>Staff Name:</strong></td>
-					<td><label>${opd.staffName}</label></td>
-					<td><strong>Entry Date Time</strong></td>
-					<td><label>${opd.entryDate}</label></td>
-				</tr>
-				<tr>
-					<td><strong>Case Type:</strong></td>
-					<td><label>${opd.caseType}</label></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-
-				<tr>
-					<td><strong>Patient Reg No:</strong></td>
-					<td><label>${patient.registrationNo} </label></td>
-					<td><strong>Registration Date:</strong></td>
-					<td>${patient.registrationDate}</td>
-				</tr>
-				<tr>
-					<td colspan="4"><hr /></td>
-				</tr>
-
-				<tr>
-
-					<td><strong>Patient Name:</strong></td>
-					<td>${patient.firstName}&nbsp;${patient.middleName}
-						&nbsp;${patient.lastName}</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr align="left">
-					<td><strong>Gender</strong></strong></td>
-					<td><strong>Age (Years/Month/Days)</strong></td>
-					<td><strong>Referred by</strong></td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td><label>${patient.gender}</label></td>
-					<td>${patient.year} year/${patient.month} month/${patient.day} day</td>
-					<td><label>${patient.referredBy}</label></td>
-					<td></td>
-				</tr>
-
-				<tr>
-					<td><strong>Blood Group</strong></td>
-					<td><strong>Weight (Kgs.)</strong></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-
-				<tr>
-					<td>${patient.bloodGroup}</td>
-					<td>${patient.weight}</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td colspan="4"><hr /></td>
-				</tr>
-				<tr>
-					<td><strong>Address</strong></td>
-					<td><label style="width: 250px">${patient.address}</label></td>
-					<td><strong>Contact Info</strong></td>
-					<td>${patient.contactInfo}</td>
-				</tr>
-				<tr>
-					<td><strong>Add1</strong></td>
-					<td><label style="width: 250px">${patient.address1}</label></td>
-					<td><strong>Tel.No (Home)</strong></td>
-					<td>${patient.telephone}</td>
-				</tr>
-				<tr>
-					<td><strong>Add2</strong></td>
-					<td><label style="width: 250px">${patient.address2}</label></td>
-					<td><strong>Mobile No.</strong></td>
-					<td>${patient.mobile}</td>
-				</tr>
-				<tr>
-					<td><strong>Add3</strong></td>
-					<td><label style="width: 250px">${patient.address3}</label></td>
-					<td><strong>Email</strong></td>
-					<td>${patient.email}</td>
-				</tr>
-				<tr>
-					<td><strong>Area</strong></td>
-					<td>${patient.area}</td>
-					<td><strong>City</strong></td>
-					<td>${patient.city}</td>
-				</tr>
-				<tr>
-					<td><strong>Distric</strong>t</td>
-					<td>${patient.district}</td>
-					<td><strong>Zip</strong></td>
-					<td>${patient.zip}</td>
-				</tr>
-				<tr>
-					<td><strong>State</strong></td>
-					<td>${patient.state}</td>
-					<td><strong>Country</strong></td>
-					<td>${patient.country}</td>
-				</tr>
-				<tr>
-					<td colspan="4"><hr /></td>
-				</tr>
-				<tr>
-					<td><strong>IPD Details</strong></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>Doctor Name</td>
-					<td><label>${opd.doctor.name}.</label></td>
-					<td>Consultation Fee</td>
-					<td>${opd.consulationFee}</td>
-				</tr>
-				<tr>
-					<td colspan="100%"><hr /></td>
-				</tr>
-				<tr>
-					<td colspan="4" style="text-align: right">
-				<input type="button" value="Print" onclick="PrintElem('#mydiv')" />&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="opd"><input type="button" value="Cancel" /></a></td>
-				</tr>
-			</table>
-		</div>
-</body>
-</html>
+		<tr>
+			<td><code>${patient.bloodGroup}</code></td>
+			<td><code>${patient.weight}</code></td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr style="border-top: 1px solid #333">
+			<td class="strong">Address</td>
+			<td><code>${patient.address}</code></td>
+			<td class="strong">Contact Info</td>
+			<td><code>${patient.contactInfo}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">Add1</td>
+			<td><code>${patient.address1}</code></td>
+			<td class="strong">Tel.No (Home)</td>
+			<td><code>${patient.telephone}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">Add2</td>
+			<td><code>${patient.address2}</code></td>
+			<td class="strong">Mobile No.</td>
+			<td><code>${patient.mobile}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">Add3</td>
+			<td><code>${patient.address3}</code></td>
+			<td>Email</td>
+			<td><code>${patient.email}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">Area</td>
+			<td><code>${patient.area}</code></td>
+			<td class="strong">City</td>
+			<td><code>${patient.city}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">District</td>
+			<td><code>${patient.district}</code></td>
+			<td class="strong">Zip</td>
+			<td><code>${patient.zip}</code></td>
+		</tr>
+		<tr>
+			<td class="strong">State</td>
+			<td><code>${patient.state}</code></td>
+			<td class="strong">Country</td>
+			<td><code>${patient.country}</code></td>
+		</tr>
+		<tr style="border-top: 1px solid #333">
+			<td class="strong">IPD Details</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td class="strong">Doctor Name</td>
+			<td><code>${opd.doctor.name}</code></td>
+			<td class="strong">Consultation Fee</td>
+			<td><code>${opd.consulationFee}</code></td>
+		</tr>
+		<tr>
+			<td colspan="4" style="text-align: right">
+				<a href="opd"><input type="button" value="Cancel" /></a>
+			</td>
+		</tr>
+	</table>
+<jsp:include page="../theme/parts/footerReport.jsp" />

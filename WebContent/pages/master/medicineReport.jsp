@@ -13,9 +13,9 @@
 			<tbody>			
 				<c:forEach items="${medicinelist}" var="medicine">
 					<tr>
-						<td>${medicine.code}</td>
-						<td>${medicine.name}</td>
-						<td>${medicine.rate}</td>
+						<td><code>${medicine.code}</code></td>
+						<td><code>${medicine.name}</code></td>
+						<td><code>${medicine.rate}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

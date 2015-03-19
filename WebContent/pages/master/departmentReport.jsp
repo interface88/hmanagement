@@ -12,8 +12,8 @@
 			<tbody>			
 				<c:forEach items="${departmentlist}" var="department">
 					<tr>
-						<td>${department.code}</td>
-						<td>${department.name}</td>
+						<td><code>${department.code}</code></td>
+						<td><code>${department.name}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

@@ -82,29 +82,6 @@
 			</tbody>			
 		</table>
 		<hr>
-		<h3 class="clearfix"> Nursing List</h3>
-		<table  class="pure-table">
-			<thead>
-				<tr>
-					<th>Admission No</th>
-					<th>Doctor name</th>
-					<th>No Of Visit</th>
-					<th>Nursing Date</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>			
-				<c:forEach items="${nursinglist}" var="nursing">
-					<tr>
-						<td>${nursing.admissionId}</td>
-						<td>${nursing.doctor}</td>
-						<td>${nursing.noOfVisit}</td>
-						<td>${nursing.nursingDate}</td>
-					</tr>
-				</c:forEach>
-			</tbody>			
-		</table>
-		<hr>
 		<h3 class="clearfix"> Discharge Ticket List</h3>
 		<table  class="pure-table">
 			<thead>
@@ -152,7 +129,7 @@
 			</tbody>			
 		</table>
 		<h3 class="clearfix"> Final Bill</h3>
-		<table  class="pure-table">
+		<table  class="pure-table" style="margin-bottom:30px;">
 			<thead>
 				<tr>
 					<th>Admission No</th>

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/headerReport.jsp" />
 		<h3 class="clearfix">Final Bill Report</h3>
-		<table style="width: 90%" class="tdright" cellpadding="3px">
+		<table class="tdright">
 			<tr>
 				<td align="center" colspan="6"><strong>Final
 						Bill</strong></td>

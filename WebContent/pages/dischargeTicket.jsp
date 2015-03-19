@@ -18,7 +18,7 @@
 			</tr>
 		</table>
 	</form>
-		<form name="dischargeTicketForm" method="post" action="dischargeTicket" onsubmit="readData();">
+		<form name="dischargeTicketForm" class="smtxt" method="post" action="dischargeTicket" onsubmit="readData();">
 			<input type="hidden" name="patientId" value="${ipd.patient.id}" />
 			<input type="hidden" name="admissionId" value="${ipd.admissionId}" />
 			<input type="hidden" name="ipdId" value="${ipd.id}" />
@@ -130,7 +130,7 @@
 								<td ><input type="text" name="sugar" style="width:100px"/></td>
 								<td ><input type="text" name="weight" style="width:100px"/></td>
 								<td ><input type="text" name="examingTime" style="width:100px"/></td>
-								<td ><input type="text" name="remark" style="width:200px"/></td>
+								<td ><input type="text" name="remark" /></td>
 							</tr>
 							<tr>
 								<td >&nbsp;</td>
@@ -210,7 +210,6 @@
 				</tr>
 				<tr>
 					<td colspan="4" style="text-align: right;">
-						<input type="button" value="TEST" onclick="readData();">
 						<input name="action" type="submit" value="submit" />&nbsp;&nbsp;&nbsp; 
 						<input name="Reset1" type="reset" value="reset" />
 					</td>

@@ -16,12 +16,12 @@
 			<tbody>			
 				<c:forEach items="${doctorlist}" var="doctor">
 					<tr>
-						<td>${doctor.code}</td>
-						<td>${doctor.name}</td>
-						<td>${doctor.dutyHours}</td>
-						<td>${doctor.qualification}</td>
-						<td>${doctor.consultationfee}</td>
-						<td>${doctor.weeklyoff}</td>
+						<td><code>${doctor.code}</code></td>
+						<td><code>${doctor.name}</code></td>
+						<td><code>${doctor.dutyHours}</code></td>
+						<td><code>${doctor.qualification}</code></td>
+						<td><code>${doctor.consultationfee}</code></td>
+						<td><code>${doctor.weeklyoff}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			

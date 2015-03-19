@@ -14,10 +14,10 @@
 			<tbody>			
 				<c:forEach items="${servicelist}" var="service">
 					<tr>
-						<td>${service.code}</td>
-						<td>${service.name}</td>
-						<td>${service.department.name}</td>
-						<td>${service.charges}</td>
+						<td><code>${service.code}</code></td>
+						<td><code>${service.name}</code></td>
+						<td><code>${service.department.name}</code></td>
+						<td><code>${service.charges}</code></td>
 					</tr>
 				</c:forEach>
 			</tbody>			
