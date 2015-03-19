@@ -33,7 +33,7 @@
 		<property name="chequeNumber" type="java.lang.String">
 			<column name="CHEQUE_NUMBER" not-null="false" />
 		</property>
-		<property name="chequeDate" type="java.util.Date">
+		<property name="chequeDate" type="java.sql.Date">
 			<column name="CHEQUE_DATE" not-null="false" />
 		</property>
 		<property name="bank" type="java.lang.String">
