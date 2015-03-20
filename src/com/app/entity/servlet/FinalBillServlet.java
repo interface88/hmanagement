@@ -1,7 +1,9 @@
 package com.app.entity.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,8 @@ import com.app.master.NursingDAO;
 import com.app.master.PatientDAO;
 import com.app.entity.FinalBill;
 import com.app.entity.FinalBillDAO;
+import com.app.entity.PaymentCollection;
+import com.app.entity.PaymentCollectionDAO;
 import com.app.framework.Auth;
 import com.app.framework.DateTimeUtil;
 import com.app.framework.MyObject;
@@ -145,8 +149,43 @@ public class FinalBillServlet extends HttpServlet {
 			msg = "Invalid Admission no.";
 		}
 		
+		// ---------- getting ward charges -----------
+		
+		int noOfDay = DateTimeUtil.getElapsedDay(ipd.getAdmissionDate(), DateTimeUtil.getCurrentDateObject());
+		Double totalWardCharges = noOfDay * ipd.getWardCharges();
+		
+		//================== GETTING UPTO DATE RECIEVED AMOUNT =======================
+		/*
+		 * TOTAL_WARD_CHARGES =  WARD_CHARGE (From IPD table) * NO_OF_DAY(FROM admission date to TODAY DATE)
+		 * TOTAL_PAYMENT_COLLECTION = SUM OF ALL PAYMENT COLLECTION BASED ON IPD ADMISSION ID
+		 * IPD_ADVANCE_PAYMENT = AVANCE PAYMENT FROM IPD TABLE
+		 * UPTO DATE RECIEPT AMOUNT =  TOTAL_PAYMENT_COLLECTION + TOTAL_PAYMENT_COLLECTION;
+		 * 
+		 */
+		Double upToDateReceipt = 0.0;
+		Double ipdAdvancePayment = 0.0 ;
+		
+		if(ipd.getAdvancePayment() != null){
+			ipdAdvancePayment = ipd.getAdvancePayment();
+		}
+		
+		//  --------- GETTING ALL THE AMOUNT RECEVED FROM PAYMENT COLLECTION OF SPECIFIED ADMISSION NO -------------
+		PaymentCollectionDAO paymentCollectionDAO = new PaymentCollectionDAO();
+		List<PaymentCollection> paymentCollections = paymentCollectionDAO.findByAdmissionId(ipd.getAdmissionId());
+		
+		Double totalPaymentCollectionAmount = 0.0;
+		for (PaymentCollection paymentCollection : paymentCollections) {
+			
+			totalPaymentCollectionAmount = totalPaymentCollectionAmount + paymentCollection.getReceiveAmount();
+		}
+		
+		upToDateReceipt = totalPaymentCollectionAmount + ipdAdvancePayment;
+		
+		
 		request.setAttribute("nursingList", nursingList);
 		request.setAttribute("finalBill", finalBill);
+		request.setAttribute("totalWardCharges", totalWardCharges);
+		request.setAttribute("upToDateReceipt", upToDateReceipt);
 		
 		request.setAttribute("msg",msg);
 		

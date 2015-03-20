@@ -95,6 +95,14 @@
 							
 							</c:forEach>
 						</c:forEach>
+							<tr>
+								<td style="width: 342px">WARD CHARGES</td>
+								<td style="width: 160px">${ipd.entryDate}</td>
+								<td style="width: 89px">&nbsp;</td>
+								<td style="width: 89px">&nbsp;</td>
+								<c:set var="totalGross" value="${totalGross + totalWardCharges}"></c:set>
+								<td style="width: 89px">${totalWardCharges}</td>
+							</tr>
 					</table>
 				</td>
 			</tr>
@@ -118,11 +126,11 @@
 			</tr>
 			<tr>
 				<td style="width: 128px">Balance Received</td>
-				<td><input style="text-align: right;" name="balanceReceiveAmount" type="number" step="any"  onblur="balanceAmount(this.value);"/></td>
+				<td><input style="text-align: right;" id="balanceReceiveAmount" name="balanceReceiveAmount" type="number" step="any" value="${totalGross - upToDateReceipt}" /></td>
 				<td>Upto Date Receipt Amount</td>
-				<td><input style="text-align: right;" id="finalReceiveAmount" name="finalReceiveAmount"type="text" readonly="readonly" value="${totalGross}" /></td>
+				<td><input style="text-align: right;" id="finalReceiveAmount" name="finalReceiveAmount"type="text" readonly="readonly" value="${upToDateReceipt}" /></td>
 				<td>Discount&nbsp; =</td>
-				<td><input style="text-align: right;" id="discount" name="discount" type="number" step="any"  onblur="applyDiscountAndTax(this.value,'discount');"/></td>
+				<td><input style="text-align: right;" id="discount" name="discount" type="number" step="any"  onblur="applyDiscountAndTax();"/></td>
 			</tr> 
 			<tr>
 				<td style="width: 128px">Cheque No</td>
@@ -130,7 +138,7 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>Tax&nbsp;&nbsp; =</td>
-				<td><input style="text-align: right;" id="tax" name="tax" type="number" step="any" onblur="applyDiscountAndTax(this.value,'tax');"/> </td>
+				<td><input style="text-align: right;" id="tax" name="tax" type="number" step="any" onblur="applyDiscountAndTax();"/> </td>
 			</tr>
 			<tr>
 				<td style="width: 128px">Cheque Date</td>
@@ -227,33 +235,43 @@
 	});
 
 	
-	var Total = parseFloat(document.getElementById('netAmount').value);
 
-	function applyDiscountAndTax(value,type){
+	function applyDiscountAndTax(){
+		var grossTotal = parseFloat(document.getElementById('grossTotal').value);
 
-		if(value != ''){
-			
-			if(type == 'discount')
-			{
-				Total = Total - parseFloat(value);
-			}
-			
-			if(type == 'tax')
-			{
-				Total = Total + parseFloat(value);
-			}
+		var discount = document.getElementById('discount').value;
+		var tax = document.getElementById('tax').value;
+
+
+		// default value if no discount present
+		if(discount.trim() == ''){
+			discount = 0.0;
+		}else{
+			discount = parseFloat(discount);
+		}
+
+		if(tax.trim() == ''){
+			tax = 0.0;
+		}else{
+			tax = parseFloat(tax);
+		}
+
+
+		var discountGrossTotal = grossTotal - discount; // applying discount on gross total.
+
+		var netAmount = discountGrossTotal + tax ; // applying tax on gross total.
+
+		var finalReceiveAmount = document.getElementById('finalReceiveAmount').value;
+		if(finalReceiveAmount.trim() == ''){
+			finalReceiveAmount = 0.0;
+		}else{
+			finalReceiveAmount = parseFloat(finalReceiveAmount);
 		}
 		
-		document.getElementById('netAmount').value = parseFloat(Total);
-		document.getElementById('finalReceiveAmount').value = parseFloat(Total);
+		document.getElementById('netAmount').value = netAmount;
+		document.getElementById('balanceReceiveAmount').value = netAmount - finalReceiveAmount;
 	}
 
-	function balanceAmount(value){
-
-		if(value != ''){
-			document.getElementById('finalReceiveAmount').value = parseFloat(document.getElementById('netAmount').value) - parseFloat(value);
-		}
-	}
 
 </script>
 <jsp:include page="../theme/parts/footer.jsp" />

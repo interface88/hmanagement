@@ -39,4 +39,17 @@ public class DateTimeUtil
 	    return strDate;
 	}
 	
+	/**
+	 * Return the difference between 2 date in day
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	public static int getElapsedDay(Date startDate, Date endDate){
+		final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+
+		int diffInDays = (int) ((endDate.getTime() - startDate.getTime())/ DAY_IN_MILLIS );
+		return diffInDays;
+	}
+	
 }
