@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../theme/parts/headerReport.jsp" />
 		<h3 class="clearfix">Patient Discharge Report</h3>
+		<textarea style="display:none;" id="prescribedMedicine">${dischargeTicket.prescribedMedicine}</textarea>
 		<table style="width: 93%" class="tdright">
 			<tr>
 				<td class="strong">Staff Name</td>
@@ -84,7 +85,22 @@
 				<td class="strong" colspan="4">Prescribed Medicine</td>
 			</tr>
 			<tr>
-				<td><code>${dischargeTicket.prescribedMedicine}</code></td>
+				<td colspan="4">
+					<table class="tdbackstyle1">
+						<thead>
+							<tr>
+								<th>Sno</th>
+								<th>Name</th>
+								<th>Dosage</th>
+								<th>Time</th>
+								<th>Remark</th>
+							</tr>
+						</thead>
+						<tbody id="medicineTable">
+						
+						</tbody>
+					</table>
+				</td>
 			</tr>
 			<tr style="border-top: 1px solid #333">
 				<td class="strong" colspan="4">Follow up Schedule</td>
@@ -101,4 +117,23 @@
 				</td>
 			</tr>
 		</table>
+		<script>
+			var prescribedMedicine = document.getElementById('prescribedMedicine').value;
+			var prescribedMedicineObj_arr = eval(prescribedMedicine);
+
+			for(var i = 0; i< prescribedMedicineObj_arr.length; i++){
+				var prescribedMedicineObj = prescribedMedicineObj_arr[i];
+
+				var row = '<tr>'
+							+ '<td>' + prescribedMedicineObj.sno  +'</td>'
+							+ '<td>' + prescribedMedicineObj.medicine +'</td>'
+							+ '<td>' + prescribedMedicineObj.medicineDosage +'</td>'
+							+ '<td>' + prescribedMedicineObj.medicineTime +'</td>'
+							+ '<td>' + prescribedMedicineObj.medicineRemark +'</td>'
+						+ '</tr>'; 
+
+				$('#medicineTable').append(row);
+				
+			}
+		</script>
 <jsp:include page="../theme/parts/footerReport.jsp" />

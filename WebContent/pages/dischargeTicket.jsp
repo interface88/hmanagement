@@ -238,21 +238,25 @@
 
 			function readData(){
 
-				var final_data = "";
 				// -------- code to read medicine ----
-				$('#medicineTableData tr').each(function(){
+				
+				var medicinePrescribed_arr = [];
+				$('#medicineTableData tr').each(function(i){
 					var medicine = $(this).find('.medicine').val();
 					if(medicine != ''){
-						var medicineDosage = $(this).find('.medicineDosage').val();
-						var medicineTime = $(this).find('.medicineTime').val();
-						var medicineRemark = $(this).find('.medicineRemark').val();
-	
-						final_data = final_data + medicine + ',' + medicineDosage + ',' + 
-						medicineTime+ ',' + medicineRemark + '\n' ;
+						var object = {};
+						object.sno = i + 1 ;
+						object.medicine =  $(this).find('.medicine').val();
+						object.medicineDosage =  $(this).find('.medicineDosage').val();
+						object.medicineTime =  $(this).find('.medicineTime').val();
+						object.medicineRemark =  $(this).find('.medicineRemark').val();
+						
+						medicinePrescribed_arr.push(object);
 					}
 
 				});
-				$('#prescribedMedicine').val(final_data);
+				
+				$('#prescribedMedicine').val(JSON.stringify(medicinePrescribed_arr));
 			}
 
 			// --------- code to delete medicine row----------

@@ -118,7 +118,7 @@ I _________________(Patient of Relation) being the ____________(relationship wit
 declare that : The details provided in this admission form are true and complete.								
 								
 Date: 	<br />	<br />						
-Signature of Patient/Relatives ___________________<span style="float: right">Operator Name</span> 	
+Signature of Patient/Relatives ___________________<span style="float: right">Operator Sign</span> 	
 <br /><br /><br />
 					</code>
 				</td>
