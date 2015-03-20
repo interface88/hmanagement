@@ -195,9 +195,10 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td colspan="2" class="auto-style2"><input
-					name="action" type="submit" value="Submit" />&nbsp;&nbsp;&nbsp;
-					<input name="Reset1" type="reset" value="reset" /></td>
+				<td colspan="2" class="auto-style2">
+					<input name="action" type="submit" value="Submit" />&nbsp;&nbsp;&nbsp;
+					<input name="Reset1" type="reset" value="reset" />
+				</td>
 
 			</tr>
 			<tr>

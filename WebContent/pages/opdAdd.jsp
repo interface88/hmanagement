@@ -207,7 +207,7 @@
 				<tr>
 					<td>Doctor Name</td>
 					<td>
-						<select name="doctorId" required="required">
+						<select name="doctorId" required="required" onchange="loadConsulationFee(this.value);">
 							<option value="">-select-</option>
 							<c:forEach items="${doctorlist}" var="doctor">
 								<option value="${doctor.id}">${doctor.name}</option>
@@ -215,7 +215,7 @@
 						</select>
 					</td>
 					<td>Consultation Fee</td>
-					<td><input name="consulationFee" required="required" type="number" step="any" type="text" /></td>
+					<td><input name="consulationFee" id="consulationFee" required="required" type="number" step="any" type="text" /></td>
 				</tr>
 				<tr>
 					<td colspan="100%"><hr /></td>
@@ -256,6 +256,20 @@
 			function loadPatient(){
 				document.getElementById('patientRegistrationNo').value =  document.getElementById('registrationNo').value;
 				document.getElementById('loadPatientForm').submit();
+			}
+
+			function loadConsulationFee(doctorId){
+				if(doctorId != ""){
+					var url = 'doctor?action=doctorFee&id=' + doctorId;
+					$.get(url, function(response){
+						document.getElementById('consulationFee').value= response;
+						
+					});
+				}else{
+					document.getElementById('consulationFee').value='';
+				}
+
+				
 			}
 		</script>
 <jsp:include page="../theme/parts/footer.jsp" />

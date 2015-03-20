@@ -130,6 +130,8 @@ public class NursingServlet extends HttpServlet {
 					NursingTransactionDAO nursingTransactionDAO = new NursingTransactionDAO();
 					nursingTransactionDAO.add(nursingTestTransaction);
 				}
+				
+				msg = "Nursing added successfully.";
 			}else{
 				msg = "Please load patient data for nursing entry";
 			}

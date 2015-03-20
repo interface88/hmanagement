@@ -10,6 +10,7 @@
 	<table class="pure-table">
 		<thead>
 			<tr>
+				<th>S.No</th>
 				<th>Admission No</th>
 				<th>Patient</th>
 				<th>Entry Date</th>
@@ -21,9 +22,11 @@
 			</tr>	
 		</thead>
 		<tbody>
+			<% int i = 1; %>
 			<c:if test="${not empty opdlist}">
 				<c:forEach items="${opdlist}" var="opd">
 					<tr>
+						<td><%=i%></td>
 						<td>${opd.admissionId}</td>
 						<td>${opd.patient.firstName} ${opd.patient.middleName} ${opd.patient.lastName}</td>
 						<td>${opd.entryDate}</td>
@@ -33,6 +36,7 @@
 						<th><a href="">Delete</a></th>
 						<th><a href="opd?action=prescription&id=${opd.id}">Print prescription</a></th>
 					</tr>
+					<% i++; %>
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty opdlist}">

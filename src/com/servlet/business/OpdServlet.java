@@ -219,6 +219,7 @@ public class OpdServlet extends HttpServlet {
 			}else{
 				request.setAttribute("patient", patient);
 			}
+			loadList(request);
 			request.setAttribute("msg", msg);
 			request.getRequestDispatcher("/pages/opdAdd.jsp").forward(request, response);
 			return;

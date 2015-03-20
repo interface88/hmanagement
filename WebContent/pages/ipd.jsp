@@ -10,6 +10,7 @@
 	<table class="pure-table">
 		<thead>
 			<tr>
+				<th>S.No</th>
 				<th>Admission No</th>
 				<th>Patient</th>
 				<th>Admission Date</th>
@@ -21,9 +22,11 @@
 			</tr>	
 		</thead>
 		<tbody>
+			<% int i = 1; %>
 			<c:if test="${not empty ipdlist}">
 				<c:forEach items="${ipdlist}" var="ipd">
 					<tr>
+						<td><%=i%></td>
 						<td>${ipd.admissionId}</td>
 						<td>${ipd.patient.firstName} ${ipd.patient.middleName} ${ipd.patient.lastName}</td>
 						<td>${ipd.admissionDate}</td>
@@ -33,6 +36,7 @@
 						<th><a href="ipd?action=edit&id=${ipd.id}">Edit</a></th>
 						<th><a href="">Delete</a></th>
 					</tr>
+					<% i++; %>
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty ipdlist}">

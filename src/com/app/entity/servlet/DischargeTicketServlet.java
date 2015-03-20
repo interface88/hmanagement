@@ -110,6 +110,10 @@ public class DischargeTicketServlet extends HttpServlet {
 			
 			dischargeTicketDAO.add(dischargeTicket);
 			
+			request.setAttribute("dischargeTicket", dischargeTicket);
+			request.getRequestDispatcher("/pages/dischargeTicketPrint.jsp").forward(request, response);
+			return;
+			
 		}else if("load".equalsIgnoreCase(btnclick)){
 			
 			Ipd ipd = ipdDAO.findByAdmissionId(request.getParameter("admissionId"));

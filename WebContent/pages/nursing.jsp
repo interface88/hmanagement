@@ -11,7 +11,7 @@
 			// replacing add button with delete button.
 			medicineRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
 			$('#medicineTable').append(medicineRow);
-			
+			updateMedicineRowSerialNo();
 		}
 		// function to add test row
 		function addTest(){
@@ -20,17 +20,35 @@
 			// replacing add button with delete button.
 			testRow.find('.btn').html('<input type="button" class="delete" value="Delete">'); 
 			$('#testTable').append(testRow);
-			
+			updateTestRowSerialNo();
+		}
+
+		function updateMedicineRowSerialNo(){
+			var count = 1;
+			$('#medicineTable .medicineRow').each(function(){
+				$(this).find('td:first').html(count);
+				count++;
+			});
+		}
+
+		function updateTestRowSerialNo(){
+			var count = 1;
+			$('#testTable .testRow').each(function(){
+				$(this).find('td:first').html(count);
+				count++;
+			});
 		}
 		$(function(){
 			// --------- code to delete medicine row----------
 			$('#medicineTable ').on('click','.delete',function(){
 				$(this).parent().parent().remove();
+				updateMedicineRowSerialNo();
 			});
 
 			// --------- code to delete test row----------
 			$('#testTable ').on('click','.delete',function(){
 				$(this).parent().parent().remove();
+				updateTestRowSerialNo();
 			});
 
 			// applying time selector
@@ -206,7 +224,7 @@
 							<td style="height: 31px">&nbsp;</td>
 						</tr>
 						<tr valign="top" class="medicineRow">
-							<td style="height: 29px; width: 62px"></td>
+							<td style="height: 29px; width: 62px">1</td>
 							<td style="height: 29px; width: 182px">
 								<select class="medicinePrice">
 									<option>-select-</option>
@@ -255,7 +273,7 @@
 							<td style="height: 31px">&nbsp;</td>
 						</tr>
 						<tr valign="top" class="testRow">
-							<td style="height: 39px; width: 62px"></td>
+							<td style="height: 39px; width: 62px">1</td>
 							<td style="height: 39px; width: 182px">
 								<select class="testType" onchange="loadTestCombo(this);">
 									<option value="">-select-</option>

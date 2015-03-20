@@ -9,6 +9,7 @@
 	<table class="pure-table">
 		<thead>
 			<tr>
+				<th>S.No</th>
 				<th>Registration No</th>
 				<th>Registration Date</th>
 				<th>Name</th>
@@ -18,9 +19,11 @@
 			</tr>	
 		</thead>
 		<tbody>
+			<% int i = 1; %>
 			<c:if test="${not empty patientlist}">
 				<c:forEach items="${patientlist}" var="patient">
 					<tr>
+						<td><%=i%></td>
 						<td>${patient.registrationNo}</td>
 						<td>${patient.registrationDate}</td>
 						<td>${patient.firstName} ${patient.middleName} ${patient.lastName}</td>
@@ -28,6 +31,7 @@
 						<th><a href="patient?action=edit&id=${patient.id}">Edit</a></th>
 						<th><a href="patient?action=delete&id=${patient.id}">Delete</a></th>
 					</tr>
+					<% i++; %>
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty patientlist}">

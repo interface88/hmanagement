@@ -31,22 +31,32 @@ public class DoctorServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
+		String action = request.getParameter("action");
 		
-		// ---------- doctor list -----------
-		List<Doctor> doctorList= new ArrayList<Doctor>();
-		DoctorDAO doctorDAO = new DoctorDAO();
-		doctorList = doctorDAO.getList();
+		if("doctorFee".equalsIgnoreCase(action)){
+			Integer id = Integer.parseInt(request.getParameter("id"));
+			DoctorDAO doctorDAO = new DoctorDAO();
+			Doctor doctor =  doctorDAO.findById(id);
+			request.setAttribute("doctorFee", doctor.getConsultationfee());
+			request.getRequestDispatcher("/pages/master/doctorFee.jsp").forward(request, response);
+			
+		}else{
+			// ---------- doctor list -----------
+			List<Doctor> doctorList= new ArrayList<Doctor>();
+			DoctorDAO doctorDAO = new DoctorDAO();
+			doctorList = doctorDAO.getList();
+			
+			
+			// ---------- database fetch -----------
+			List<Department> departmentList= new ArrayList<Department>();
+			DepartmentDAO departmentDAO = new DepartmentDAO();
+			departmentList = departmentDAO.getList();
+			
+			request.setAttribute("doctorList", doctorList);
+			request.setAttribute("departmentList", departmentList);
+			request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
+		}
 		
-		
-		// ---------- database fetch -----------
-		List<Department> departmentList= new ArrayList<Department>();
-		DepartmentDAO departmentDAO = new DepartmentDAO();
-		departmentList = departmentDAO.getList();
-		
-		request.setAttribute("doctorList", doctorList);
-		request.setAttribute("departmentList", departmentList);
-		request.getRequestDispatcher("/pages/master/doctor.jsp").forward(request, response);
 		
 	}
 
