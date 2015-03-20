@@ -181,7 +181,6 @@ public class FinalBillServlet extends HttpServlet {
 		
 		upToDateReceipt = totalPaymentCollectionAmount + ipdAdvancePayment;
 		
-		
 		request.setAttribute("nursingList", nursingList);
 		request.setAttribute("finalBill", finalBill);
 		request.setAttribute("totalWardCharges", totalWardCharges);
