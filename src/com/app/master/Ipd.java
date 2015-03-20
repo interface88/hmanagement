@@ -20,6 +20,7 @@ public class Ipd {
 	private Date entryDate;
 	private String admissionTime;
 	private String ward;
+	private Double wardCharges;
 	private Integer bedNo;
 	private String admissionDiagnosis;
 	private String admissionDetail;
@@ -190,6 +191,14 @@ public class Ipd {
 	}
 	public void setFinalBills(Set<FinalBill> finalBills) {
 		this.finalBills = finalBills;
+	}
+
+	public Double getWardCharges() {
+		return wardCharges;
+	}
+
+	public void setWardCharges(Double wardCharges) {
+		this.wardCharges = wardCharges;
 	}
 
 }

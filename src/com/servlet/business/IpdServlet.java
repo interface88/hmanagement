@@ -133,7 +133,7 @@ public class IpdServlet extends HttpServlet {
 				Date entryDate = DateTimeUtil.ParseString(request.getParameter("entryDate"));
 				Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate"));
 				String admissionTime = request.getParameter("admissionTime").trim();
-				String ward = request.getParameter("ward").trim();
+				String wardName = request.getParameter("ward").trim();
 				Integer bedNo = MyObject.stringToInt(request.getParameter("bedNo"));
 				String admissionDiagnosis = request.getParameter("admissionDiagnosis").trim();
 				String admissionDetail = request.getParameter("admissionDetail").trim();
@@ -143,6 +143,15 @@ public class IpdServlet extends HttpServlet {
 				Double advancePayment = MyObject.stringToDouble(request.getParameter("advancePayment"));
 				String remark = request.getParameter("remark").trim();
 				
+				// ------- GETTING WARD CHARGES FROM DATABASE BY WARD NAME -------------
+				Double wardCharges = 0.0;
+				
+				WardDAO wardDAO = new WardDAO();
+				Ward ward = wardDAO.findByName(wardName);
+				
+				if(ward != null){
+					wardCharges = ward.getRate();
+				}
 				// setting all the request value to IPD object.
 				Ipd ipd = new Ipd();
 				ipd.setPatient(patient);
@@ -153,7 +162,8 @@ public class IpdServlet extends HttpServlet {
 				ipd.setEntryDate(entryDate);
 				ipd.setAdmissionDate(admissionDate);
 				ipd.setAdmissionTime(admissionTime);
-				ipd.setWard(ward);
+				ipd.setWard(wardName);
+				ipd.setWardCharges(wardCharges);
 				ipd.setBedNo(bedNo);
 				ipd.setAdmissionDiagnosis(admissionDiagnosis);
 				ipd.setAdmissionDetail(admissionDetail);
@@ -204,7 +214,7 @@ public class IpdServlet extends HttpServlet {
 			AdmissionType admissionType = admissionTypeDAO.findById(admissionTypeId);
 			Date admissionDate = DateTimeUtil.ParseString(request.getParameter("admissionDate"));
 			String admissionTime = request.getParameter("admissionTime").trim();
-			String ward = request.getParameter("ward").trim();
+			String wardName = request.getParameter("ward").trim();
 			Integer bedNo = MyObject.stringToInt(request.getParameter("bedNo"));
 			String admissionDiagnosis = request.getParameter("admissionDiagnosis").trim();
 			String admissionDetail = request.getParameter("admissionDetail").trim();
@@ -214,11 +224,22 @@ public class IpdServlet extends HttpServlet {
 			Double advancePayment = MyObject.stringToDouble(request.getParameter("advancePayment"));
 			String remark = request.getParameter("remark").trim();
 			
+			// ------- GETTING WARD CHARGES FROM DATABASE BY WARD NAME -------------
+			Double wardCharges = 0.0;
+			
+			WardDAO wardDAO = new WardDAO();
+			Ward ward = wardDAO.findByName(wardName);
+			
+			if(ward != null){
+				wardCharges = ward.getRate();
+			}
+			
 			Ipd ipd = ipdDAO.findById(id);
 			ipd.setAdmissionType(admissionType);
 			ipd.setAdmissionDate(admissionDate);
 			ipd.setAdmissionTime(admissionTime);
-			ipd.setWard(ward);
+			ipd.setWard(wardName);
+			ipd.setWardCharges(wardCharges);
 			ipd.setBedNo(bedNo);
 			ipd.setAdmissionDiagnosis(admissionDiagnosis);
 			ipd.setAdmissionDetail(admissionDetail);

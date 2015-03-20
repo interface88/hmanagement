@@ -27,6 +27,9 @@
 		<property name="ward" type="java.lang.String">
 			<column name="WARD" not-null="true" />
 		</property>
+		<property name="wardCharges" type="java.lang.Double">
+			<column name="WARD_CHARGES" not-null="true" />
+		</property>
 		<property name="bedNo" type="java.lang.Integer">
 			<column name="BED_NO" />
 		</property>

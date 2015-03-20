@@ -32,9 +32,12 @@ public class WardDAO{
 		transaction.commit();
 	}
 	
-	public Ward findByCode(String code) {
-		Ward ward = (Ward) session.get(Ward.class, code);
-		return ward;
+	public Ward findByName(String wardName) {
+		Query query =  session.createQuery("from Ward as model where model.name = ?");
+		Ward result = (Ward) query.setParameter(0, wardName)
+                .setMaxResults(1)
+                .uniqueResult();
+		return result;
 	}
 
 	public Ward findById(Integer id) {

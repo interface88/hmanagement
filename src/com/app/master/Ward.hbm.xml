@@ -15,5 +15,8 @@
 		<property name="name" type="java.lang.String">
 			<column name="NAME" not-null="true" />
 		</property>
+		<property name="rate" type="java.lang.Double">
+			<column name="RATE" not-null="true" />
+		</property>
 	</class>
 </hibernate-mapping>
