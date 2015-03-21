@@ -251,6 +251,16 @@ public class IpdServlet extends HttpServlet {
 			
 			ipdDAO.update(ipd);
 			request.setAttribute("msg", "Ipd updated successfull");
+		}else if("search".equalsIgnoreCase(btnclick)){
+			Date startDate = DateTimeUtil.ParseString(request.getParameter("startDate"));
+			Date endDate = DateTimeUtil.ParseString(request.getParameter("endDate"));
+			
+			List<Ipd> ipdlist =  ipdDAO.getListByDate(startDate, endDate);
+			request.setAttribute("ipdlist", ipdlist);
+			request.setAttribute("startDate", request.getParameter("startDate"));
+			request.setAttribute("endDate", request.getParameter("endDate"));
+			request.getRequestDispatcher("/pages/ipd.jsp").forward(request, response);
+			return;
 		}
 		
 		List<Ipd> ipdlist =  ipdDAO.getList();

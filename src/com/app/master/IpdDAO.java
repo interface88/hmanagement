@@ -1,5 +1,6 @@
 package com.app.master;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +52,17 @@ public class IpdDAO{
 		}
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Ipd> getListByDate(Date startDate, Date endDate){
+		List<Ipd> list = new ArrayList<Ipd>();
+		Query query  = session.createQuery("from Ipd as model where model.admissionDate between ? and ?");
+		query.setParameter(0, startDate);
+		query.setParameter(1, endDate);
+		list = query.list();
+		return list;
+	}
+	
 
 	
 	@SuppressWarnings("unchecked")

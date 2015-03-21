@@ -1,9 +1,6 @@
 package com.servlet.authentication;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.app.framework.Auth;
-import com.app.master.Medicine;
-import com.app.master.MedicineDAO;
 import com.app.master.Staff;
 import com.app.master.StaffDAO;
 

@@ -42,6 +42,7 @@ public class StaffDAO{
 		return book;
    }
 	
+	@SuppressWarnings("unchecked")
 	public Staff findByUserIdAndPassword(String userId, String password){
 		String hql = "from "+ Staff.class.getCanonicalName() +" as model where model.userId = ? AND model.password = ?";
 		Query query = session.createQuery(hql);

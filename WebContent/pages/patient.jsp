@@ -6,6 +6,15 @@
 			<td><h4 style="color:red;">${msg}</h4></td>
 		</tr>
 	</table>
+	<form action="patient" name="action" style="margin-bottom: 30px;" method="post">
+		<table>
+			<tr>
+				<td>Start Date &nbsp;&nbsp;<input type="text" name="startDate" id="startDate" value="${startDate}" style="width:100px;"></td>
+				<td>End Date&nbsp;&nbsp;<input type="text" name="endDate" id="endDate" value="${endDate}" style="width:100px;"></td>
+				<td><input type="submit" name="action" value="Search"> </td>
+			</tr>		
+		</table>
+	</form>
 	<table class="pure-table">
 		<thead>
 			<tr>
@@ -41,4 +50,16 @@
 			</c:if>
 		</tbody>
 	</table>
+	<script>
+		Calendar.setup({
+            trigger    : "startDate",
+            inputField : "startDate",
+            dateFormat: "%d-%m-%Y"
+        });
+		Calendar.setup({
+            trigger    : "endDate",
+            inputField : "endDate",
+            dateFormat: "%d-%m-%Y"
+        });
+	</script>
 <jsp:include page="../theme/parts/footer.jsp" />

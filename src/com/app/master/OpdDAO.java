@@ -1,5 +1,6 @@
 package com.app.master;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,17 @@ public class OpdDAO{
 		}
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Opd> getListByDate(Date startDate, Date endDate){
+		List<Opd> list = new ArrayList<Opd>();
+		Query query  = session.createQuery("from Opd as model where model.entryDate between ? and ?");
+		query.setParameter(0, startDate);
+		query.setParameter(1, endDate);
+		list = query.list();
+		return list;
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public List<Opd> getList(){

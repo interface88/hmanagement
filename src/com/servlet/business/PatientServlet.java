@@ -12,18 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.app.framework.DateTimeUtil;
 import com.app.framework.MyObject;
-import com.app.master.AdmissionType;
-import com.app.master.AdmissionTypeDAO;
 import com.app.master.Doctor;
 import com.app.master.DoctorDAO;
-import com.app.master.Ipd;
 import com.app.master.IpdDAO;
 import com.app.master.Opd;
 import com.app.master.OpdDAO;
 import com.app.master.Patient;
 import com.app.master.PatientDAO;
-import com.app.master.Ward;
-import com.app.master.WardDAO;
 
 /**
  * Servlet implementation class Ipd servlet
@@ -178,6 +173,16 @@ public class PatientServlet extends HttpServlet {
 			
 			patientDAO.update(patient);
 			request.setAttribute("msg", "Ipd updated successfull");
+		}else if("search".equalsIgnoreCase(btnclick)){
+			Date startDate = DateTimeUtil.ParseString(request.getParameter("startDate"));
+			Date endDate = DateTimeUtil.ParseString(request.getParameter("endDate"));
+			
+			List<Patient> patientlist =  patientDAO.getListByDate(startDate, endDate);
+			request.setAttribute("patientlist", patientlist);
+			request.setAttribute("startDate", request.getParameter("startDate"));
+			request.setAttribute("endDate", request.getParameter("endDate"));
+			request.getRequestDispatcher("/pages/patient.jsp").forward(request, response);
+			return;
 		}
 		
 		List<Patient> patientlist = new ArrayList<Patient>();

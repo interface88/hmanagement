@@ -1,5 +1,6 @@
 package com.app.master;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,16 @@ public class PatientDAO{
 	public Patient findById(Integer id) {
 		Patient patient = (Patient) session.get(Patient.class, id);
 		return patient;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Patient> getListByDate(Date startDate, Date endDate){
+		List<Patient> list = new ArrayList<Patient>();
+		Query query  = session.createQuery("from Patient as model where model.registrationDate between ? and ?");
+		query.setParameter(0, startDate);
+		query.setParameter(1, endDate);
+		list = query.list();
+		return list;
 	}
 	
 	public Patient findByRegistrationNo(String registration) {

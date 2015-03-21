@@ -16,7 +16,6 @@ import com.app.master.IpdDAO;
 import com.app.master.Medicine;
 import com.app.master.MedicineDAO;
 import com.app.master.PatientDAO;
-import com.app.master.Test;
 import com.app.entity.DischargeTicket;
 import com.app.entity.DischargeTicketDAO;
 import com.app.framework.Auth;

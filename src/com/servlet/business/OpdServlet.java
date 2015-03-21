@@ -242,6 +242,16 @@ public class OpdServlet extends HttpServlet {
 			opdDAO.update(opd);
 			
 			request.setAttribute("msg", "Opd updated successfull");
+		}else if("search".equalsIgnoreCase(btnclick)){
+			Date startDate = DateTimeUtil.ParseString(request.getParameter("startDate"));
+			Date endDate = DateTimeUtil.ParseString(request.getParameter("endDate"));
+			
+			List<Opd> opdlist =  opdDAO.getListByDate(startDate, endDate);
+			request.setAttribute("opdlist", opdlist);
+			request.setAttribute("startDate", request.getParameter("startDate"));
+			request.setAttribute("endDate", request.getParameter("endDate"));
+			request.getRequestDispatcher("/pages/opd.jsp").forward(request, response);
+			return;
 		}
 		
 		List<Opd> opdlist =  opdDAO.getList();
