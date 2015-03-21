@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2015 at 09:51 PM
+-- Generation Time: Mar 21, 2015 at 08:38 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -86,18 +86,19 @@ CREATE TABLE IF NOT EXISTS `discharge_ticket` (
   `SUGAR` varchar(100) DEFAULT NULL,
   `WEIGHT` varchar(100) DEFAULT NULL,
   `EXAMING_TIME` varchar(100) DEFAULT NULL,
-  `PRESCRIBED_MEDICINE` varchar(100) DEFAULT NULL,
+  `PRESCRIBED_MEDICINE` varchar(1000) DEFAULT NULL,
   `FOLLOW_UP_SCHEDULE` varchar(100) DEFAULT NULL,
   `REMARK` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `discharge_ticket`
 --
 
 INSERT INTO `discharge_ticket` (`ID`, `STAFF_NAME`, `ENTRY_DATE`, `ADMISSION_ID`, `PATIENT_ID`, `IPD_ID`, `DOCTOR_ID`, `TREATMENT_NOTE`, `DISCHARGE_NOTE`, `ADVICE`, `CONDITION_OF_PATIENT`, `PRESSURE`, `PULSE`, `TEMPERATURE`, `SUGAR`, `WEIGHT`, `EXAMING_TIME`, `PRESCRIBED_MEDICINE`, `FOLLOW_UP_SCHEDULE`, `REMARK`) VALUES
-(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, 1, 3, 'fsdf', 'sdfsd', 'sdfsd', 'ewrwer', '', '', '', '', '', '', '', '', '');
+(1, 'hemant', '2015-03-20', 'HMS/ADD_ID/2', 2, 1, 2, 'dfdsf', 'sdfsd', 'sdfsd', 'sdfsd', '44', '55', '33', '54', '55', '7:00 AM', '[{"sno":1,"medicine":"1","medicineDosage":"55","medicineTime":"3","medicineRemark":"sdfds"},{"sno":2,"medicine":"2","medicineDosage":"545","medicineTime":"56","medicineRemark":"fdgdf"}]', 'dfgfdg', 'fsd'),
+(2, 'hemant', '2015-03-20', 'HMS/ADD_ID/2', 2, 1, 2, 'dfdsf', 'sdfsd', 'sdfsd', 'sdfsd', '44', '55', '33', '54', '55', '7:00 AM', '[{"sno":1,"medicine":"1","medicineDosage":"55","medicineTime":"3","medicineRemark":"sdfds"},{"sno":2,"medicine":"2","medicineDosage":"545","medicineTime":"56","medicineRemark":"fdgdf"}]', 'dfgfdg', 'fsd');
 
 -- --------------------------------------------------------
 
@@ -165,8 +166,7 @@ CREATE TABLE IF NOT EXISTS `final_bill` (
 --
 
 INSERT INTO `final_bill` (`ID`, `STAFF_NAME`, `ENTRY_DATE`, `ADMISSION_ID`, `PATIENT_ID`, `IPD_ID`, `ADMISSION_TYPE_ID`, `DOCTOR_ID`, `BILL_NO`, `BILL_DATE`, `GROSS_TOTAL`, `DISCOUNT`, `TAX`, `NET_AMOUNT`, `BALANCE_RECEIVE_AMOUNT`, `FINAL_RECEIVE_AMOUNT`, `PAYMENT_MODE`, `CHEQUE_NUMBER`, `CHEQUE_DATE`, `DISCHARGE_DATE`, `BANK`, `OTHER_DETAILS`, `REMARK`) VALUES
-(1, 'hemant', '2015-03-17', 'HMS/ADD_ID/3', 4, 1, 1, 2, 'RAF4455', '2015-03-17', 790.00, 10.00, 5.00, 785.00, 100.00, 685.00, 'Cash', '', NULL, '2015-03-06', '', '', ''),
-(2, 'hemant', '2015-03-19', 'HMS/ADD_ID/2', 2, 1, 1, 2, 'RTy788899', '2015-03-04', 1040.00, NULL, NULL, 1035.00, 500.00, 1035.00, 'Cash', '', NULL, '2015-03-12', '', '', '');
+(1, 'hemant', '2015-03-21', 'HMS/ADD_ID/2', 2, 1, 1, 2, 'HMS/BILL/1', '2015-03-11', 10340.00, 10.00, 50.00, 10380.00, 8680.00, 1700.00, 'Cash', '', NULL, '2015-03-12', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -185,6 +185,7 @@ CREATE TABLE IF NOT EXISTS `ipd` (
   `ADMISSION_TIME` varchar(10) DEFAULT NULL,
   `ADMISSION_TYPE_ID` int(11) NOT NULL,
   `WARD` varchar(50) NOT NULL,
+  `WARD_CHARGES` double NOT NULL,
   `BED_NO` int(5) DEFAULT NULL,
   `ADMISSION_DIAGNOSIS` varchar(50) DEFAULT NULL,
   `ADMISSION_DETAIL` varchar(50) DEFAULT NULL,
@@ -200,9 +201,9 @@ CREATE TABLE IF NOT EXISTS `ipd` (
 -- Dumping data for table `ipd`
 --
 
-INSERT INTO `ipd` (`ID`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `ADMISSION_ID`, `ADMISSION_DATE`, `ENTRY_DATE`, `ADMISSION_TIME`, `ADMISSION_TYPE_ID`, `WARD`, `BED_NO`, `ADMISSION_DIAGNOSIS`, `ADMISSION_DETAIL`, `ADMISSION_TREATMENT`, `ALLERGY_DETAIL`, `SPECIAL_NOTE`, `ADVANCE_PAYMENT`, `REMARK`) VALUES
-(1, 2, 2, 'hemant', 'HMS/ADD_ID/2', '2015-02-19', '2015-03-18', '5:00 AM', 1, 'General', 55, 'Admission Diagnosis1', 'Admission Details1', 'Suggested Treatment1', 'Allergy Details1', 'Special Notes1', NULL, 'Remarks'),
-(2, 1, 2, 'hemant', 'HMS/ADD_ID/1', '2015-03-19', '2015-03-18', '6:00 AM', 1, 'General', 45, 'dfdsfsd', 'sdfds', 'sdf', 'sdfdsf', 'sdffsd', NULL, 'dsfsdf');
+INSERT INTO `ipd` (`ID`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `ADMISSION_ID`, `ADMISSION_DATE`, `ENTRY_DATE`, `ADMISSION_TIME`, `ADMISSION_TYPE_ID`, `WARD`, `WARD_CHARGES`, `BED_NO`, `ADMISSION_DIAGNOSIS`, `ADMISSION_DETAIL`, `ADMISSION_TREATMENT`, `ALLERGY_DETAIL`, `SPECIAL_NOTE`, `ADVANCE_PAYMENT`, `REMARK`) VALUES
+(1, 2, 2, 'hemant', 'HMS/ADD_ID/2', '2015-02-19', '2015-03-18', '5:00 AM', 1, 'General', 300, 55, 'Admission Diagnosis1', 'Admission Details1', 'Suggested Treatment1', 'Allergy Details1', 'Special Notes1', 1600, 'Remarks'),
+(2, 1, 2, 'hemant', 'HMS/ADD_ID/1', '2015-03-19', '2015-03-18', '6:00 AM', 1, 'General', 300, 45, 'dfdsfsd', 'sdfds', 'sdf', 'sdfdsf', 'sdffsd', NULL, 'dsfsdf');
 
 -- --------------------------------------------------------
 
@@ -293,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `nursing` (
   `SUGAR` varchar(10) DEFAULT NULL,
   `EXAMING_TIME` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `nursing`
@@ -303,7 +304,8 @@ INSERT INTO `nursing` (`ID`, `ADMISSION_ID`, `PATIENT_ID`, `DOCTOR_ID`, `NURSING
 (1, 'HMS/ADD_ID/3', 4, 3, '2015-03-17', 'hemant', 4, '55', '8', '44', '', '54', '7:00 AM'),
 (2, 'HMS/ADD_ID/2', 2, 2, '2015-03-18', 'hemant', 2, '9988', '33', '899', 'FDSDF', '54', '7:00 AM'),
 (3, 'HMS/ADD_ID/1', 1, 2, '2015-03-18', 'hemant', 5, '55', '33', '44', '', '54', ''),
-(4, 'HMS/ADD_ID/1', 1, 2, '2015-03-18', 'hemant', 4, '55', '33', '898', '', '54', '7:00 AM');
+(4, 'HMS/ADD_ID/1', 1, 2, '2015-03-18', 'hemant', 4, '55', '33', '898', '', '54', '7:00 AM'),
+(5, 'HMS/ADD_ID/2', 2, 2, '2015-03-19', 'hemant', 23, '77', '88', '336', '7', '88', '7');
 
 -- --------------------------------------------------------
 
@@ -317,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `nursing_transaction` (
   `TREATMENT` varchar(50) NOT NULL,
   `TREATMENT_COST` double NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `nursing_transaction`
@@ -327,7 +329,9 @@ INSERT INTO `nursing_transaction` (`ID`, `NURSING_ID`, `TREATMENT`, `TREATMENT_C
 (1, 2, 'MEDICINE', 250),
 (2, 2, 'TEST', 790),
 (3, 4, 'MEDICINE', 250),
-(4, 4, 'TEST', 340);
+(4, 4, 'TEST', 340),
+(5, 5, 'MEDICINE', 100),
+(6, 5, 'TEST', 200);
 
 -- --------------------------------------------------------
 
@@ -352,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `opd` (
 --
 
 INSERT INTO `opd` (`ID`, `ADMISSION_ID`, `ENTRY_DATE`, `PATIENT_ID`, `DOCTOR_ID`, `STAFF_NAME`, `CASE_TYPE`, `CONSULATION_FEE`) VALUES
-(1, 'HMS/ADD_ID/1', '2015-03-18', 1, 2, 'hemant', 'NEW', 320),
+(1, 'HMS/ADD_ID/1', '2015-03-05', 1, 2, 'hemant', 'NEW', 320),
 (2, 'HMS/ADD_ID/2', '2015-03-18', 2, 2, 'hemant', 'NEW', 600);
 
 -- --------------------------------------------------------
@@ -399,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 
 INSERT INTO `patient` (`ID`, `REGISTRATION_DATE`, `TITLE`, `FIRST_NAME`, `MIDDLE_NAME`, `LAST_NAME`, `GENDER`, `DAY`, `MONTH`, `YEAR`, `CONTACT_INFO`, `REFERRED_BY`, `BLOOD_GROUP`, `WEIGHT`, `TELEPHONE`, `MOBILE`, `EMAIL`, `ADDRESS`, `ADDRESS_1`, `ADDRESS_2`, `ADDRESS_3`, `AREA`, `DISTRICT`, `CITY`, `STATE`, `ZIP`, `COUNTRY`, `REGISTRATION_NO`) VALUES
 (1, '2015-03-02', 'Mr.', 'Rajesh', '', 'Kakawat', 'Male', 0, 4, 28, '34545435', '2', 'B', '65', '234324', '9667636133', '', 'Address', 'Add1', 'Add2', 'Add3', '', 'Vallabhnagar', 'udaipur', 'Rajasthan', '313602', 'India', 'HMS/PAT/1'),
-(2, '2015-03-02', 'Dr.', 'Candice', '', 'Taylor', 'Female', 4, 9, 24, '67678', '3', 'A', '60', '5566767', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/2');
+(2, '2015-03-10', 'Dr.', 'Candice', '', 'Taylor', 'Female', 4, 9, 24, '67678', '3', 'A', '60', '5566767', '', '', '', '', '', '', '', '', '', '', '', '', 'HMS/PAT/2');
 
 -- --------------------------------------------------------
 
@@ -445,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `services` (
   `DEPARTMENT_ID` int(11) NOT NULL,
   `SERVICES_CHARGES` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `services`
@@ -519,6 +523,7 @@ CREATE TABLE IF NOT EXISTS `ward` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CODE` varchar(50) NOT NULL,
   `NAME` varchar(150) NOT NULL,
+  `RATE` double(10,2) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -526,9 +531,9 @@ CREATE TABLE IF NOT EXISTS `ward` (
 -- Dumping data for table `ward`
 --
 
-INSERT INTO `ward` (`ID`, `CODE`, `NAME`) VALUES
-(2, 'GEN', 'General'),
-(3, 'ICU', 'ICU');
+INSERT INTO `ward` (`ID`, `CODE`, `NAME`, `RATE`) VALUES
+(2, 'GEN', 'General', 300.00),
+(3, 'ICU', 'ICU', 1000.00);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
