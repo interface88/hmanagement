@@ -61,7 +61,7 @@
 			</tr>
 			<tr>
 				<td style="width: 128px">Bill No.</td>
-				<td><input type="text" name="billNo" required="required" maxlength="50"/> </td>
+				<td><input type="text" name="billNo" readonly="readonly" maxlength="50" value="${billNo}"/> </td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td class="auto-style1">Bill Date</td>

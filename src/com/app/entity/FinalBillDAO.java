@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.app.framework.HibernateUtil;
+import com.app.master.Patient;
 
 
 public class FinalBillDAO{
@@ -39,6 +40,14 @@ public class FinalBillDAO{
 	public FinalBill findById(Integer id) {
 		FinalBill finalBill = (FinalBill) session.get(FinalBill.class, id);
 		return finalBill;
+	}
+	
+	public FinalBill getLatestFinalBill() {
+		
+		FinalBill result = (FinalBill) session.createQuery("from FinalBill ORDER BY id DESC")
+                .setMaxResults(1)
+                .uniqueResult();
+		return result;
 	}
 	
 	@SuppressWarnings("unchecked")

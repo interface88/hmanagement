@@ -13,6 +13,7 @@ import com.app.master.Ipd;
 import com.app.master.IpdDAO;
 import com.app.master.Nursing;
 import com.app.master.NursingDAO;
+import com.app.master.Patient;
 import com.app.master.PatientDAO;
 import com.app.entity.FinalBill;
 import com.app.entity.FinalBillDAO;
@@ -178,12 +179,28 @@ public class FinalBillServlet extends HttpServlet {
 		
 		upToDateReceipt = totalPaymentCollectionAmount + ipdAdvancePayment;
 		
+		
+		// -------GETTING BILL NO ----------
 		request.setAttribute("nursingList", nursingList);
 		request.setAttribute("finalBill", finalBill);
+		request.setAttribute("billNo", generateBillNo());
 		request.setAttribute("totalWardCharges", totalWardCharges);
 		request.setAttribute("upToDateReceipt", upToDateReceipt);
 		
+		
+		
 		request.setAttribute("msg",msg);
 		
+	}
+	
+	private String generateBillNo(){
+		FinalBill finalBill = finalBillDAO.getLatestFinalBill();
+		if(finalBill == null){
+			return "HMS/BILL/1"; // inintial no patient present in database
+		}
+		
+		String[] regNoParts = finalBill.getBillNo().split("/");
+		int newRegIncrement =  Integer.parseInt(regNoParts[2]) + 1;
+		return "HMS/BILL/" + newRegIncrement;
 	}
 }
